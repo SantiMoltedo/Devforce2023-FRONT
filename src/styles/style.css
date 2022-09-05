@@ -1,0 +1,143 @@
+* {
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+/* Estilos para el Login */
+
+.contenedor {
+    background-color: #297479;
+    height: 100vh;
+}
+
+.form-card {
+    height: 50vh;
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 992px) {
+    .login-ilustration {
+        display: none;
+    }
+}
+
+/* Navbar */
+.bg {
+    background-color: #297479;
+}
+
+/* BOTONES */
+.btn-outline-dark {
+    border: 2px solid #000 !important;
+    border-radius: 10px !important;
+}
+
+.btn-dark {
+    background-color: #000;
+    border-radius: 10px !important;
+}
+
+.btn-lg {
+    width: 350px;
+}
+
+/* INPUTS DE TEXTO */
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #767676;
+    border-radius: 12px;
+    padding-left: 8px;
+}
+
+.with-icon {
+    padding-left: 40px;
+}
+
+.username:before {
+    background: url("../assets/icons/user-solid.svg") center / contain no-repeat;
+}
+
+.password:before {
+    background: url("../assets/icons/lock-solid.svg") center / contain no-repeat;
+}
+
+/* Switch button */
+
+.form-check-input {
+    margin: 5px 10px !important;
+}
+
+.form-check-input:checked {
+    background-color: #56C561 !important;
+    border-color: #56C561 !important;
+}
+
+
+/* Tabla */
+table {
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+tbody:last-child tr:last-child {
+    border: #fff;
+}
+
+table thead {
+    background-color: #2EB894;
+}
+
+i {
+    font-family: "Font Awesome 6 Free" !important;
+}
+
+.fs-7 {
+    font-size: 14px;
+}
+
+.text-muted {
+    font-size: 12px;
+}
+
+.fa-clock {
+    color: #FEC24E;
+    font-size: 16px;
+}
+
+.fa-check {
+    color: #56C561;
+}
+
+.fa-xmark {
+    color: #C12F33;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.teams-logo {
+    height: 18px;
+    width: 30px;
+}
