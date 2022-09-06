@@ -8,7 +8,7 @@ export const SolicitarCapacitacion = () => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
-                <h5 className="card-title text-center"> Solicitud de capacitación</h5>
+                <h3 className="card-title text-center"> Solicitud de capacitación</h3>
               </div>
             </div>
 

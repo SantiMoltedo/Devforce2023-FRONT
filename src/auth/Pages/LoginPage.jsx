@@ -31,9 +31,11 @@ export const LoginPage = () => {
 									</div>
 									<div className="col-8">
 										<p className="mb-0">Contraseña</p>
-										<label className="input-icon password w-100">
-											<input className="with-icon w-100" type="password" placeholder="Search" />
-										</label>
+										<div class="input">
+											<span class="prefix"><i>YOUR</i></span>
+											<input />
+											<span class="suffix"><i class="fa-solid fa-eye"></i></span>
+										</div>
 									</div>
 									<div className="col-2">
 									</div>
