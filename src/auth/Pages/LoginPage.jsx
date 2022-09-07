@@ -1,5 +1,14 @@
 
 export const LoginPage = () => {
+	const showPassword = () => {
+		var input = document.getElementById("pass")
+		if (input.type === "password") {
+			input.type = "text";
+		} else {
+			input.type = "password";
+		}
+	}
+
 	return (
 		<div className="contenedor">
 			<div className="container">
@@ -20,7 +29,7 @@ export const LoginPage = () => {
 									<div className="col-8">
 										<p className="mb-0">Usuario</p>
 										<label className="input-icon username w-100">
-											<input className="with-icon w-100" type="text" placeholder="Search" />
+											<input className="input with-icon w-100" type="text" placeholder="Search" />
 										</label>
 									</div>
 									<div className="col-2">
@@ -31,11 +40,10 @@ export const LoginPage = () => {
 									</div>
 									<div className="col-8">
 										<p className="mb-0">Contraseña</p>
-										<div class="input">
-											<span class="prefix"><i>YOUR</i></span>
-											<input />
-											<span class="suffix"><i class="fa-solid fa-eye"></i></span>
-										</div>
+										<label className="input-icon password w-100">
+											<input className="input with-icon w-100" type="password" placeholder="Search" id="pass" />
+											<i class="fa-solid fa-eye btn" id="eye" onClick={showPassword}></i>
+										</label>
 									</div>
 									<div className="col-2">
 									</div>

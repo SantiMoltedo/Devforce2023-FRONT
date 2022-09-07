@@ -7,5 +7,6 @@ export function App() {
 		<>
 			<AppRouter />
 		</>
+
 	)
 }

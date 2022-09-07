@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export const SolicitarCapacitacion = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className='container-fluid mt-4'>
       <div className='card ms-auto me-auto'>
@@ -60,7 +64,7 @@ export const SolicitarCapacitacion = () => {
             </div>
             <div className="row">
               <div className="col"></div>
-              <div className="col-lg-2 col-sm-4"><button className='btn btn-outline-dark w-100 mt-4 mb-4'>Cancelar</button></div>
+              <div className="col-lg-2 col-sm-4"><button className='btn btn-outline-dark w-100 mt-4 mb-4' onClick={() => navigate(-1)}>Cancelar</button></div>
               <div className="col-lg-6 col-sm-2"></div>
               <div className="col-lg-2 col-sm-4"><button className='btn btn-dark  w-100  mt-4 mb-4 '>Crear</button></div>
               <div className="col"></div>

@@ -1,8 +1,10 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { NavBar } from '../components/NavBar'
-import { Admin, User, Mentor } from '../Pages'
-import { SolicitarCapacitacion } from '../Pages'
+import { Admin } from '../pages/admin/Admin'
+import { Mentor } from '../pages/mentor/Mentor'
+import { User } from '../pages/user/User'
+import { SolicitarCapacitacion } from '../Pages/user/SolicitarCapacitacion'
 
 export const DevForceRoutes = () => {
   return (
@@ -10,8 +12,9 @@ export const DevForceRoutes = () => {
       <NavBar />
       <Routes>
         <Route path='/admin' element={<Admin />} />
-        <Route path='/asigner' element={<Mentor />} />
-        <Route path='/user' element={<SolicitarCapacitacion />} />
+        <Route path='/mentor' element={<Mentor />} />
+        <Route path='/user' element={<User />} />"
+        <Route path='/crear-soli' element={<SolicitarCapacitacion />} />"
         <Route path='/*' element={<Navigate to="/user" />} />
       </Routes>
     </>

@@ -32,6 +32,15 @@
     background-color: #297479;
 }
 
+.dropdown-menu {
+    background-color: #000;
+    border-radius: 15px;
+}
+
+li hr {
+    border: 1px solid #fff;
+}
+
 /* BOTONES */
 .btn-outline-dark {
     border: 2px solid #000 !important;
@@ -62,7 +71,7 @@
     width: 20px;
 }
 
-input {
+.input {
     width: 100%;
     height: 40px;
     border: 1px solid #767676;
@@ -80,6 +89,14 @@ input {
 
 .password:before {
     background: url("../assets/icons/lock-solid.svg") center / contain no-repeat;
+}
+
+#eye {
+    border: 0 !important;
+    font-size: 20px;
+    position: absolute;
+    right: 0px;
+    top: 3px;
 }
 
 /* Switch button */
@@ -100,16 +117,24 @@ table {
     overflow: hidden;
 }
 
-tbody:last-child tr:last-child {
-    border: #fff;
+tr {
+    border: #f8f9fa;
 }
 
 table thead {
     background-color: #2EB894;
 }
 
+.description {
+    max-width: 750px;
+}
+
 i {
     font-family: "Font Awesome 6 Free" !important;
+}
+
+.fa-angle-down {
+    cursor: pointer;
 }
 
 .fs-7 {

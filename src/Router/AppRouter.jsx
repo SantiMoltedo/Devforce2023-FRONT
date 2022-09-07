@@ -9,15 +9,23 @@ import { PublicRoutes } from './PublicRoutes';
 
 export const AppRouter = () => {
   return (
-    <Routes>
-      {/* Login */}
-      <Route path='/Auth/*' element={<PublicRoutes>
-        <AuthRoutes />
-      </PublicRoutes>} />
-      {/* DevForceApp */}
-      <Route path='/*' element={<PrivateRoutes>
-        <DevForceRoutes />
-      </PrivateRoutes>} />
-    </Routes>
+    <>
+      <Routes>
+        {/* Login */}
+        <Route path='/Auth/*' element={
+          <PublicRoutes>
+            <AuthRoutes />
+          </PublicRoutes>
+        }
+        />
+        {/* DevForceApp */}
+        <Route path='/*' element={
+          <PrivateRoutes>
+            <DevForceRoutes />
+          </PrivateRoutes>
+        }
+        />
+      </Routes>
+    </>
   )
 }
