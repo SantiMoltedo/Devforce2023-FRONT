@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
 export const TablaUsuarios = () => {
-
-
+    //Para q el modal spawnee poner esto en los iconos/columnas q sean
+    // data-bs-toggle="modal" data-bs-target="#aprobSoli"
     useEffect(() => {
         for (let i = 1; i <= 2 /* numero de filas  / 2 */; i++) {
             let collapsed = document.getElementById(`s${i}-collapsed`)
@@ -63,23 +63,23 @@ export const TablaUsuarios = () => {
                         </td>
                         <td onClick={() => expandRow(1)} ><i className="fa-solid fa-angle-down rotated me-2"></i></td>
                     </tr>
-                    <tr id='s2-collapsed' onClick={() => expandRow(2) /*EL 2 ES XQ ES LA FILA 2 (REAL ENTRE EXPANDIDA Y COLAPSADA)*/}>
+                    <tr id='s2-collapsed'>
                         <td>Udemy</td>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
                         <td>
                             <i className="fa-solid fa-xmark fa-xl"></i>
                             <p className="text-muted m-0">Rechazada</p>
                         </td>
-                        <td><i className="fa-solid fa-angle-down me-2"></i></td>
+                        <td onClick={() => expandRow(2)/*EL 2 ES XQ ES LA FILA 2 (REAL ENTRE EXPANDIDA Y COLAPSADA)*/}><i className="fa-solid fa-angle-down me-2"></i></td>
                     </tr>
-                    <tr id='s2-expanded' onClick={() => expandRow(2)}>
+                    <tr id='s2-expanded'>
                         <td>Coursera</td>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
                         <td>
                             <i className="fa-solid fa-check fa-lg"></i>
                             <p className="text-muted m-0">Aceptado</p>
                         </td>
-                        <td><i className="fa-solid fa-angle-down me-2"></i></td>
+                        <td onClick={() => expandRow(2)}><i className="fa-solid fa-angle-down me-2"></i></td>
                     </tr>
                     {/* <tr>
                     <td>Udemy</td>

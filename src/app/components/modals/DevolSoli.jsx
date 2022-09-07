@@ -1,106 +1,51 @@
 
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import styles from '.././../styles/estilosLogin.css'
-import ModalDialog from 'react-bootstrap/ModalDialog'
-export const DevolSoli= () => {
-  const [show, setShow] = useState(false);
+import React from 'react';
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  return (
-    <>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-
-<div class="modal fade  " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-md   ">
-    <div class="modal-content modal-class1  ">
-      
-      <div class="modal-body  modal-styles ">
-
-      
-      <div class="container-fluid ">
-    <div class="row">
-      <div class="col-12"> 
-      <h3 className='text-center mt-3'>Devolver la solicitud</h3>
-      
-      </div>
-      
-    </div>
-    <div class="row">
-      <div class="col-12 mt-3  text-center"><h5><b>Usuario:</b></h5></div>
-      
-    </div>
-    <div class="row">
-      <div class="col-12  text-center"><h5>Santiago Moltedo</h5></div>
-      
-      </div>
-    <div class="row ">
-     
-      <div class="col-12 mt-3  text-center"><h5><b>Tipo de solicitud:</b></h5></div>
-      
-    </div>
-    <div class="row ">
-     
-      <div class="col-12   text-center"><h5>Udemy</h5></div>
-      
-    </div>
-
-
-    <div class="row ">
-     
-      <div class="col-12 mt-3  text-center"><h5><b>Descripcion:</b></h5></div>
-      
-    </div>
-    <div class="row ">
-     
-      <div class="col-12   text-center"><h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, nashe?</h5></div>
-      
-    </div>
-    
-    
-    <div className="row">
-    <div class="col-12   ">
-    {/*  */}
-
-
-
-{/*  */}
-
-    </div>
-    
-  
-
-    </div>
-
-    {/* next row */}
-
-    </div>
-  
-<div className="row">
-<div className="col-2"></div>
-<div class="col-3 mt-3  "><button type="button" class=" btn-secundario w-100 " data-bs-dismiss="modal">Cancelar</button></div>
-      <div class="col-2 mt-3 "></div>
-      <div class="col-3 mt-3 "><button type="button" class=" btn-primario w-100 mb-3">Asignar</button></div>
-      <div className="col-2"></div>
-  
-</div>
-        
-
-
-     
-        
-        
-      </div>
-      
-    </div>
-  </div>
-</div>
-    </>
-  );
+export const DevolSoli = () => {
+	//data-bs-toggle="modal" data-bs-target="#exampleModal"
+	return (
+		<>
+			<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div className="modal-dialog modal-dialog-centered modal-md">
+					<div className="modal-content modal-class1">
+						<div className="modal-body modal-styles">
+							<div className="container-fluid">
+								<div className="row">
+									<div className="col-12">
+										<h1 className='text-center mt-3'>Aprobar la solicitud</h1>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col-12 mt-3 text-center"><h5>Usuario:</h5></div>
+								</div>
+								<div className="row">
+									<div className="col-12 text-center"><p>Santiago Moltedo</p></div>
+								</div>
+								<div className="row">
+									<div className="col-12 mt-3 text-center"><h5>Tipo de solicitud:</h5></div>
+								</div>
+								<div className="row">
+									<div className="col-12 text-center"><p>Udemy</p></div>
+								</div>
+								<div className="row">
+									<div className="col-12 mt-3 text-center"><h5>Descripcion:</h5></div>
+								</div>
+								<div className="row">
+									<div className="col-12 text-center"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, nashe?</p></div>
+								</div>
+								<div className="row">
+									<div className="col-12">
+									</div>
+								</div>
+							</div>
+							<div className="d-flex mt-3">
+								<div className="col-3 mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
+								<div className="col-3 mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2">Devolver</button></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
 }

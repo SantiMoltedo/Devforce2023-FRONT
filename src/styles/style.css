@@ -166,3 +166,8 @@ i {
     height: 18px;
     width: 30px;
 }
+
+/* Modal */
+.modal-content {
+    border-radius: 25px;
+}
