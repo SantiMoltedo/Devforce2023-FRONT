@@ -1,6 +1,6 @@
 
 import React from 'react';
-export const ConfCreacUsuar = () => {
+export const ConfCreacUsuar = ({user='Unknown'}) => {
 	//data-bs-toggle="modal" data-bs-target="#exampleModal"
 	return (
 		<>
@@ -18,7 +18,7 @@ export const ConfCreacUsuar = () => {
 									<div className="col-12 mt-3 text-center"><h5><b>Usuario:</b></h5></div>
 								</div>
 								<div className="row">
-									<div className="col-12 text-center"><h5>Santiago Moltedo</h5></div>
+									<div className="col-12 text-center"><h5>{user}</h5></div>
 								</div>
 							</div>
 							<div className="d-flex mt-3">

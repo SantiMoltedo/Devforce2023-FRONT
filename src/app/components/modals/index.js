@@ -1,1 +1,1 @@
-export * from './AprobSoli'
+export * from './ModalBase'
