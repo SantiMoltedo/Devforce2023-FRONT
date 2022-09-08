@@ -3,12 +3,9 @@ import React from 'react';
 
 
 
-export const SoliModalLicen = ({user='Unknown',tipoSolicitud='Unknown',descripcion='Unknown',mentor='Unknown',admin='Unknown'}) => {
+export const SoliModalLicen = ({ user = 'Unknown', tipoSolicitud = 'Unknown', descripcion = 'Unknown', mentor = 'Unknown', admin = 'Unknown' }) => {
 	return (
 		<>
-
-
-
 			<div className="modal fade" id="aprobSoli" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div className="modal-dialog modal-dialog-centered modal-md">
 					<div className="modal-content modal-class1">
@@ -37,13 +34,13 @@ export const SoliModalLicen = ({user='Unknown',tipoSolicitud='Unknown',descripci
 								<div className="row">
 									<div className="col-12 text-center"><p>{descripcion}</p></div>
 								</div>
-                                <div className="row">
+								<div className="row">
 									<div className="col-12 mt-3 text-center"><h5>Mentor Asignado:</h5></div>
 								</div>
 								<div className="row">
 									<div className="col-12 text-center"><p>{mentor}</p></div>
 								</div>
-                                <div className="row">
+								<div className="row">
 									<div className="col-12 mt-3 text-center"><h5>Admin Asignado:</h5></div>
 								</div>
 								<div className="row">
@@ -56,9 +53,10 @@ export const SoliModalLicen = ({user='Unknown',tipoSolicitud='Unknown',descripci
 									</div>
 								</div>
 							</div>
-							<div className="d-flex mt-3 justify-content-around">
-								<div className="col-3 mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-								<div className="col-3 mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2">Revocar</button></div>
+							<div className="row">
+								<div className="col"></div>
+								<div className="col-10"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Volver</button></div>
+								<div className="col"></div>
 							</div>
 						</div>
 					</div>

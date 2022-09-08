@@ -125,6 +125,10 @@ table thead {
     background-color: #2EB894;
 }
 
+thead th {
+    cursor: pointer;
+}
+
 .description {
     max-width: 750px;
 }

@@ -3,12 +3,9 @@ import React from 'react';
 
 
 
-export const ModalBase = ({texto='Unknown',user='Unknown',tipoSolicitud='Unknown',descripcion='Unknown'}) => {
+export const ModalBase = ({ texto = 'Unknown', user = 'Unknown', tipoSolicitud = 'Unknown', descripcion = 'Unknown' }) => {
 	return (
 		<>
-
-
-
 			<div className="modal fade" id="aprobSoli" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div className="modal-dialog modal-dialog-centered modal-md">
 					<div className="modal-content modal-class1">
@@ -43,8 +40,8 @@ export const ModalBase = ({texto='Unknown',user='Unknown',tipoSolicitud='Unknown
 								</div>
 							</div>
 							<div className="d-flex mt-3 justify-content-around">
-								<div className="col-3 mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-								<div className="col-3 mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2">{texto}</button></div>
+								<div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
+								<div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2">{texto}</button></div>
 							</div>
 						</div>
 					</div>

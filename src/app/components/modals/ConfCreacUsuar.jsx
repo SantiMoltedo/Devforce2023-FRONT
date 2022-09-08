@@ -1,6 +1,6 @@
 
 import React from 'react';
-export const ConfCreacUsuar = ({user='Unknown'}) => {
+export const ConfCreacUsuar = ({ user = 'Unknown' }) => {
 	//data-bs-toggle="modal" data-bs-target="#exampleModal"
 	return (
 		<>
@@ -22,8 +22,8 @@ export const ConfCreacUsuar = ({user='Unknown'}) => {
 								</div>
 							</div>
 							<div className="d-flex mt-3">
-								<div className="col-3 mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-								<div className="col-3 mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2">Devolver</button></div>
+								<div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
+								<div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2">Devolver</button></div>
 							</div>
 						</div>
 					</div>
