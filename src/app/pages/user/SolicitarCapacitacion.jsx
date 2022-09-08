@@ -6,9 +6,9 @@ export const SolicitarCapacitacion = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='container-fluid mt-4'>
-      <div className='card ms-auto me-auto'>
-        <div className="card-body card-styles ">
+    <div className='container-fluid mt-4 mb-4'>
+      <div className='card ms-auto me-autos'>
+        <div className="card-body card-style">
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
