@@ -1,4 +1,4 @@
-import React from 'react'
+
 import teams from "../assets/icons/teamsLogo.png"
 
 export const TablaMentor = () => {

@@ -1,4 +1,3 @@
-import React from 'react'
 
 export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, plataforma, fechaExpir, serialLic, mentorAsign, adminAsign }) => {
     return (

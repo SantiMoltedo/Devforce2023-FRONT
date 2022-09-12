@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 export const TablaUsuarios = () => {
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
