@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Modal } from '../../components/Modal'
+import { PushNoti } from '../../components/PushNoti'
 import { TablaUsuarios } from "../../components/tables/TablaUsuarios"
 
 export const User = () => {
@@ -26,6 +27,8 @@ export const User = () => {
 
             {/* Ejemplo modal (revisar si se importa el modal)*/}
             {/* <Modal titulo="Titulo" accion="Aprobar" usuario="Nombre Apellido" tipoSoli="Udemy" descripcion="Lorem ipsum dolor asodjh asoudhkasbd oaqijwdh" /> */}
+
+            {/* <PushNoti accion="revocada" serial={1234567} /> */}
         </>
     )
 }

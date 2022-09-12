@@ -18,53 +18,35 @@ export const TablaUsuarios = () => {
         }
     }, [])
 
-    function sortTable(n) {
+    const sortTable = (n) => {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("myTable2");
+        table = document.getElementById("tablaUsuarios");
         switching = true;
-        // Set the sorting direction to ascending:
         dir = "asc";
-        /* Make a loop that will continue until
-        no switching has been done: */
         while (switching) {
-            // Start by saying: no switching is done:
             switching = false;
             rows = table.rows;
-            /* Loop through all table rows (except the
-            first, which contains table headers): */
             for (i = 1; i < (rows.length - 1); i++) {
-                // Start by saying there should be no switching:
                 shouldSwitch = false;
-                /* Get the two elements you want to compare,
-                one from current row and one from the next: */
                 x = rows[i].getElementsByTagName("TD")[n];
                 y = rows[i + 1].getElementsByTagName("TD")[n];
-                /* Check if the two rows should switch place,
-                based on the direction, asc or desc: */
                 if (dir == "asc") {
                     if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
                         shouldSwitch = true;
                         break;
                     }
                 } else if (dir == "desc") {
                     if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
                         shouldSwitch = true;
                         break;
                     }
                 }
             }
             if (shouldSwitch) {
-                /* If a switch has been marked, make the switch
-                and mark that a switch has been done: */
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
-                // Each time a switch is done, increase this count by 1:
                 switchcount++;
             } else {
-                /* If no switching has been done AND the direction is "asc",
-                set the direction to "desc" and run the while loop again. */
                 if (switchcount == 0 && dir == "asc") {
                     dir = "desc";
                     switching = true;
@@ -90,7 +72,7 @@ export const TablaUsuarios = () => {
 
     return (
         <>
-            <table className="table text-center align-middle table-sm" id='myTable2'>
+            <table className="table text-center align-middle table-sm" id='tablaUsuarios'>
                 <thead className="text-white">
                     <tr>
                         <th onClick={() => sortTable(0)} scope="col">Tipo de solicitud</th>
@@ -128,13 +110,13 @@ export const TablaUsuarios = () => {
                         <td onClick={() => expandRow(2)/*EL 2 ES XQ ES LA FILA 2 (REAL ENTRE EXPANDIDA Y COLAPSADA)*/}><i className="fa-solid fa-angle-down me-2"></i></td>
                     </tr>
                     <tr id='s2-expanded'>
-                        <td>Coursera</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
+                        <td>Udemy</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off..a ,kjshdasklajshdk asdkjhaskdh kajshdkashd klajshdkas.</td>
                         <td>
-                            <i className="fa-solid fa-check fa-lg"></i>
-                            <p className="text-muted m-0">Aceptado</p>
+                            <i className="fa-solid fa-xmark fa-xl"></i>
+                            <p className="text-muted m-0">Rechazada</p>
                         </td>
-                        <td onClick={() => expandRow(2)}><i className="fa-solid fa-angle-down me-2"></i></td>
+                        <td onClick={() => expandRow(2)}><i className="fa-solid fa-angle-down rotated me-2"></i></td>
                     </tr>
                     {/* <tr>
                     <td>Udemy</td>

@@ -129,8 +129,9 @@ thead th {
     cursor: pointer;
 }
 
-.description {
-    max-width: 750px;
+td,
+th {
+    max-width: 300px !important;
 }
 
 i {
@@ -159,7 +160,7 @@ i {
 }
 
 .fa-xmark {
-    color: #C12F33;
+    color: #B82E52;
 }
 
 .rotated {
@@ -174,4 +175,52 @@ i {
 /* Modal */
 .modal-content {
     border-radius: 25px;
+}
+
+/* Push noti */
+
+.toast-header-asignada {
+    background-color: #2EB894;
+}
+
+.toast-header-revocada {
+    background-color: #B82E52;
+}
+
+.toast-header-devuelta {
+    background-color: #FEC24E;
+}
+
+.toast-header {
+    color: #fff;
+}
+
+
+/* RESPONSIVE DEL PUSH NOTI */
+@media (max-width: 992px) {
+
+    /* Para medium */
+    .toast-container {
+        max-width: 300px;
+    }
+
+    .toast-body p,
+    .toast-header strong,
+    .toast-header i {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Para small */
+    .toast-container {
+        max-width: 250px;
+    }
+
+    .toast-body p,
+    .toast-header strong,
+    .toast-header i {
+        font-size: 0.8rem;
+    }
 }
