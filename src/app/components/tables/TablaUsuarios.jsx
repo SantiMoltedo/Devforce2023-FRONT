@@ -118,6 +118,96 @@ export const TablaUsuarios = () => {
                         </td>
                         <td onClick={() => expandRow(2)}><i className="fa-solid fa-angle-down rotated me-2"></i></td>
                     </tr>
+                    <tr id='s1-collapsed'>
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)}><i className="fa-solid fa-angle-down me-2"></i></td>
+                    </tr>
+                    <tr id="s1-expanded">
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, ut! Molestias deserunt, quod architecto officia nihil eligendi exercitationem quidem esse eius quia ipsum optio ex reiciendis amet, impedit natus. Inventore?</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)} ><i className="fa-solid fa-angle-down rotated me-2"></i></td>
+                    </tr>
+                    <tr id='s1-collapsed'>
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)}><i className="fa-solid fa-angle-down me-2"></i></td>
+                    </tr>
+                    <tr id="s1-expanded">
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, ut! Molestias deserunt, quod architecto officia nihil eligendi exercitationem quidem esse eius quia ipsum optio ex reiciendis amet, impedit natus. Inventore?</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)} ><i className="fa-solid fa-angle-down rotated me-2"></i></td>
+                    </tr>
+                    <tr id='s1-collapsed'>
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)}><i className="fa-solid fa-angle-down me-2"></i></td>
+                    </tr>
+                    <tr id="s1-expanded">
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, ut! Molestias deserunt, quod architecto officia nihil eligendi exercitationem quidem esse eius quia ipsum optio ex reiciendis amet, impedit natus. Inventore?</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)} ><i className="fa-solid fa-angle-down rotated me-2"></i></td>
+                    </tr>
+                    <tr id='s1-collapsed'>
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)}><i className="fa-solid fa-angle-down me-2"></i></td>
+                    </tr>
+                    <tr id="s1-expanded">
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, ut! Molestias deserunt, quod architecto officia nihil eligendi exercitationem quidem esse eius quia ipsum optio ex reiciendis amet, impedit natus. Inventore?</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)} ><i className="fa-solid fa-angle-down rotated me-2"></i></td>
+                    </tr>
+                    <tr id='s1-collapsed'>
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)}><i className="fa-solid fa-angle-down me-2"></i></td>
+                    </tr>
+                    <tr id="s1-expanded">
+                        <td>Asesoramiento</td>
+                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, ut! Molestias deserunt, quod architecto officia nihil eligendi exercitationem quidem esse eius quia ipsum optio ex reiciendis amet, impedit natus. Inventore?</td>
+                        <td>
+                            <i className="fa-solid fa-clock"></i>
+                            <p className="text-muted m-0">En espera</p>
+                        </td>
+                        <td onClick={() => expandRow(1)} ><i className="fa-solid fa-angle-down rotated me-2"></i></td>
+                    </tr>
                     {/* <tr>
                     <td>Udemy</td>
                     <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>

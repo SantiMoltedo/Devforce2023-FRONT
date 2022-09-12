@@ -204,6 +204,11 @@ i {
     vertical-align: middle;
 }
 
+.toast-body p {
+    display: inline;
+    vertical-align: baseline !important;
+}
+
 .noti-position {
     right: 5%;
     top: 10%;
@@ -211,6 +216,10 @@ i {
 
 #pushNotiSimple {
     border-radius: 0 !important;
+}
+
+.mt-05 {
+    margin-top: 0.5rem !important;
 }
 
 
@@ -225,6 +234,7 @@ i {
     .toast-body p,
     .toast-header strong,
     .toast-header i {
+        vertical-align: middle;
         font-size: 0.8rem;
     }
 }
@@ -239,6 +249,7 @@ i {
     .toast-body p,
     .toast-header strong,
     .toast-header i {
+        vertical-align: middle;
         font-size: 0.8rem;
     }
 }
