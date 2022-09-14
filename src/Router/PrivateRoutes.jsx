@@ -2,7 +2,9 @@ import React from 'react'
 import { Navigate } from 'react-router-dom';
 export const PrivateRoutes = ({ children }) => {
 
-  const logged = true
+  const logged = false
+
+  // CONDICION PARA EL LOGIN CAMBIA EL LOGGED
 
   return (
     (logged)
