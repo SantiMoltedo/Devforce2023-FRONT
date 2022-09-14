@@ -42,7 +42,7 @@ export const LoginPage = () => {
 										<p className="mb-0">Contraseña</p>
 										<label className="input-icon password w-100">
 											<input className="input with-icon w-100" type="password" placeholder="Search" id="pass" />
-											<i class="fa-solid fa-eye btn" id="eye" onClick={showPassword}></i>
+											<i className="fa-solid fa-eye btn" id="eye" onClick={showPassword}></i>
 										</label>
 									</div>
 									<div className="col-2">
