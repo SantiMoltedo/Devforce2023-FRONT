@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 
 export const TablaUsuarios = () => {
+
+    //USE EFFECT PARA MANEJAR LA DIRECCION DE ORDENAMIENTO
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
     useEffect(() => {
@@ -18,11 +20,10 @@ export const TablaUsuarios = () => {
         }
     }, [])
 
-    const sortTable = (n) => {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    const sortTable = (n, dir) => {
+        var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
         table = document.getElementById("tablaUsuarios");
         switching = true;
-        dir = "asc";
         while (switching) {
             switching = false;
             rows = table.rows;
@@ -46,18 +47,12 @@ export const TablaUsuarios = () => {
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
                 switchcount++;
-            } else {
-                if (switchcount == 0 && dir == "asc") {
-                    dir = "desc";
-                    switching = true;
-                }
             }
         }
     }
 
 
     const expandRow = (i) => {
-        console.log(i);
         let collapsed = document.getElementById(`s${i}-collapsed`)
         let expanded = document.getElementById(`s${i}-expanded`)
         if (collapsed.style.display == '' || collapsed.style.display == 'table-row') {
@@ -75,10 +70,31 @@ export const TablaUsuarios = () => {
             <table className="table text-center align-middle table-sm" id='tablaUsuarios'>
                 <thead className="text-white">
                     <tr>
-                        <th onClick={() => sortTable(0)} scope="col">Tipo de solicitud</th>
-                        <th onClick={() => sortTable(1)} scope="col">Descripcion</th>
-                        <th onClick={() => sortTable(2)} scope="col">Estado</th>
-                        <th onClick={() => sortTable(3)} scope="col"></th>
+                        <th scope="col">
+                            <div className="d-flex justify-content-center align-items-center">Tipo de solicitud
+                                <div className="ms-3">
+                                    <i onClick={() => sortTable(1, "asc")} className="fa-solid fa-angle-down text-secondary"></i>
+                                    <i onClick={() => sortTable(1, "desc")} className="ms-2 fa-solid fa-angle-down rotated"></i>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div className="d-flex justify-content-center align-items-center">Descripcion
+                                <div className="ms-3">
+                                    <i onClick={() => sortTable(2, "asc")} className="fa-solid fa-angle-down"></i>
+                                    <i onClick={() => sortTable(2, "desc")} className="ms-2 fa-solid fa-angle-down rotated"></i>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div className="d-flex justify-content-center align-items-center">Estado
+                                <div className="ms-3">
+                                    <i onClick={() => sortTable(3, "asc")} className="fa-solid fa-angle-down"></i>
+                                    <i onClick={() => sortTable(3, "desc")} className="ms-2 fa-solid fa-angle-down rotated"></i>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody className="fs-7 table-light">
@@ -137,7 +153,7 @@ export const TablaUsuarios = () => {
                     <td><i className="fa-solid fa-angle-down me-2"></i></td>
                 </tr> */}
                 </tbody>
-            </table>
+            </table >
         </>
     )
 }

@@ -4,7 +4,7 @@ import { NavBar } from '../components/NavBar'
 import { Admin } from '../pages/admin/Admin'
 import { Mentor } from '../pages/mentor/Mentor'
 import { User } from '../pages/user/User'
-import { SolicitarCapacitacion } from '../Pages/user/SolicitarCapacitacion'
+import { SolicitarCapacitacion } from '../pages/user/SolicitarCapacitacion'
 
 export const DevForceRoutes = () => {
   return (
