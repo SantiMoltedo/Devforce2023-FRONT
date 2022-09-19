@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 
+import { sortTable, expandRow } from './functions/auxFunctions'
+
 export const TablaUsuarios = () => {
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
 
-    var dirSort = ""
+    var dirSort0 = ""
+    var dirSort2 = ""
     useEffect(() => {
         for (let i = 1; i <= 2 /* numero de filas  / 2 */; i++) {
             let collapsed = document.getElementById(`s${i}-collapsed`)
@@ -20,51 +23,6 @@ export const TablaUsuarios = () => {
         }
     }, [])
 
-    const sortTable = (n, dir) => {
-        let table, rows, switching, i, x, y, shouldSwitch, switchcount = 0
-        table = document.getElementById("tablaUsuarios")
-        switching = true
-        while (switching) {
-            switching = false
-            rows = table.rows
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false
-                x = rows[i].getElementsByTagName("TD")[n]
-                y = rows[i + 1].getElementsByTagName("TD")[n]
-                if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true
-                        break
-                    }
-                }
-                if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true
-                        break
-                    }
-                }
-            }
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i])
-                switching = true
-                switchcount++
-            }
-        }
-    }
-
-    const expandRow = (i) => {
-        let collapsed = document.getElementById(`s${i}-collapsed`)
-        let expanded = document.getElementById(`s${i}-expanded`)
-        if (collapsed.style.display == '' || collapsed.style.display == 'table-row') {
-            collapsed.style.display = 'none'
-            expanded.style.display = 'table-row'
-        }
-        else {
-            collapsed.style.display = 'table-row'
-            expanded.style.display = 'none'
-        }
-    }
-
     return (
         <>
             <table className="table shadow text-center align-middle table-sm" id='tablaUsuarios'>
@@ -73,8 +31,8 @@ export const TablaUsuarios = () => {
                         <th scope="col">
                             <div className="d-flex justify-content-center align-items-center">Tipo de solicitud
                                 <div className="ms-3">
-                                    <i onClick={() => { dirSort = "asc"; sortTable(0, dirSort) }} className={`fa-solid fa-angle-down`}></i>
-                                    <i onClick={() => { dirSort = "desc"; sortTable(0, dirSort) }} className="ms-2 fa-solid fa-angle-down rotated"></i>
+                                    <i onClick={() => { dirSort0 = "asc"; sortTable(0, dirSort0) }} className="fa-solid fa-angle-down rotated text-secondary" id='col0-asc'></i>
+                                    <i onClick={() => { dirSort0 = "desc"; sortTable(0, dirSort0) }} className="ms-2 fa-solid fa-angle-down text-secondary" id='col0-desc'></i>
                                 </div>
                             </div>
                         </th>
@@ -87,8 +45,8 @@ export const TablaUsuarios = () => {
                             <div className="d-flex justify-content-center align-items-center">
                                 Estado
                                 <div className="ms-3">
-                                    <i onClick={() => { dirSort = "asc"; sortTable(2, dirSort) }} className="fa-solid fa-angle-down"></i>
-                                    <i onClick={() => { dirSort = "desc"; sortTable(2, dirSort) }} className="ms-2 fa-solid fa-angle-down rotated"></i>
+                                    <i onClick={() => { dirSort2 = "asc"; sortTable(2, dirSort2) }} className="fa-solid fa-angle-down rotated text-secondary" id='col2-asc'></i>
+                                    <i onClick={() => { dirSort2 = "desc"; sortTable(2, dirSort2) }} className="ms-2 fa-solid fa-angle-down text-secondary" id='col2-desc'></i>
                                 </div>
                             </div>
                         </th>
