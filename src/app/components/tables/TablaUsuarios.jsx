@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const TablaUsuarios = () => {
-
-    //USE EFFECT PARA MANEJAR LA DIRECCION DE ORDENAMIENTO
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
+
+    var dirSort = ""
     useEffect(() => {
         for (let i = 1; i <= 2 /* numero de filas  / 2 */; i++) {
             let collapsed = document.getElementById(`s${i}-collapsed`)
@@ -21,36 +21,36 @@ export const TablaUsuarios = () => {
     }, [])
 
     const sortTable = (n, dir) => {
-        var table, rows, switching, i, x, y, shouldSwitch, switchcount = 0;
-        table = document.getElementById("tablaUsuarios");
-        switching = true;
+        let table, rows, switching, i, x, y, shouldSwitch, switchcount = 0
+        table = document.getElementById("tablaUsuarios")
+        switching = true
         while (switching) {
-            switching = false;
-            rows = table.rows;
+            switching = false
+            rows = table.rows
             for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-                x = rows[i].getElementsByTagName("TD")[n];
-                y = rows[i + 1].getElementsByTagName("TD")[n];
+                shouldSwitch = false
+                x = rows[i].getElementsByTagName("TD")[n]
+                y = rows[i + 1].getElementsByTagName("TD")[n]
                 if (dir == "asc") {
                     if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
+                        shouldSwitch = true
+                        break
                     }
-                } else if (dir == "desc") {
+                }
+                if (dir == "desc") {
                     if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
+                        shouldSwitch = true
+                        break
                     }
                 }
             }
             if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                switchcount++;
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i])
+                switching = true
+                switchcount++
             }
         }
     }
-
 
     const expandRow = (i) => {
         let collapsed = document.getElementById(`s${i}-collapsed`)
@@ -67,37 +67,35 @@ export const TablaUsuarios = () => {
 
     return (
         <>
-            <table className="table text-center align-middle table-sm" id='tablaUsuarios'>
+            <table className="table shadow text-center align-middle table-sm" id='tablaUsuarios'>
                 <thead className="text-white">
                     <tr>
                         <th scope="col">
                             <div className="d-flex justify-content-center align-items-center">Tipo de solicitud
                                 <div className="ms-3">
-                                    <i onClick={() => sortTable(1, "asc")} className="fa-solid fa-angle-down text-secondary"></i>
-                                    <i onClick={() => sortTable(1, "desc")} className="ms-2 fa-solid fa-angle-down rotated"></i>
+                                    <i onClick={() => { dirSort = "asc"; sortTable(0, dirSort) }} className={`fa-solid fa-angle-down`}></i>
+                                    <i onClick={() => { dirSort = "desc"; sortTable(0, dirSort) }} className="ms-2 fa-solid fa-angle-down rotated"></i>
                                 </div>
                             </div>
                         </th>
                         <th scope="col">
-                            <div className="d-flex justify-content-center align-items-center">Descripcion
-                                <div className="ms-3">
-                                    <i onClick={() => sortTable(2, "asc")} className="fa-solid fa-angle-down"></i>
-                                    <i onClick={() => sortTable(2, "desc")} className="ms-2 fa-solid fa-angle-down rotated"></i>
-                                </div>
+                            <div className="d-flex justify-content-center align-items-center">
+                                Descripcion
                             </div>
                         </th>
                         <th scope="col">
-                            <div className="d-flex justify-content-center align-items-center">Estado
+                            <div className="d-flex justify-content-center align-items-center">
+                                Estado
                                 <div className="ms-3">
-                                    <i onClick={() => sortTable(3, "asc")} className="fa-solid fa-angle-down"></i>
-                                    <i onClick={() => sortTable(3, "desc")} className="ms-2 fa-solid fa-angle-down rotated"></i>
+                                    <i onClick={() => { dirSort = "asc"; sortTable(2, dirSort) }} className="fa-solid fa-angle-down"></i>
+                                    <i onClick={() => { dirSort = "desc"; sortTable(2, dirSort) }} className="ms-2 fa-solid fa-angle-down rotated"></i>
                                 </div>
                             </div>
                         </th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody className="fs-7 table-light">
+                <tbody className="fs-7">
                     <tr id='s1-collapsed'>
                         <td>Asesoramiento</td>
                         <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
