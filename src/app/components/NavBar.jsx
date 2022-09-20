@@ -1,11 +1,12 @@
 
 import { Link } from 'react-router-dom'
+import logo from '../../assets/liceman-3.png'
 
 export const NavBar = () => {
     return (
         <>
             <nav className="navbar navbar-expand-lg bg">
-                <Link className="navbar-brand text-light ms-5" to="">LOGO NOMBRE DEL PROYECTO</Link>
+                <Link className="navbar-brand text-light ms-5" to=""><img className='logo-liceman' src={logo} alt="Logo Liceman" /></Link>
                 <button className="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

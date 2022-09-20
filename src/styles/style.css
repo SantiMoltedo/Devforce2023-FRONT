@@ -45,6 +45,10 @@ nav .dropdown-item:hover {
     background-color: #424649;
 }
 
+.logo-liceman {
+    max-width: 150px;
+}
+
 /* BOTONES */
 .btn-outline-dark {
     border: 2px solid #000 !important;
