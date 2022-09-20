@@ -103,10 +103,6 @@ nav .dropdown-item:hover {
     top: 3px;
 }
 
-/* Card shadow */
-
-
-
 /* Switch button */
 
 .form-check-input {
@@ -140,7 +136,7 @@ thead th i {
 
 td,
 th {
-    max-width: 300px !important;
+    max-width: 250px !important;
 }
 
 i {
