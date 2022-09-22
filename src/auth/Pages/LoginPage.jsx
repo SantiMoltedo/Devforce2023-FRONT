@@ -1,7 +1,10 @@
-import signIn from "../../services/services";
 import loginIllustration from '../../assets/loginIlustration.png'
 
+import { useForm } from "./useForm";
+import { LoginApi } from '../../api/LoginApi'
+
 export const LoginPage = () => {
+
 	const showPassword = () => {
 		var input = document.getElementById("pass")
 		if (input.type === "password") {
@@ -10,6 +13,27 @@ export const LoginPage = () => {
 			input.type = "password";
 		}
 	}
+
+	const { fromState, onInputChange } = useForm({
+		username: '', password: ''
+	}
+
+	)
+	const { username, password } = fromState
+
+	async function enviardatos(username, password) {
+		try {
+			const resp = await LoginApi.post('/auth/signin', { username, password })
+			console.log({ resp });
+			const { data } = resp
+			console.log(data);
+
+		} catch (error) {
+			console.log({ error });
+		}
+
+	}
+	//
 
 	return (
 		<div className="contenedor">
@@ -20,12 +44,12 @@ export const LoginPage = () => {
 						<img className="login-ilustration" src={loginIllustration} alt="Login Ilustration" />
 					</div>
 					<div className="col-lg-5 col-sm-12">
-						<div className="card rounded-3 form-card d-flex justify-content-around">
-							<div>
-								<h1 className="text-center">Bienvenido</h1>
-							</div>
-							<div>
-								<form action={() => signIn()}>
+						<form action={() => enviardatos(username, password)}>
+							<div className="card rounded-3 form-card d-flex justify-content-around">
+								<div>
+									<h1 className="text-center">Bienvenido</h1>
+								</div>
+								<div>
 									<div className="row">
 										<div className="col-2">
 										</div>
@@ -51,20 +75,20 @@ export const LoginPage = () => {
 										<div className="col-2">
 										</div>
 									</div>
-								</form>
-							</div>
-							<div>
-								<div className="row">
-									<div className="col-3">
-									</div>
-									<div className="col-6 ">
-										<button className="w-100 btn btn-dark">Iniciar</button>
-									</div>
-									<div className="col-3">
+								</div>
+								<div>
+									<div className="row">
+										<div className="col-3">
+										</div>
+										<div className="col-6 ">
+											<button className="w-100 btn btn-dark" type="submit">Iniciar</button>
+										</div>
+										<div className="col-3">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 					<div className="col-1"></div>
 				</div>

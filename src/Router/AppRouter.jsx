@@ -5,11 +5,14 @@ import { AuthRoutes } from '../Auth/Routes/AuthRoutes';
 import { DevForceRoutes } from '../app/Routes/DevForceRoutes';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
+import { UserContext } from '../UserContext';
 
 
 export const AppRouter = () => {
   return (
     <>
+    <UserContext.Provider value='hola lopret'>
+    
       <Routes>
         {/* Login */}
         <Route path='/Auth/*' element={
@@ -26,6 +29,8 @@ export const AppRouter = () => {
         }
         />
       </Routes>
+
+      </UserContext.Provider>
     </>
   )
 }
