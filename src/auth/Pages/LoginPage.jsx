@@ -1,7 +1,11 @@
 import { useForm } from "../../customHooks/useForm";
+import { useContext } from "react";
+import { UserContext } from "../../UserContext";
 import axios from 'axios';
 
 export const LoginPage = () => {
+
+	const { status, setstatus } = useContext(UserContext);
 
 	const showPassword = () => {
 		var input = document.getElementById("pass")
@@ -18,12 +22,20 @@ export const LoginPage = () => {
 	const { username, password } = formState
 
 	async function enviardatos(username, password) {
-		console.log(username, password);
 		try {
 			const resp = await axios.post('http://localhost:8080/api/auth/signin', { username, password })
-			console.log({ resp });
 			const { data } = resp
-			console.log(data);
+			let dataarmada = {
+				statusLog: data.ok,
+				msg: data.mensaje,
+				contenido: data.contenido,
+				rolA: data.contenido.authorities[0].authority
+			}
+			setstatus(status => ({
+				...status,
+				...dataarmada
+			})
+			)
 		} catch (error) {
 			console.log({ error });
 		}

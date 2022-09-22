@@ -1,11 +1,8 @@
+import React from 'react'
 
-import React, { useContext } from 'react'
-import { UserContext } from '../../../UserContext'
 export const Admin = () => {
-
-  const msg=useContext(UserContext)
   return (
-    <div >{msg}</div>
-  
+    <div >admin</div>
+
   )
 }

@@ -1,5 +1,6 @@
 export const sortTable = (n, dir) => {
     let table, rows, switching, i, x, y, shouldSwitch, switchcount = 0
+    console.log(dir);
     table = document.getElementById("tablaUsuarios")
     switching = true
     while (switching) {
@@ -28,17 +29,6 @@ export const sortTable = (n, dir) => {
             switchcount++
         }
     }
-    if (dir == "asc") {
-        document.getElementById(`col${n}-desc`).classList.add("text-secondary")
-        document.getElementById(`col${n}-asc`).classList.remove("text-secondary")
-    } else {
-        document.getElementById(`col${n}-asc`).classList.add("text-secondary")
-        document.getElementById(`col${n}-desc`).classList.remove("text-secondary")
-    }
-    let k = 0
-    n == 0 ? k = 2 : k = 0
-    document.getElementById(`col${k}-asc`).classList.add("text-secondary")
-    document.getElementById(`col${k}-desc`).classList.add("text-secondary")
 }
 
 export const expandRow = (i) => {

@@ -23,6 +23,14 @@ export const TablaUsuarios = () => {
         }
     }, [])
 
+    //COLOR DE HOVER DE EL DROPDOWN DE NAV
+    //FLECHA DE LAS TABLA A 1 SOLA (PONERLE ANIMACION)
+    //ORTOGRAFIA
+    //EL DROPDOWN DE NAV EN MOVILE
+    //CENTRAR TODO DE LAS TABLAS
+    //SACAR TANTAS CLUMNAS POR UNOS MARGENES POR FILAS EN SOLICITUD DE CAPACITACION
+    //EN MOBILE CAMBIAR EL BOTON DE CREAR DE ABAJO A ARRIBA
+
     return (
         <>
             <table className="table shadow text-center align-middle table-sm" id='tablaUsuarios'>
@@ -36,7 +44,7 @@ export const TablaUsuarios = () => {
                                 </div>
                             </div>
                         </th>
-                        <th scope="col">
+                        <th scope="col" className="align-middle">
                             <div>
                                 Descripcion
                             </div>
