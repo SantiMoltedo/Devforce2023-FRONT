@@ -42,7 +42,7 @@ li hr {
 }
 
 nav .dropdown-item:hover {
-    background-color: #424649;
+    background-color: #1b4649;
 }
 
 .logo-liceman {
@@ -252,6 +252,7 @@ i {
 
     /* Para small */
     .toast-container {
+
         max-width: 250px;
     }
 

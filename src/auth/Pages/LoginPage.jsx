@@ -1,5 +1,5 @@
 import { useForm } from "../../customHooks/useForm";
-import { LoginApi } from '../../api/LoginApi'
+import axios from 'axios';
 
 export const LoginPage = () => {
 
@@ -20,7 +20,7 @@ export const LoginPage = () => {
 	async function enviardatos(username, password) {
 		console.log(username, password);
 		try {
-			const resp = await LoginApi.post('/auth/signin', { username, password })
+			const resp = await axios.post('http://localhost:8080/api/auth/signin', { username, password })
 			console.log({ resp });
 			const { data } = resp
 			console.log(data);
