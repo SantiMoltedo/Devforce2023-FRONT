@@ -1,4 +1,7 @@
 
+import { useForm } from "./useForm";
+import {LoginApi} from '../../api/LoginApi' 
+
 export const LoginPage = () => {
 	const showPassword = () => {
 		var input = document.getElementById("pass")
@@ -8,6 +11,27 @@ export const LoginPage = () => {
 			input.type = "password";
 		}
 	}
+
+	const {fromState,onInputChange}= useForm({
+		username:'',password:''
+	}
+	
+)
+	const {username,password}=fromState
+
+	async function enviardatos(pito='',username,password){
+try{
+	const resp=await LoginApi.post('/auth/signin',{username,password})
+	console.log({resp});
+	const {data} =resp
+	console.log(data);
+
+}catch(error){
+	console.log({error});
+}
+		
+	}
+
 
 	return (
 		<div className="contenedor">
@@ -29,7 +53,7 @@ export const LoginPage = () => {
 									<div className="col-8">
 										<p className="mb-0">Usuario</p>
 										<label className="input-icon username w-100">
-											<input className="input with-icon w-100" type="text" placeholder="Search" />
+											<input className="input with-icon w-100" type="text" placeholder="Search" name="username" value={username} onChange={onInputChange} />
 										</label>
 									</div>
 									<div className="col-2">
@@ -41,7 +65,7 @@ export const LoginPage = () => {
 									<div className="col-8">
 										<p className="mb-0">Contraseña</p>
 										<label className="input-icon password w-100">
-											<input className="input with-icon w-100" type="password" placeholder="Search" id="pass" />
+											<input className="input with-icon w-100" type="password" placeholder="Search" id="pass" name="password" value={password} onChange={onInputChange} />
 											<i class="fa-solid fa-eye btn" id="eye" onClick={showPassword}></i>
 										</label>
 									</div>
@@ -54,7 +78,7 @@ export const LoginPage = () => {
 									<div className="col-3">
 									</div>
 									<div className="col-6 ">
-										<button className="w-100 btn btn-dark">Iniciar</button>
+										<button className="w-100 btn btn-dark" type="submit" onClick={()=>enviardatos('http://localhost:8080',username,password)}>Iniciar</button>
 									</div>
 									<div className="col-3">
 									</div>
@@ -67,4 +91,4 @@ export const LoginPage = () => {
 			</div>
 		</div>
 	)
-}
+	}
