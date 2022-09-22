@@ -1,6 +1,4 @@
-import loginIllustration from '../../assets/loginIlustration.png'
-
-import { useForm } from "./useForm";
+import { useForm } from "../../customHooks/useForm";
 import { LoginApi } from '../../api/LoginApi'
 
 export const LoginPage = () => {
@@ -14,26 +12,22 @@ export const LoginPage = () => {
 		}
 	}
 
-	const { fromState, onInputChange } = useForm({
+	const { formState, onInputChange } = useForm({
 		username: '', password: ''
-	}
-
-	)
-	const { username, password } = fromState
+	})
+	const { username, password } = formState
 
 	async function enviardatos(username, password) {
+		console.log(username, password);
 		try {
 			const resp = await LoginApi.post('/auth/signin', { username, password })
 			console.log({ resp });
 			const { data } = resp
 			console.log(data);
-
 		} catch (error) {
 			console.log({ error });
 		}
-
 	}
-	//
 
 	return (
 		<div className="contenedor">
@@ -41,10 +35,10 @@ export const LoginPage = () => {
 				<div className="row  align-items-center">
 					<div className="col-1"></div>
 					<div className="col-5">
-						<img className="login-ilustration" src={loginIllustration} alt="Login Ilustration" />
+						<img className="login-ilustration" src='../../../assets/loginIlustration.svg' alt="Login Ilustration" />
 					</div>
 					<div className="col-lg-5 col-sm-12">
-						<form action={() => enviardatos(username, password)}>
+						<form onSubmit={(e) => { enviardatos(username, password); e.preventDefault() }}>
 							<div className="card rounded-3 form-card d-flex justify-content-around">
 								<div>
 									<h1 className="text-center">Bienvenido</h1>
@@ -56,7 +50,7 @@ export const LoginPage = () => {
 										<div className="col-8">
 											<p className="mb-0">Usuario</p>
 											<label className="input-icon username w-100">
-												<input className="input with-icon w-100" type="text" placeholder="Search" />
+												<input className="input with-icon w-100" type="text" placeholder="Search" name="username" value={username} onChange={onInputChange} />
 											</label>
 										</div>
 										<div className="col-2">
@@ -68,7 +62,7 @@ export const LoginPage = () => {
 										<div className="col-8">
 											<p className="mb-0">Contraseña</p>
 											<label className="input-icon password w-100">
-												<input className="input with-icon w-100" type="password" placeholder="Search" id="pass" />
+												<input className="input with-icon w-100" type="password" placeholder="Search" id="pass" name="password" value={password} onChange={onInputChange} />
 												<i className="fa-solid fa-eye btn" id="eye" onClick={showPassword}></i>
 											</label>
 										</div>

@@ -4,6 +4,17 @@ export const SolicitarCapacitacion = () => {
 
   const navigate = useNavigate();
 
+  const hideOrShowInput = () => {
+    var valorSeleccionado = document.querySelector(".form-select").value;
+    var linkArea = document.getElementById("link");
+    if (valorSeleccionado == 4 || valorSeleccionado == 5) {
+      linkArea.classList.remove("ocultar");
+    }
+    else {
+      linkArea.classList.add("ocultar");
+    }
+  }
+
   return (
     <>
       <div className='shadow rounded m-4'>
@@ -20,14 +31,23 @@ export const SolicitarCapacitacion = () => {
         <div className="row">
           <div className="col"></div>
           <div className="col-10">
-            <select className="form-select">
-              <option value={0}>Tipo de solicitud</option>
-              <option value={1}>Asesoramiento</option>
-              <option value={2}>Coursera</option>
-              <option value={3}>Otros</option>
-              <option value={4}>Udemy</option>
-              <option value={5}>Otra Plataforma</option>
+            <select className="form-select" onChange={() => hideOrShowInput()}>
+              <option value={0} >Tipo de solicitud</option>
+              <option value={1} >Asesoramiento</option>
+              <option value={2} >Coursera</option>
+              <option value={3} >Otros</option>
+              <option value={4} >Udemy</option>
+              <option value={5} >Otra Plataforma</option>
             </select>
+          </div>
+          <div className="col"></div>
+        </div>
+
+        <div className="row">
+          <div className="col"></div>
+          <div id='link' className="col-10 ocultar">
+            <h5 className='mt-4'>Link al curso:</h5>
+            <input type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
           </div>
           <div className="col"></div>
         </div>

@@ -11,25 +11,23 @@ import { UserContext } from '../UserContext';
 export const AppRouter = () => {
   return (
     <>
-    <UserContext.Provider value='hola lopret'>
-    
-      <Routes>
-        {/* Login */}
-        <Route path='/Auth/*' element={
-          <PublicRoutes>
-            <AuthRoutes />
-          </PublicRoutes>
-        }
-        />
-        {/* DevForceApp */}
-        <Route path='/*' element={
-          <PrivateRoutes>
-            <DevForceRoutes />
-          </PrivateRoutes>
-        }
-        />
-      </Routes>
-
+      <UserContext.Provider value='hola lopret'>
+        <Routes>
+          {/* Login */}
+          <Route path='/Auth/*' element={
+            <PublicRoutes>
+              <AuthRoutes />
+            </PublicRoutes>
+          }
+          />
+          {/* DevForceApp */}
+          <Route path='/*' element={
+            <PrivateRoutes>
+              <DevForceRoutes />
+            </PrivateRoutes>
+          }
+          />
+        </Routes>
       </UserContext.Provider>
     </>
   )
