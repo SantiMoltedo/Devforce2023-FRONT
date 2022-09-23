@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 import { sortTable, expandRow } from './functions/auxFunctions'
@@ -21,7 +22,18 @@ export const TablaUsuarios = () => {
                 expanded.style.display = 'none'
             }
         }
+        getSolicitudes()
     }, [])
+
+    const getSolicitudes = async () => {
+        try {
+            const resp = await axios.get('http://localhost:8080/api/solicitudesusuario')
+            const { data } = resp
+            console.log(data);
+        } catch (error) {
+            console.log({ error });
+        }
+    }
 
     //FLECHA DE LAS TABLA A 1 SOLA (PONERLE ANIMACION)
     //ORTOGRAFIA
