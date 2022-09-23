@@ -264,8 +264,15 @@ i {
     }
 }
 
-/* AUXILIARES */
+/* Estilos para formulario solicitar capacitacion */
 
-.ocultar {
-    display: none;
+#link {
+    transition: all .5s ease-in-out;
+    margin-top: 1rem;
+}
+
+.hide {
+    margin-top: 0 !important;
+    opacity: 0;
+    height: 0;
 }

@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export const LoginPage = () => {
 
-	const { status, setstatus } = useContext(UserContext);
+	const { setstatus } = useContext(UserContext);
 
 	const showPassword = () => {
 		var input = document.getElementById("pass")
@@ -27,11 +27,10 @@ export const LoginPage = () => {
 			const { data } = resp
 			let dataarmada = {
 				statusLog: data.ok,
-				msg: data.mensaje,
 				contenido: data.contenido,
 				rolA: data.contenido.authorities[0].authority
 			}
-			setstatus(status => ({
+			await setstatus(status => ({
 				...status,
 				...dataarmada
 			})
