@@ -4,13 +4,9 @@
 
 /* Estilos para el Login */
 
-.contenedor {
+.page-container {
     background-color: #297479;
     height: 100vh;
-}
-
-.form-card {
-    height: 60vh;
 }
 
 .container {
@@ -21,7 +17,7 @@
     transform: translate(-50%, -50%);
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991.5px) {
     .login-ilustration {
         display: none;
     }
@@ -41,6 +37,10 @@ li hr {
     border: 1px solid #fff;
 }
 
+nav .dropdown-item {
+    transition: all .25s ease-in-out;
+}
+
 nav .dropdown-item:hover {
     background-color: #1b4649;
 }
@@ -50,6 +50,10 @@ nav .dropdown-item:hover {
 }
 
 /* BOTONES */
+.btn {
+    transition: all .25s ease-in-out;
+}
+
 .btn-outline-dark {
     border: 2px solid #000 !important;
     border-radius: 10px !important;
@@ -58,10 +62,6 @@ nav .dropdown-item:hover {
 .btn-dark {
     background-color: #000;
     border-radius: 10px !important;
-}
-
-.btn-lg {
-    width: 350px;
 }
 
 /* INPUTS DE TEXTO */

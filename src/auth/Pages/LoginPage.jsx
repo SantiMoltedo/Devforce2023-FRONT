@@ -42,63 +42,32 @@ export const LoginPage = () => {
 	}
 
 	return (
-		<div className="contenedor">
+		<div className="page-container">
 			<div className="container">
-				<div className="row  align-items-center">
-					<div className="col-1"></div>
-					<div className="col-5">
+				<div className="row d-flex align-items-center">
+					<div className="col-6">
 						<img className="login-ilustration" src='../../../assets/loginIlustration.svg' alt="Login Ilustration" />
 					</div>
-					<div className="col-lg-5 col-sm-12">
-						<form onSubmit={(e) => { enviardatos(username, password); e.preventDefault() }}>
-							<div className="card rounded-3 form-card d-flex justify-content-around">
-								<div>
-									<h1 className="text-center">Bienvenido</h1>
-								</div>
-								<div>
-									<div className="row">
-										<div className="col-2">
-										</div>
-										<div className="col-8">
-											<p className="mb-0">Usuario</p>
-											<label className="input-icon username w-100">
-												<input className="input with-icon w-100" type="text" placeholder="Search" name="username" value={username} onChange={onInputChange} />
-											</label>
-										</div>
-										<div className="col-2">
-										</div>
-									</div>
-									<div className="row mt-4">
-										<div className="col-2">
-										</div>
-										<div className="col-8">
-											<p className="mb-0">Contraseña</p>
-											<label className="input-icon password w-100">
-												<input className="input with-icon w-100" type="password" placeholder="Search" id="pass" name="password" value={password} onChange={onInputChange} />
-												<i className="fa-solid fa-eye btn" id="eye" onClick={showPassword}></i>
-											</label>
-										</div>
-										<div className="col-2">
-										</div>
-									</div>
-								</div>
-								<div>
-									<div className="row">
-										<div className="col-3">
-										</div>
-										<div className="col-6 ">
-											<button className="w-100 btn btn-dark" type="submit">Iniciar</button>
-										</div>
-										<div className="col-3">
-										</div>
-									</div>
-								</div>
+					<div className="col-lg-6 col-12">
+						<div className="card rounded-3 shadow p-5">
+							<div>
+								<h1 className="text-center">Bienvenido de nuevo</h1>
+								<p className="text-center fs-4">A Liceman!</p>
 							</div>
-						</form>
+							<form className="px-4" onSubmit={(e) => { enviardatos(username, password); e.preventDefault() }}>
+								<label className="input-icon username w-100 my-3">
+									<input className="input with-icon w-100" type="text" placeholder="Usuario" name="username" value={username} onChange={onInputChange} />
+								</label>
+								<label className="input-icon password w-100 my-3">
+									<input className="input with-icon w-100" type="password" placeholder="Contraseña" id="pass" name="password" value={password} onChange={onInputChange} />
+									<i className="fa-solid fa-eye btn" id="eye" onClick={showPassword}></i>
+								</label>
+								<button className="w-100 btn btn-dark mt-3" type="submit">Iniciar sesión</button>
+							</form>
+						</div>
 					</div>
-					<div className="col-1"></div>
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }
