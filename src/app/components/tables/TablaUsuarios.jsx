@@ -56,7 +56,7 @@ export const TablaUsuarios = () => {
                             <div className="d-flex justify-content-center align-items-center">
                                 Estado
                                 <div className="ms-2">
-                                    <i onClick={() => { sortTable(2, dirSort0, setDirSort0) }} className="fa-solid fa-arrow-up text-secondary" id='col2'></i>
+                                    <i onClick={() => { sortTable(2, dirSort2, setDirSort2) }} className="fa-solid fa-arrow-up text-secondary" id='col2'></i>
                                 </div>
                             </div>
                         </th>
