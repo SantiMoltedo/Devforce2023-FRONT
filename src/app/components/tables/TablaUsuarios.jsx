@@ -7,8 +7,8 @@ export const TablaUsuarios = () => {
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
 
-    var dirSort0 = ""
-    var dirSort2 = ""
+    const [dirSort0, setDirSort0] = useState("asc")
+    const [dirSort2, setDirSort2] = useState("asc")
     useEffect(() => {
         for (let i = 1; i <= 2 /* numero de filas  / 2 */; i++) {
             let collapsed = document.getElementById(`s${i}-collapsed`)
@@ -35,9 +35,6 @@ export const TablaUsuarios = () => {
         }
     }
 
-    //FLECHA DE LAS TABLA A 1 SOLA (PONERLE ANIMACION)
-    //ORTOGRAFIA
-
     return (
         <>
             <table className="table shadow text-center align-middle table-sm" id='tablaUsuarios'>
@@ -46,8 +43,7 @@ export const TablaUsuarios = () => {
                         <th scope="col">
                             <div className="d-flex justify-content-center align-items-center">Tipo de solicitud
                                 <div className="ms-2">
-                                    <i onClick={() => { dirSort0 = "asc"; sortTable(0, dirSort0) }} className="fa-solid fa-arrow-up rotated text-secondary" id='col0-asc'></i>
-                                    <i onClick={() => { dirSort0 = "desc"; sortTable(0, dirSort0) }} className="ms-2 fa-solid fa-arrow-up text-secondary" id='col0-desc'></i>
+                                    <i onClick={() => { sortTable(0, dirSort0, setDirSort0) }} className="fa-solid fa-arrow-up text-secondary" id='col0'></i>
                                 </div>
                             </div>
                         </th>
@@ -60,8 +56,7 @@ export const TablaUsuarios = () => {
                             <div className="d-flex justify-content-center align-items-center">
                                 Estado
                                 <div className="ms-2">
-                                    <i onClick={() => { dirSort2 = "asc"; sortTable(2, dirSort2) }} className="fa-solid fa-arrow-up rotated text-secondary" id='col2-asc'></i>
-                                    <i onClick={() => { dirSort2 = "desc"; sortTable(2, dirSort2) }} className="ms-2 fa-solid fa-arrow-up text-secondary" id='col2-desc'></i>
+                                    <i onClick={() => { sortTable(2, dirSort2, setDirSort2) }} className="fa-solid fa-arrow-up text-secondary" id='col2'></i>
                                 </div>
                             </div>
                         </th>

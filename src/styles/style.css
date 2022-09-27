@@ -147,6 +147,10 @@ i {
     font-family: "Font Awesome 6 Free" !important;
 }
 
+.fa-arrow-up {
+    transition: all .25s linear 0s;
+}
+
 .fa-angle-down {
     cursor: pointer;
 }
@@ -173,7 +177,7 @@ i {
 }
 
 .rotated {
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
 }
 
 .teams-logo {
