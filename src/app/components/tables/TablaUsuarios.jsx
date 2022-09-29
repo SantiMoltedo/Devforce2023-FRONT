@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-
 import { sortTable, expandRow } from './functions/auxFunctions'
 
+// axios.defaults.withCredentials = true
 export const TablaUsuarios = () => {
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
@@ -27,8 +27,14 @@ export const TablaUsuarios = () => {
 
     const getSolicitudes = async () => {
         try {
-            const resp = await axios.get('http://localhost:8080/api/solicitudesusuario')
-            const { data } = resp
+            const data = await
+                //     axios.get('http://localhost:8080/api/solicitudesusuario')
+                // const { data } = resp
+                // console.log(data);
+                fetch('http://localhost:8080/api/solicitudesusuario', {
+                    method: "GET",
+                })
+                    .then(resp => resp.json())
             console.log(data);
         } catch (error) {
             console.log({ error });

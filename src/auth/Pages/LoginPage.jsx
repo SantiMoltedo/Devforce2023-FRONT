@@ -2,6 +2,7 @@ import { useForm } from "../../customHooks/useForm";
 import { useContext } from "react";
 import { UserContext } from "../../UserContext";
 import axios from 'axios';
+// axios.defaults.withCredentials = true
 
 export const LoginPage = () => {
 
@@ -23,14 +24,36 @@ export const LoginPage = () => {
 
 	async function enviardatos(username, password) {
 		try {
-			const resp = await axios.post('http://localhost:8080/api/auth/signin', { username, password })
+			const resp = await
+				// fetch('http://localhost:8080/api/auth/signin', {
+				// 	method: 'POST',
+				// 	body: JSON.stringify({ username, password }),
+				// 	headers: {
+				// 		'Accept': 'application/json',
+				// 		'Content-Type': 'application/json',
+				// 		'Cache': 'no-cache'
+				// 	},
+				// 	credentials: 'include',
+				// }).then(resp => resp.json())
+
+
+
+				axios.post('http://localhost:8080/api/auth/signin', { username, password }, {
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					// withCredentials: true
+				})
 			const { data } = resp
+			console.log(data);
+
 			let dataarmada = {
 				statusLog: data.ok,
 				contenido: data.contenido,
 				rolA: data.contenido.authorities[0].authority
 			}
-			await setstatus(status => ({
+			setstatus(status => ({
 				...status,
 				...dataarmada
 			})
