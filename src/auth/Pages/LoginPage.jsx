@@ -24,28 +24,26 @@ export const LoginPage = () => {
 
 	async function enviardatos(username, password) {
 		try {
-			const resp = await
-				// fetch('http://localhost:8080/api/auth/signin', {
-				// 	method: 'POST',
-				// 	body: JSON.stringify({ username, password }),
-				// 	headers: {
-				// 		'Accept': 'application/json',
-				// 		'Content-Type': 'application/json',
-				// 		'Cache': 'no-cache'
-				// 	},
-				// 	credentials: 'include',
-				// }).then(resp => resp.json())
-
-
-
-				axios.post('http://localhost:8080/api/auth/signin', { username, password }, {
+			const data = await
+				fetch('http://localhost:8080/api/auth/signin', {
+					method: 'POST',
+					body: JSON.stringify({ username, password }),
 					headers: {
 						'Accept': 'application/json',
-						'Content-Type': 'application/json'
+						'Content-Type': 'application/json',
+						'Cache': 'no-cache'
 					},
-					// withCredentials: true
-				})
-			const { data } = resp
+					// credentials: 'include',
+				}).then(resp => resp.json())
+
+			// 	axios.post('http://localhost:8080/api/auth/signin', { username, password }, {
+			// 		headers: {
+			// 			'Accept': 'application/json',
+			// 			'Content-Type': 'application/json'
+			// 		},
+			// 		// withCredentials: true
+			// 	})
+			// const { data } = resp
 			console.log(data);
 
 			let dataarmada = {

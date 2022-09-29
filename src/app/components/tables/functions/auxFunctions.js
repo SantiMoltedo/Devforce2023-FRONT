@@ -45,13 +45,8 @@ export const sortTable = (n, dir, setDir) => {
 }
 
 export const expandRow = (i) => {
-    let collapsed = document.getElementById(`s${i}-collapsed`)
-    let expanded = document.getElementById(`s${i}-expanded`)
-    if (collapsed.style.display == '' || collapsed.style.display == 'table-row') {
-        collapsed.style.display = 'none'
-        expanded.style.display = 'table-row'
-    } else {
-        collapsed.style.display = 'table-row'
-        expanded.style.display = 'none'
-    }
+    let parrafo = document.getElementById(`s${i}-description`)
+    let icono = document.getElementById(`s${i}-expandIcon`)
+    parrafo.classList.toggle("collapsed")
+    icono.classList.toggle("rotated")
 }

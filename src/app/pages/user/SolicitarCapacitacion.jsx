@@ -1,8 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import { useForm } from '../../../customHooks/useForm';
 
 export const SolicitarCapacitacion = () => {
 
   const navigate = useNavigate();
+
+  const { formState, onInputChange } = useForm({
+    tipo: '', descripcion: '', estado: '', area: ''
+  })
+  const { tipo, descripcion, estado, area } = formState
 
   const hideOrShowInput = () => {
     var valorSeleccionado = document.querySelector(".form-select").value;
@@ -13,6 +19,19 @@ export const SolicitarCapacitacion = () => {
     else {
       linkArea.classList.add("hide");
     }
+  }
+
+  const sendSolicitud = (tipo, descripcion, estado, area) => {
+    fetch('http://localhost:8080/api/nuevaSolicitud', {
+      method: 'POST',
+      body: JSON.stringify({ tipo, descripcion, estado, area }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Cache': 'no-cache'
+      },
+      credentials: 'include',
+    }).then(resp => resp.json())
   }
 
   return (
@@ -47,7 +66,7 @@ export const SolicitarCapacitacion = () => {
           </select>
 
           <h5 className='mt-4'>Detalle de la capacitación</h5>
-          <textarea className="form-control" placeholder="Contanos a que tipo de capacitación te gustaría aplicar y cual es tu objetivo?" rows="10"></textarea>
+          <textarea className="form-control" placeholder="Contanos a que tipo de capacitación te gustaría aplicar y cual es tu objetivo?" rows="10" name="descripcion" value={descripcion} onChange={onInputChange}></textarea>
 
           <div className="d-flex my-4">
             <button className='btn btn-outline-dark w-100 me-4' onClick={() => navigate(-1)}>Cancelar</button>

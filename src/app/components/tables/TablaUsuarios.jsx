@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { sortTable, expandRow } from './functions/auxFunctions'
 
@@ -9,23 +8,13 @@ export const TablaUsuarios = () => {
 
     const [dirSort0, setDirSort0] = useState("asc")
     const [dirSort2, setDirSort2] = useState("asc")
+    const [solicitudes, setSolicitudes] = useState([])
+
     useEffect(() => {
-        for (let i = 1; i <= 2 /* numero de filas  / 2 */; i++) {
-            let collapsed = document.getElementById(`s${i}-collapsed`)
-            let expanded = document.getElementById(`s${i}-expanded`)
-            if (collapsed.style.display == '' || collapsed.style.display == 'table-row') {
-                collapsed.style.display = 'none'
-                expanded.style.display = 'table-row'
-            }
-            else {
-                collapsed.style.display = 'table-row'
-                expanded.style.display = 'none'
-            }
-        }
-        getSolicitudes()
+        getSolicitudes(setSolicitudes)
     }, [])
 
-    const getSolicitudes = async () => {
+    const getSolicitudes = async (setSolicitudes) => {
         try {
             const data = await
                 //     axios.get('http://localhost:8080/api/solicitudesusuario')
@@ -35,7 +24,7 @@ export const TablaUsuarios = () => {
                     method: "GET",
                 })
                     .then(resp => resp.json())
-            console.log(data);
+            setSolicitudes(data)
         } catch (error) {
             console.log({ error });
         }
@@ -70,68 +59,41 @@ export const TablaUsuarios = () => {
                     </tr>
                 </thead>
                 <tbody className="fs-7">
-                    <tr id='s1-collapsed'>
-                        <td>Asesoramiento</td>
-                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
-                        <td>
-                            <div className='d-flex justify-content-center align-items-center'>
-                                <p className="text-muted m-0">En espera</p>
-                                <i className="ms-2 fa-solid fa-clock"></i>
-                            </div>
-                        </td>
-                        <td onClick={() => expandRow(1)}><i className="fa-solid fa-angle-down me-2"></i></td>
-                    </tr>
-                    <tr id="s1-expanded">
-                        <td>Asesoramiento</td>
-                        <td className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, ut! Molestias deserunt, quod architecto officia nihil eligendi exercitationem quidem esse eius quia ipsum optio ex reiciendis amet, impedit natus. Inventore?</td>
-                        <td>
-                            <div className='d-flex justify-content-center align-items-center'>
-                                <p className="text-muted m-0">En espera</p>
-                                <i className="ms-2 fa-solid fa-clock"></i>
-                            </div>
-                        </td>
-                        <td onClick={() => expandRow(1)} ><i className="fa-solid fa-angle-down rotated me-2"></i></td>
-                    </tr>
-                    <tr id='s2-collapsed'>
-                        <td>Udemy</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
-                        <td>
-                            <div className='d-flex justify-content-center align-items-center'>
-                                <p className="text-muted m-0">Rechazada</p>
-                                <i className="ms-2 fa-solid fa-xmark fa-xl"></i>
-                            </div>
-                        </td>
-                        <td onClick={() => expandRow(2)/*EL 2 ES XQ ES LA FILA 2 (REAL ENTRE EXPANDIDA Y COLAPSADA)*/}><i className="fa-solid fa-angle-down me-2"></i></td>
-                    </tr>
-                    <tr id='s2-expanded'>
-                        <td>Udemy</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off..a ,kjshdasklajshdk asdkjhaskdh kajshdkashd klajshdkas.</td>
-                        <td>
-                            <div className='d-flex justify-content-center align-items-center'>
-                                <p className="text-muted m-0">Rechazada</p>
-                                <i className="ms-2 fa-solid fa-xmark fa-xl"></i>
-                            </div>
-                        </td>
-                        <td onClick={() => expandRow(2)}><i className="fa-solid fa-angle-down rotated me-2"></i></td>
-                    </tr>
-                    {/* <tr>
-                    <td>Udemy</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
-                    <td>
-                        <i className="fa-solid fa-pencil "></i>
-                        <p className="text-muted m-0">Devuelto</p>
-                    </td>
-                    <td><i className="fa-solid fa-angle-down me-2"></i></td>
-                </tr>
-                <tr>
-                    <td>Udemy</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Off...</td>
-                    <td>
-                        <i className="fa-solid fa-pencil "></i>
-                        <p className="text-muted m-0">Devuelto</p>
-                    </td>
-                    <td><i className="fa-solid fa-angle-down me-2"></i></td>
-                </tr> */}
+                    {
+                        solicitudes.map(soli => (
+                            <tr>
+                                <td>
+                                    {soli.tipo}
+                                </td>
+                                <td>
+                                    <p id={`s${soli.id}-description`} className='collapsed w-100'>
+                                        {soli.descripcion}
+                                    </p>
+                                </td>
+                                <td>
+                                    <div className='d-flex justify-content-center align-items-center'>
+                                        <p className="text-muted m-0">{soli.estado}</p>
+                                        {
+                                            soli.estado == 'PENDIENTE-MENTOR' && (<i className="ms-2 fa-solid fa-clock"></i>)
+                                        }
+                                        {
+                                            soli.estado == 'PENDIENTE-ADMIN' && (<i className="ms-2 fa-solid fa-clock"></i>)
+                                        }
+                                        {
+                                            soli.estado == 'DEVUELTO-USER' && (<i className="ms-2 fa-solid fa-pencil"></i>)
+                                        }
+                                        {
+                                            soli.estado == 'ACEPTADA' && (<i className="ms-2 fa-solid fa-check"></i>)
+                                        }
+                                        {
+                                            soli.estado == 'DENEGADA' && (<i className="ms-2 fa-solid fa-xmark"></i>)
+                                        }
+                                    </div>
+                                </td>
+                                <td><i onClick={() => expandRow(soli.id)} id={`s${soli.id}-expandIcon`} className="fa-solid fa-angle-down me-2"></i></td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </table >
         </>
