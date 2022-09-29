@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { sortTable, expandRow } from './functions/auxFunctions'
 
-// axios.defaults.withCredentials = true
 export const TablaUsuarios = () => {
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
