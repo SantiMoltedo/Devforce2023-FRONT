@@ -66,6 +66,21 @@ nav .dropdown-item:hover {
 
 /* INPUTS DE TEXTO */
 
+*:required:invalid {
+    border: 1px solid red;
+}
+
+input:focus-visible {
+    transition: all .1s ease-in-out;
+}
+
+input:focus-visible:invalid {
+    outline: 4px solid rgb(226, 87, 87, 50%) !important;
+    border-radius: 0.375rem !important;
+    border: 1px solid rgb(226, 87, 87) !important;
+    box-shadow: none !important;
+}
+
 .input-icon {
     position: relative;
 }
@@ -276,8 +291,17 @@ i {
 }
 
 /* Estilos para formulario solicitar capacitacion */
+.container-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-#link {
+.card-form {
+    width: min(90%, 1200px);
+}
+
+#link-area {
     transition: all .5s ease-in-out;
     margin-top: 1rem;
 }
