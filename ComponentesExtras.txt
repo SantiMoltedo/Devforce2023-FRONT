@@ -1,7 +1,0 @@
-El switch de "Tiene Teams?"
-
-<div className="form-switch m-3">
-    <label>Default switch checkbox input</label>
-    <input className="form-check-input" type="checkbox" role="switch" />
-</div>
-
