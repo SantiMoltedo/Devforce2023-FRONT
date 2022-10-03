@@ -10,11 +10,11 @@ export const TablaMentor = () => {
     const [dirSort2, setDirSort2] = useState("asc")
     const [solicitudes, setSolicitudes] = useState([])
 
-    var  accion = "No funciona maestro";
-    var  titulo = "No funciona maestro";
-    var  usuario = "No funciona maestro";
-    var  tiposoli = "No funciona maestro";
-    var  descripcion = "No funciona maestro";
+    const [accion, setAccion] = useState("")
+    const [titulo, setTitulo] = useState("")
+    const [usuario, setUsuario] = useState("")
+    const [tipoSoli, setTipoSoli] = useState("")
+    const [descripcion, setDescripcion] = useState("")
 
     useEffect(() => {
         getSolicitudes(setSolicitudes)
@@ -23,10 +23,11 @@ export const TablaMentor = () => {
     const getSolicitudes = async (setSolicitudes) => {
         try {
             const data = await
-                //     axios.get('http://localhost:8080/api/solicitudesusuario')
+                // axios.get('http://localhost:8080/api/solicitudesmentor')
                 // const { data } = resp
                 // console.log(data);
-                fetch('http://localhost:8080/api/solicitudesusuario', {
+                
+                fetch('http://localhost:8080/api/solicitudesmentor', {
                     mode: 'cors',
                     method: "GET",
                     headers: {
@@ -44,34 +45,29 @@ export const TablaMentor = () => {
         }
     }
 
-
-    const xmark = () => {
-        accion = "ok";
-        titulo = "probando";
-        usuario = "gireboys";
-        tiposoli = "nose";
-        descripcion = "funciona";
+    const xmark = (usuario,tipoSoli,descripcion) => {
+        setAccion("Rechazar");
+        setTitulo ("Rechazar la solicitud");
+        setUsuario(usuario);
+        setTipoSoli (tipoSoli);
+        setDescripcion (descripcion);
     }
 
-    const pencil = () => {
-        accion = "ok";
-        titulo = "PENCILLLLL" ;
-        usuario = "pepedelav";
-        tiposoli = "UDEMY";
-        descripcion = "";
+    const pencil = (usuario,tipoSoli,descripcion) => {
+        setAccion("Devolver");
+        setTitulo ("Devolver la solicitud");
+        setUsuario(usuario);
+        setTipoSoli (tipoSoli);
+        setDescripcion (descripcion);
     }
     
-    const checkmark = () => {
-        accion = "Aprobar"; 
-        titulo = "Aprobar solicitud"; 
-        usuario = "";
-        tiposoli = "";
-        descripcion = "LOREM ipsum";
-        
-        
+    const checkmark = (usuario,tipoSoli,descripcion) => {
+        setAccion("Aprobar"); 
+        setTitulo ("Aprobar solicitud");
+        setUsuario(usuario);
+        setTipoSoli (tipoSoli);
+        setDescripcion (descripcion);
     }
-    
-    
 
     return (
         <>
@@ -124,13 +120,9 @@ export const TablaMentor = () => {
                                 <td>
                                     {/*<i data-bs-toggle="modal" data-bs-target="#Modal" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>*/}
                                     {/*<button class = "btn" data-bs-toggle="modal" data-bs-target="#aprobSoli" ><i className="ms-2 fa-solid fa-pencil me-2"></i></button>*/}
-                                    <i onClick={() => xmark()} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>
-                                    <i onClick={() => pencil()} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-pencil me-2"></i>
-                                    <i onClick={() => checkmark()} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-check me-2"></i>
-                                    
-                                    {
-                                        console.log(accion)
-                                    }
+                                    <i onClick={() => xmark(soli.usuario.nombre + " " + soli.usuario.apellido,soli.tipo,soli.descripcion)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>
+                                    <i onClick={() => pencil(soli.usuario.nombre + " " + soli.usuario.apellido,soli.tipo,soli.descripcion)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-pencil me-2"></i>
+                                    <i onClick={() => checkmark(soli.usuario.nombre + " " + soli.usuario.apellido,soli.tipo,soli.descripcion)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-check me-2"></i>
                                 </td>
                                 <td>
                                     <i onClick={() => expandRow(soli.id)} id={`s${soli.id}-expandIcon`} className="fa-solid fa-angle-down me-2"></i>
@@ -140,7 +132,7 @@ export const TablaMentor = () => {
                     }
                 </tbody>
             </table >
-            <Modal  accion = {accion} titulo = {titulo} usuario = {usuario} tiposoli = {tiposoli} descripcion = {descripcion}/>
+            <Modal  accion = {accion} titulo = {titulo} usuario = {usuario} tipoSoli = {tipoSoli} descripcion = {descripcion}/>
         </>
     )
 }

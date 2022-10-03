@@ -19,8 +19,9 @@ export const Mentor = () => {
                 </div>
                 <div className="row justify-content-end">
                     <div className="col-4 col-sm-7 col-md-7 col-lg-8"></div>
-                    <div className="col-8 col-sm-5 col-md-4 col-lg-3"><Link to="/crear-soli"><button className='btn btn-dark w-100' >Mis solicitudes</button></Link></div>
+                    <div className="col-8 col-sm-5 col-md-4 col-lg-3"><Link to="/user"><button className='btn btn-dark w-100' >Mis solicitudes</button></Link></div>
                     <div className="col"></div>
+                    {/*<button type="button" className="btn btn-primary" id="liveToastBtn" onClick={triggerToast}> Show live toast</button>*/}
                 </div>
             </div>
 
@@ -28,7 +29,7 @@ export const Mentor = () => {
             {/* <Modal titulo="Titulo" accion="Aprobar" usuario="Nombre Apellido" tipoSoli="Udemy" descripcion="Lorem ipsum dolor asodjh asoudhkasbd oaqijwdh" /> */}
 
             {/* <PushNoti accion="asignada" serial={1234567} /> */}
-            {/* <PushNotiSimple accion='rechazada' coso='Solicitud' /> */}
+            <PushNotiSimple accion='rechazada' coso='Solicitud' />
         </>
     )
 }
