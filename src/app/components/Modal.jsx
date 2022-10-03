@@ -1,11 +1,12 @@
 
 export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, plataforma, fechaExpir, serialLic, mentorAsign, adminAsign }) => {
+    console.log(accion)
     return (
         <>
             {/* Boton para Porbar el modal!!!!!!! */}
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aprobSoli">
+            {/*<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aprobSoli">
                 Probar Modal
-            </button>
+            </button>*/}
             <div className="modal fade" id="aprobSoli" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-md">
                     <div className="modal-content modal-class1">
