@@ -4,6 +4,10 @@
 
 /* Estilos para el Login */
 
+p{
+    margin: 0 !important;
+}
+
 .page-container {
     background-color: #297479;
     height: 100vh;

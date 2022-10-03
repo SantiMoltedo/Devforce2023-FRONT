@@ -66,33 +66,20 @@ export const TablaUsuarios = () => {
                     </tr>
                 </thead>
                 <tbody className="fs-7">
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <p className='collapsed w-100'>
-                            </p>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            
-                        </td>
-                    </tr>
                     {
                         solicitudes.map(soli => (
                             <tr>
-                                <td className='collapsed w-100'>
+                                <td>
                                     {soli.tipo}
                                 </td>
                                 <td>
-                                    <p id={`s${soli.id}-description`} className='collapsed w-100'>
+                                    <p id={`s${soli.id}-description` } >
                                         {soli.descripcion}
                                     </p>
                                 </td>
                                 <td>
                                     <div className='d-flex justify-content-center align-items-center'>
-                                        <p className="text-muted m-0" className='collapsed w-100'>{soli.estado}</p>
+                                        <p className="text-muted m-0">{soli.estado}</p>
                                         {
                                             soli.estado == 'PENDIENTE-MENTOR' && (<i className="ms-2 fa-solid fa-clock"></i>)
                                         }

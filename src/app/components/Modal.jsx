@@ -1,6 +1,5 @@
 
 export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, plataforma, fechaExpir, serialLic, mentorAsign, adminAsign }) => {
-    console.log(accion)
     return (
         <>
             {/* Boton para Porbar el modal!!!!!!! */}
