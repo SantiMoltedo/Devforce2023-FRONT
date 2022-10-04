@@ -31,6 +31,7 @@ export const TablaUsuarios = () => {
 					credentials: 'include',
                 })
                     .then(resp => resp.json())
+                    console.log(data)
             setSolicitudes(data)
         } catch (error) {
             console.log({ error });
@@ -66,6 +67,19 @@ export const TablaUsuarios = () => {
                     </tr>
                 </thead>
                 <tbody className="fs-7">
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <p className='collapsed w-100'>
+                            </p>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
                     {
                         solicitudes.map(soli => (
                             <tr>
@@ -73,7 +87,7 @@ export const TablaUsuarios = () => {
                                     {soli.tipo}
                                 </td>
                                 <td>
-                                    <p id={`s${soli.id}-description` } >
+                                    <p id={`s${soli.id}-description`} className='d-flex justify-content-center align-items-center'>
                                         {soli.descripcion}
                                     </p>
                                 </td>

@@ -2,6 +2,28 @@ import { useEffect, useState } from 'react'
 import { sortTable, expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
 
+export const apiFetch = async () => {
+    try {
+        const data = await
+        fetch('http://localhost:8080/api/solicitudesusuario', { 
+                mode: 'cors',
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Cache': 'no-cache',
+                    'Access-Control-Allow-Origin': 'http://localhost:8080',
+                },
+                credentials: 'include',
+            })
+                .then(resp => resp.json())
+                
+                
+    } catch (error) {
+        console.log({ error });
+    }
+}
+
 export const TablaMentor = () => {
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
@@ -9,12 +31,12 @@ export const TablaMentor = () => {
     const [dirSort0, setDirSort0] = useState("asc")
     const [dirSort2, setDirSort2] = useState("asc")
     const [solicitudes, setSolicitudes] = useState([])
-
     const [accion, setAccion] = useState("")
     const [titulo, setTitulo] = useState("")
     const [usuario, setUsuario] = useState("")
     const [tipoSoli, setTipoSoli] = useState("")
     const [descripcion, setDescripcion] = useState("")
+    const [coso, setCoso] = useState("")
 
     useEffect(() => {
         getSolicitudes(setSolicitudes)
@@ -46,25 +68,28 @@ export const TablaMentor = () => {
     }
 
     const xmark = (usuario,tipoSoli,descripcion) => {
-        setAccion("Rechazar");
+        setAccion ("Rechazar");
         setTitulo ("Rechazar la solicitud");
+        setCoso ("Solicitud");
         setUsuario(usuario);
         setTipoSoli (tipoSoli);
         setDescripcion (descripcion);
     }
 
     const pencil = (usuario,tipoSoli,descripcion) => {
-        setAccion("Devolver");
+        setAccion ("Devolver");
         setTitulo ("Devolver la solicitud");
-        setUsuario(usuario);
+        setCoso ("Solicitud");
+        setUsuario (usuario);
         setTipoSoli (tipoSoli);
         setDescripcion (descripcion);
     }
     
     const checkmark = (usuario,tipoSoli,descripcion) => {
-        setAccion("Aprobar"); 
+        setAccion ("Aprobar"); 
         setTitulo ("Aprobar solicitud");
-        setUsuario(usuario);
+        setCoso ("Solicitud");
+        setUsuario (usuario);
         setTipoSoli (tipoSoli);
         setDescripcion (descripcion);
     }
@@ -132,7 +157,7 @@ export const TablaMentor = () => {
                     }
                 </tbody>
             </table >
-            <Modal  accion = {accion} titulo = {titulo} usuario = {usuario} tipoSoli = {tipoSoli} descripcion = {descripcion}/>
+            <Modal  accion = {accion} titulo = {titulo} usuario = {usuario} tipoSoli = {tipoSoli} descripcion = {descripcion} coso= {coso}/>
         </>
     )
 }

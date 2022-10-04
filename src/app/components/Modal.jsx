@@ -1,5 +1,9 @@
+import { PushNotiSimple } from './PushNotiSimple'
+import { triggerToast } from './PushNotiSimple'
+import { apiFetch } from './tables/TablaMentor'
 
-export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, plataforma, fechaExpir, serialLic, mentorAsign, adminAsign }) => {
+
+export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, plataforma, fechaExpir, serialLic, mentorAsign, adminAsign, coso }) => {
     return (
         <>
             {/* Boton para Porbar el modal!!!!!!! */}
@@ -131,21 +135,22 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                 accion ? (
                                     <div className="d-flex mt-3 justify-content-around">
                                         <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2">{accion}</button></div>
+                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" onClick={() => {triggerToast();apiFetch()}} >{accion}</button> </div>
                                     </div>
                                 )
-                                    : (
-                                        <div className="row">
-                                            <div className="col"></div>
-                                            <div className="col-10"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Volver</button></div>
-                                            <div className="col"></div>
-                                        </div>
-                                    )
-                            }
+                                :(
+                                    <div className="row">
+                                        <div className="col"></div>
+                                        <div className="col-10"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Volver</button></div>
+                                        <div className="col"></div>
+                                    </div>
+                                )
+                            } 
                         </div>
                     </div>
                 </div>
             </div>
+            <PushNotiSimple accion = {accion} coso = {coso}/> 
         </>
     )
 }
