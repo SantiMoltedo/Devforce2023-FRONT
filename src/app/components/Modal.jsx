@@ -1,10 +1,9 @@
 import { PushNotiSimple } from './PushNotiSimple'
 import { triggerToast } from './PushNotiSimple'
-import { apiFetch } from './tables/TablaMentor'
 import { useForm } from '../../customHooks/useForm'
 
 
-export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli}) => {
+export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,apiFetch }) => {
     const { formState,onInputChange }=useForm({
         numeroDias: ""
     })
@@ -135,7 +134,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                     )
                                 }
                                 {
-                                    accion=="Aprobar"?(soli.tipo=="Udemy" || soli.tipo=="Otra plataforma")?(
+                                    accion=="Aprobar"? (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma")? (
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Dias a completar el curso:</h5></div>
@@ -144,7 +143,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                                 <input type="number" className="col-12 text-center input w-75" placeholder='Ej: 10' name='numeroDias' value={numeroDias} onChange={onInputChange} />
                                             </div>
                                         </>
-                                    ): null : null
+                                    ):null:null
 
                                 }
                             </div>
@@ -153,7 +152,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                 accion? (
                                     <div className="d-flex mt-3 justify-content-around">
                                         <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" onClick={() => { apiFetch(accion,soli,numeroDias); triggerToast()}} >{accion}</button> </div>
+                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={() => { apiFetch(accion,soli,numeroDias); triggerToast() }} >{accion}</button> </div>
                                     </div>
                                 )
                                     :(
@@ -169,7 +168,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                 </div>
             </div>
             <PushNotiSimple accion={accion} coso={coso} />
-            
+
         </>
     )
 }
