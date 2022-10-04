@@ -31,7 +31,6 @@ export const TablaUsuarios = () => {
 					credentials: 'include',
                 })
                     .then(resp => resp.json())
-                    console.log(data)
             setSolicitudes(data)
         } catch (error) {
             console.log({ error });

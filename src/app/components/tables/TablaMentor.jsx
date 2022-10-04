@@ -2,12 +2,20 @@ import { useEffect,useState } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
 
-export const apiFetch=async () => {
+export const apiFetch=async (accion) => {
     try {
+        let ruta;
+        console.log({accion})
+        if(accion == "Aprobar"){ruta = "aceptarSolicitud"}
+        if(accion == "Rechazar"){ruta= "rechazarSolicitudPlataforma"}
+        if(accion == "Devolver"){ruta = "devolverSolicitudPlataforma"}
+        console.log({ruta})
         const data=await
-            fetch('http://localhost:8080/api/solicitudesusuario',{
+            fetch(`http://localhost:8080/api/mentor/${ruta}` ,{
                 mode: 'cors',
-                method: "GET",
+                method: "PUT",
+                //body: JSON.stringify({ id, tipo, descripcion, area, estado }),
+                //parameter: dias,
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -17,6 +25,7 @@ export const apiFetch=async () => {
                 credentials: 'include',
             })
                 .then(resp => resp.json())
+                console.log(data)
 
 
     } catch (error) {
