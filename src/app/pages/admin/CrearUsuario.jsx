@@ -51,7 +51,7 @@ export const CrearUsuario = () => {
   return (
     <div className='container-center'>
       <div className='card-form shadow rounded m-3'>
-        <h2 className="text-center pt-4"> Crear usuario</h2>
+        <h2 className="text-center pt-4"> Solicitud de capacitación</h2>
         <form onSubmit={(e) => { sendSolicitud(); e.preventDefault() }} className="p-3">
 
           <h5>Tipo de solicitud</h5>
