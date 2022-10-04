@@ -4,7 +4,7 @@
 
 /* Estilos para el Login */
 
-p{
+p {
     margin: 0 !important;
 }
 
@@ -69,6 +69,16 @@ nav .dropdown-item:hover {
 }
 
 /* INPUTS DE TEXTO */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
 
 *:required:invalid {
     border: 1px solid red;

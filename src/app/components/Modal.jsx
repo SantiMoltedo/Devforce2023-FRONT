@@ -1,9 +1,15 @@
 import { PushNotiSimple } from './PushNotiSimple'
 import { triggerToast } from './PushNotiSimple'
 import { apiFetch } from './tables/TablaMentor'
+import { useForm } from '../../customHooks/useForm'
 
 
-export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, plataforma, fechaExpir, serialLic, mentorAsign, adminAsign, coso }) => {
+export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli }) => {
+    const { formState,onInputChange }=useForm({
+        numeroDias: ""
+    })
+    const { numeroDias }=formState
+
     return (
         <>
             {/* Boton para Porbar el modal!!!!!!! */}
@@ -21,7 +27,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     </div>
                                 </div>
                                 {
-                                    usuario && (
+                                    usuario&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Usuario:</h5></div>
@@ -33,7 +39,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     )
                                 }
                                 {
-                                    tipoSoli && (
+                                    tipoSoli&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Tipo de solicitud:</h5></div>
@@ -45,7 +51,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     )
                                 }
                                 {
-                                    descripcion && (
+                                    descripcion&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Descripcion:</h5></div>
@@ -57,7 +63,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     )
                                 }
                                 {
-                                    mail && (
+                                    mail&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Mail:</h5></div>
@@ -70,7 +76,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
 
                                 }
                                 {
-                                    plataforma && (
+                                    plataforma&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Plataforma:</h5></div>
@@ -82,7 +88,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     )
                                 }
                                 {
-                                    fechaExpir && (
+                                    fechaExpir&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Fecha de expiración:</h5></div>
@@ -94,7 +100,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     )
                                 }
                                 {
-                                    serialLic && (
+                                    serialLic&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Serial:</h5></div>
@@ -106,7 +112,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     )
                                 }
                                 {
-                                    mentorAsign && (
+                                    mentorAsign&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Mentor asignado:</h5></div>
@@ -118,7 +124,7 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                     )
                                 }
                                 {
-                                    adminAsign && (
+                                    adminAsign&&(
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Admin asignado:</h5></div>
@@ -129,28 +135,41 @@ export const Modal = ({ accion, titulo, usuario, tipoSoli, descripcion, mail, pl
                                         </>
                                     )
                                 }
+                                {
+                                    soli.tipo=="Udemy"&&(
+                                        <>
+                                            <div className="row">
+                                                <div className="col-12 mt-3 text-center"><h5>Dias a completar el curso:</h5></div>
+                                            </div>
+                                            <div className="row justify-content-center">
+                                                <input type="number" className="col-12 text-center input w-75" placeholder='Ej: 10' name='numeroDias' value={numeroDias} onChange={onInputChange} />
+                                            </div>
+                                        </>
+                                    )
+
+                                }
                             </div>
                             {
                                 //En caso de que no haya accion 1 solo boton de volver (Modal solicitud de licencia)
-                                accion ? (
+                                accion? (
                                     <div className="d-flex mt-3 justify-content-around">
                                         <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" onClick={() => {triggerToast();apiFetch()}} >{accion}</button> </div>
+                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" onClick={() => { triggerToast(); apiFetch() }} >{accion}</button> </div>
                                     </div>
                                 )
-                                :(
-                                    <div className="row">
-                                        <div className="col"></div>
-                                        <div className="col-10"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Volver</button></div>
-                                        <div className="col"></div>
-                                    </div>
-                                )
-                            } 
+                                    :(
+                                        <div className="row">
+                                            <div className="col"></div>
+                                            <div className="col-10"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Volver</button></div>
+                                            <div className="col"></div>
+                                        </div>
+                                    )
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-            <PushNotiSimple accion = {accion} coso = {coso}/> 
+            <PushNotiSimple accion={accion} coso={coso} />
         </>
     )
 }
