@@ -51,18 +51,23 @@ export const CrearUsuario = () => {
   return (
     <div className='container-center'>
       <div className='card-form shadow rounded m-3'>
-        <h2 className="text-center pt-4"> Solicitud de capacitación</h2>
+        <h2 className="text-center pt-4"> Crear Usuario</h2>
         <form onSubmit={(e) => { sendSolicitud(); e.preventDefault() }} className="p-3">
 
-          <h5>Tipo de solicitud</h5>
+          <h5>Tipo de usuario:</h5>
           <select id='tipo-selector' className="form-select" onChange={() => hideOrShowInput()} defaultValue={0}>
-            <option disabled value={0}>Elegí el tipo de solicitud</option>
-            <option value={"ASESORAMIENTO"}>Asesoramiento</option>
-            <option value={"COURSERA"}>Coursera</option>
-            <option value={"OTROS"}>Otros</option>
-            <option value={"UDEMY"}>Udemy</option>
-            <option value={"OTRA-PLATAFORMA"}>Otra Plataforma</option>
+            <option disabled value={0}>Tipo de usuario</option>
+            <option value={"ASESORAMIENTO"}>USER</option>
+            <option value={"COURSERA"}>MENTOR</option>
+            <option value={"OTROS"}>ADMIN</option>
           </select>
+
+          <div class="row">
+              <h5 className='mt-4'>Nombre:</h5>
+              <textarea className="form-control" placeholder="Ej:Juan" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></textarea>
+              <h5 className='mt-4'>Apellido:</h5>
+              <textarea className="form-control" placeholder="Ej:Ramirez" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></textarea>
+          </div>
 
           <div id='link-area' className="hide mt-4">
             <h5>Link al curso:</h5>
