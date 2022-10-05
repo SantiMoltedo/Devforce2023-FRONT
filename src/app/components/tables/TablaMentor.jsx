@@ -3,42 +3,45 @@ import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
 
 
-export const apiFetch=async (accion, soli, numeroDias) => {
-    try {
-        let ruta;
-        if(accion == "Aprobar"){
-            if(soli.tipo == "Udemy" || soli.tipo == "Otra plataforma")
-                ruta = `aceptarSolicitud?dias=${numeroDias}`
-            else
-                ruta = `aceptarSolicitud`
-        }
-        if(accion == "Rechazar"){ruta= "rechazarSolicitudPlataforma"}
-        if(accion == "Devolver"){ruta = "devolverSolicitudPlataforma"}
-        const data=await
-            fetch(`http://localhost:8080/api/mentor/${ruta}` ,{
-                mode: 'cors',
-                method: "PUT",
-                body: JSON.stringify(soli),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Cache': 'no-cache',
-                    'Access-Control-Allow-Origin': 'http://localhost:8080',
-                },
-                credentials: 'include',
-            })
-                .then(resp => resp.json())
-                console.log(data)
-
-    } catch (error) {
-        console.log({ error });
-    }
-}
 
 export const TablaMentor=() => {
+    const apiFetch=async (accion,soli,numeroDias) => {
+        try {
+            let ruta;
+            console.log(accion)
+            if (accion=="Aprobar") {
+                if (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma")
+                    ruta=`aceptarSolicitud?dias=${numeroDias}`
+                else
+                    ruta=`aceptarSolicitud`
+            }
+            if (accion=="Rechazar") { ruta="rechazarSolicitudPlataforma" }
+            if (accion=="Devolver") { ruta="devolverSolicitudPlataforma" }
+            console.log(ruta)
+            console.log(soli)
+            const data=await
+                fetch(`http://localhost:8080/api/mentor/${ruta}`,{
+                    mode: 'cors',
+                    method: "PUT",
+                    body: JSON.stringify(soli),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Cache': 'no-cache',
+                        'Access-Control-Allow-Origin': 'http://localhost:8080',
+                    },
+                    credentials: 'include',
+                })
+                    .then(resp => resp.json())
+            setUpdateSolis(data)
+
+        } catch (error) {
+            console.log({ error });
+        }
+    }
     //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
-    
+
     const [dirSort0,setDirSort0]=useState("asc")
     const [dirSort2,setDirSort2]=useState("asc")
     const [solicitudes,setSolicitudes]=useState([])
@@ -49,12 +52,12 @@ export const TablaMentor=() => {
     const [descripcion,setDescripcion]=useState("")
     const [coso,setCoso]=useState("")
     const [soli,setSoli]=useState({})
-    const [fetcha,setfetcha]=useState({})
+    const [updateSolis,setUpdateSolis]=useState({})
 
 
     useEffect(() => {
         getSolicitudes(setSolicitudes)
-    },[])
+    },[updateSolis])
 
     const getSolicitudes=async (setSolicitudes) => {
         try {
@@ -169,13 +172,13 @@ export const TablaMentor=() => {
                                 </td>
                                 <td>
                                     {
-                                        soli.estado=="PENDIENTE-MENTOR"?(
+                                        soli.estado=="PENDIENTE-MENTOR"? (
                                             <>
                                                 <i onClick={() => xmark(soli.usuario.nombre+" "+soli.usuario.apellido,soli.tipo,soli.descripcion,soli)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>
                                                 <i onClick={() => pencil(soli.usuario.nombre+" "+soli.usuario.apellido,soli.tipo,soli.descripcion,soli)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-pencil me-2"></i>
                                                 <i onClick={() => checkmark(soli.usuario.nombre+" "+soli.usuario.apellido,soli.tipo,soli.descripcion,soli)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-check me-2"></i>
                                             </>
-                                        ):<p>-<br/></p>
+                                        ):<p>-<br /></p>
                                     }
                                 </td>
                                 <td>
@@ -183,12 +186,12 @@ export const TablaMentor=() => {
                                 </td>
                             </tr>
                         ))
-                        
+
                     }
                 </tbody>
             </table >
-            
-            <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli}/>
+
+            <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli} apiFetch={apiFetch} />
 
         </>
     )
