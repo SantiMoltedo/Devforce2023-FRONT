@@ -16,9 +16,6 @@ export const TablaUsuarios = () => {
     const getSolicitudes = async (setSolicitudes) => {
         try {
             const data = await
-                //     axios.get('http://localhost:8080/api/solicitudesusuario')
-                // const { data } = resp
-                // console.log(data);
                 fetch('http://localhost:8080/api/solicitudesusuario', {
                     mode: 'cors',
                     method: "GET",

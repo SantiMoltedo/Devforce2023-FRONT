@@ -4,7 +4,6 @@ export const triggerToast = () => {
     toast.show()
 }
 
-
 export const PushNotiSimple = ({ accion, coso }) => {
     if(accion == "Aprobar"){ accion = "aprobada"};
     if(accion == "Rechazar"){ accion = "rechazada"};

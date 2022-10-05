@@ -5,6 +5,7 @@ import { Admin } from '../pages/admin/Admin'
 import { Mentor } from '../pages/mentor/Mentor'
 import { User } from '../pages/user/User'
 import { SolicitarCapacitacion } from '../pages/user/SolicitarCapacitacion'
+import { Modal } from '../../app/components/Modal'
 
 export const DevForceRoutes = () => {
   return (
@@ -16,6 +17,7 @@ export const DevForceRoutes = () => {
         <Route path='/user' element={<User />} />"
         <Route path='/crear-soli' element={<SolicitarCapacitacion />} />"
         <Route path='/*' element={<Navigate to="/user" />} />
+        <Route path='/Modal' element={<Modal/>} />
       </Routes>
     </>
   )
