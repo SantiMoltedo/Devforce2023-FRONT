@@ -63,29 +63,45 @@ export const CrearUsuario = () => {
           </select>
 
           <div class="row">
+            <div class="col-sm">
               <h5 className='mt-4'>Nombre:</h5>
-              <textarea className="form-control" placeholder="Ej:Juan" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></textarea>
+              <input className="form-control" placeholder="Ej:Juan" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></input>
+            </div>
+            <div class="col-sm">
               <h5 className='mt-4'>Apellido:</h5>
-              <textarea className="form-control" placeholder="Ej:Ramirez" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></textarea>
+              <input className="form-control" placeholder="Ej:Ramirez" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></input>
+            </div>
           </div>
 
-          <div id='link-area' className="hide mt-4">
-            <h5>Link al curso:</h5>
-            <input id='link' type="text" className="form-control" placeholder="Ej: https://gire.udemy.com/course/master-completo-java-de-cero-a-experto" name="link" value={link} onChange={onInputChange} />
+          <div class="row">
+            <div class="col-sm">
+              <h5 className='mt-4'>Nombre de usuario:</h5>
+              <input className="form-control" placeholder="Ej:JPerez" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></input>
+            </div>
+            <div class="col-sm">
+              <h5 className='mt-4'>Número de teléfono:</h5>
+              <input className="form-control" placeholder="Ej:+54 9 1123867095" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></input>
+            </div>
           </div>
 
-          <h5 className='mt-4'>Área:</h5>
-          <select id='area-selector' className="form-select" defaultValue={0}>
-            <option disabled value={0}>Elegí un área a desarrollarte</option>
-            <option value={"BACKEND"}>Back-End</option>
-            <option value={"FRONTEND"}>Front-End</option>
-            <option value={"BD"}>Base de Datos</option>
-            <option value={"CRM"}>CRM</option>
-            <option value={"SALESFORCE"}>Saleforce</option>
-          </select>
+          <h5 className='mt-4'>Mail</h5>
+          <input className="form-control" placeholder="juan.perez@gire.com" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></input>
 
-          <h5 className='mt-4'>Detalle de la capacitación</h5>
-          <textarea className="form-control" placeholder="Contanos a que tipo de capacitación te gustaría aplicar y cual es tu objetivo?" rows="10" name="descripcion" value={descripcion} onChange={onInputChange}></textarea>
+          <div class="row">
+            <div class="col-sm">
+              <h5 className='mt-4'>Contraseña</h5>
+              <input type = "password" className="form-control" rows="1" name="descripcion" value={descripcion} onChange={onInputChange}></input>
+            </div>
+            <div class="col-sm">
+              <h5 className='mt-4'>Repetir Contraseña:</h5>
+              <input type = "password" className="form-control" rows="1"></input>
+            </div>
+          </div>
+          
+          <div class="form-check form-switch">
+          <h5 className='mt-4'>Tiene teams?</h5>
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></input>
+          </div>
 
           <div className="d-flex my-4">
             <button className='btn btn-outline-dark w-100 me-4' onClick={() => navigate(-1)}>Cancelar</button>
