@@ -6,7 +6,6 @@ import { Modal } from '../Modal'
 export const apiFetch=async (accion, soli, numeroDias) => {
     try {
         let ruta;
-        console.log(accion)
         if(accion == "Aprobar"){
             if(soli.tipo == "Udemy" || soli.tipo == "Otra plataforma")
                 ruta = `aceptarSolicitud?dias=${numeroDias}`
@@ -15,8 +14,6 @@ export const apiFetch=async (accion, soli, numeroDias) => {
         }
         if(accion == "Rechazar"){ruta= "rechazarSolicitudPlataforma"}
         if(accion == "Devolver"){ruta = "devolverSolicitudPlataforma"}
-        console.log(ruta)
-        console.log(soli)
         const data=await
             fetch(`http://localhost:8080/api/mentor/${ruta}` ,{
                 mode: 'cors',

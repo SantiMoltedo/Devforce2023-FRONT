@@ -11,20 +11,18 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
     const { numeroDias }=formState
     return (
         <>
-            {/* Boton para Porbar el modal!!!!!!! */}
-            {/*<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aprobSoli">
-                Probar Modal
-            </button>*/}
             <div className="modal fade" id="aprobSoli" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-md">
                     <div className="modal-content modal-class1">
                         <div className="modal-body modal-styles">
                             <div className="container-fluid">
+                                
                                 <div className="row">
                                     <div className="col-12">
                                         <h1 className='text-center mt-3'>{titulo}</h1>
                                     </div>
                                 </div>
+                               
                                 {
                                     usuario&&(
                                         <>
@@ -134,6 +132,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                         </>
                                     )
                                 }
+                                <form >
                                 {
                                     accion=="Aprobar"?(soli.tipo=="Udemy" || soli.tipo=="Otra plataforma")?(
                                         <>
@@ -141,29 +140,31 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                                 <div className="col-12 mt-3 text-center"><h5>Dias a completar el curso:</h5></div>
                                             </div>
                                             <div className="row justify-content-center">
-                                                <input type="number" className="col-12 text-center input w-75" placeholder='Ej: 10' name='numeroDias' value={numeroDias} onChange={onInputChange} />
+                                                <input type="number" className="col-12 text-center input w-75" placeholder='Ej: 10' name='numeroDias' value={numeroDias} onChange={onInputChange} required/>
                                             </div>
                                         </>
                                     ): null : null
-
                                 }
-                            </div>
-                            {
+                                {
                                 //En caso de que no haya accion 1 solo boton de volver (Modal solicitud de licencia)
-                                accion? (
-                                    <div className="d-flex mt-3 justify-content-around">
-                                        <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" onClick={() => { apiFetch(accion,soli,numeroDias); triggerToast()}} >{accion}</button> </div>
-                                    </div>
-                                )
-                                    :(
-                                        <div className="row">
-                                            <div className="col"></div>
-                                            <div className="col-10"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Volver</button></div>
-                                            <div className="col"></div>
+                                    accion? (
+                                        <div className="d-flex mt-3 justify-content-around">
+                                            <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
+                                            <div className="mt-3"><button type="submit" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" onClick={() => { apiFetch(accion,soli,numeroDias); triggerToast()}} >{accion}</button> </div>
                                         </div>
                                     )
-                            }
+                                        :(
+                                            <div className="row">
+                                                <div className="col"></div>
+                                                <div className="col-10"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Volver</button></div>
+                                                <div className="col"></div>
+                                            </div>
+                                        )
+                                }
+                                </form>
+                            </div>
+                           
+                            
                         </div>
                     </div>
                 </div>
