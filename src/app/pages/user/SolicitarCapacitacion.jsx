@@ -1,7 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../../customHooks/useForm';
-
+import { UserContext } from '../../../UserContext'
+import { useContext } from 'react'
 export const SolicitarCapacitacion = () => {
+  // const { setstatus } = useContext(UserContext);
+
+  // let agregarData={
+  //   accion:'creada',
+  //   coso: 'Solicitud'
+  // }
+
+  // setstatus(status => ({
+  //   ...status,
+  //   ...dataarmada,
+  //   ...agregarData
+  // })
+  // )
 
   const navigate = useNavigate();
 
@@ -22,40 +36,88 @@ export const SolicitarCapacitacion = () => {
     }
   }
 
-  const sendSolicitud = () => {
-    const tipo = document.getElementById("tipo-selector").value;
-    const area = document.getElementById("area-selector").value;
+  const sendSolicitud = async () => {
+    try{
+      const tipo = document.getElementById("tipo-selector").value;
+      const area = document.getElementById("area-selector").value;
 
-    const data = { tipo, descripcion, estado: 'PENDIENTE-MENTOR', area, ...(link != '' && { link }) }
-    fetch('http://localhost:8080/api/nuevaSolicitud', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Cache': 'no-cache'
-      },
-      // credentials: 'include',
-    }).then(resp => resp.json())
-    console.log(data);
+      if(tipo == 'UDEMY' || tipo == 'OTRA-PLATAFORMA')
+      {
+        var solicitud = { tipo, descripcion, estado: 'PENDIENTE-MENTOR', area, ...(link != '' && { link }) }
+      }
+      else{
+        var solicitud = { tipo, descripcion, estado: 'PENDIENTE-MENTOR', area }
+      }
+
+      fetch('http://localhost:8080/api/nuevaSolicitud', {
+        mode:'cors',
+        method: 'POST',
+        body: JSON.stringify(solicitud),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cache': 'no-cache',
+            'Access-Control-Allow-Origin': 'http://localhost:8080',
+        },
+        credentials: 'include',
+      }).then(resp => resp.json())
+      console.log(solicitud);
+    }catch (error) {
+      console.log( {error} );
+    }
+    
   }
 
   const onClickBTN = () => {
-    if (document.querySelector("input")) {
-      if (link.length < 1) {
-        document.getElementById("link").required = true
+    if (document.getElementById("tipo-selector").value != 0){
+      if (!document.getElementById("link-area").classList.contains("hide")) {
+        if (link.length < 1) {
+          document.getElementById("link").required = true
+        }
+        else{
+          if(document.getElementById("area-selector").value != 0)
+          {
+            sendSolicitud()
+            navigate(-1)
+          }
+        }
+      }
+      else{
+        if(document.getElementById("area-selector").value != 0)
+          {
+            sendSolicitud()
+            navigate(-1)
+          }
       }
     }
+
+    if(document.getElementById("area-selector").value == 0){
+      document.getElementById("area-selector").classList.add("input-invalid")
+    }
+    if(document.getElementById("tipo-selector").value == 0){
+      document.getElementById("tipo-selector").classList.add("input-invalid")
+    }
+    checkValidacion()
   }
 
-  return (
+  
+  const checkValidacion = () =>{
+    if(document.getElementById("tipo-selector").value != 0 && document.getElementById("area-selector").value != 0){
+      document.getElementById("tipo-selector").classList.remove("input-invalid")
+      document.getElementById("area-selector").classList.remove("input-invalid")
+    }
+  }
+  
+  return (<>
+  
     <div className='container-center'>
       <div className='card-form shadow rounded m-3'>
         <h2 className="text-center pt-4"> Solicitud de capacitación</h2>
-        <form onSubmit={(e) => { sendSolicitud(); e.preventDefault() }} className="p-3">
+        <form onSubmit={(e) =>  e.preventDefault() } className="p-3">
 
           <h5>Tipo de solicitud</h5>
-          <select id='tipo-selector' className="form-select" onChange={() => hideOrShowInput()} defaultValue={0}>
+          
+          <select id='tipo-selector' className="form-select" onChange={() => {hideOrShowInput();checkValidacion()}} defaultValue={0}>
             <option disabled value={0}>Elegí el tipo de solicitud</option>
             <option value={"ASESORAMIENTO"}>Asesoramiento</option>
             <option value={"COURSERA"}>Coursera</option>
@@ -70,7 +132,7 @@ export const SolicitarCapacitacion = () => {
           </div>
 
           <h5 className='mt-4'>Área:</h5>
-          <select id='area-selector' className="form-select" defaultValue={0}>
+          <select id='area-selector' className="form-select" defaultValue={0} onChange={() => checkValidacion()}>
             <option disabled value={0}>Elegí un área a desarrollarte</option>
             <option value={"BACKEND"}>Back-End</option>
             <option value={"FRONTEND"}>Front-End</option>
@@ -80,7 +142,7 @@ export const SolicitarCapacitacion = () => {
           </select>
 
           <h5 className='mt-4'>Detalle de la capacitación</h5>
-          <textarea className="form-control" placeholder="Contanos a que tipo de capacitación te gustaría aplicar y cual es tu objetivo?" rows="10" name="descripcion" value={descripcion} onChange={onInputChange}></textarea>
+          <textarea className="form-control" placeholder="Contanos a que tipo de capacitación te gustaría aplicar y cual es tu objetivo?" rows="10" name="descripcion" id="descripcion123" value={descripcion} onChange={onInputChange}></textarea>
 
           <div className="d-flex my-4">
             <button className='btn btn-outline-dark w-100 me-4' onClick={() => navigate(-1)}>Cancelar</button>
@@ -88,6 +150,8 @@ export const SolicitarCapacitacion = () => {
           </div>
         </form>
       </div>
+      
     </div>
+  </>
   )
 }
