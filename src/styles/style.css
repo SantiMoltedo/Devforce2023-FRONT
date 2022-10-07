@@ -68,6 +68,7 @@ nav .dropdown-item:hover {
     border-radius: 10px !important;
 }
 
+
 /* INPUTS DE TEXTO */
 
 input::-webkit-outer-spin-button,
@@ -176,6 +177,10 @@ i {
     font-family: "Font Awesome 6 Free" !important;
 }
 
+sub{
+
+}
+
 .collapsed {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -210,6 +215,8 @@ i {
 
 .fa-xmark {
     color: #B82E52;
+    height: 16px;
+    width: 16px;
 }
 
 .rotated {
@@ -325,3 +332,20 @@ i {
     opacity: 0;
     height: 0;
 }
+
+.btn-solicitud{
+
+    width: 75px!important;
+    height: 22px!important;
+    font-size: 14px;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-style: normal;
+    border: 2px solid #000 !important;
+    border-radius: 10px !important;
+    border-radius: 10px !important;
+    padding-left: 8px;
+    padding-right:8px;
+    padding-top: 1px  ;
+    padding-bottom:1px ;
+}
+
