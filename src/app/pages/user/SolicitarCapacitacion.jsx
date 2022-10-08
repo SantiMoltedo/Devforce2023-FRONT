@@ -100,10 +100,15 @@ export const SolicitarCapacitacion = () => {
     checkValidacion()
   }
 
-  
   const checkValidacion = () =>{
     if(document.getElementById("tipo-selector").value != 0 && document.getElementById("area-selector").value != 0){
       document.getElementById("tipo-selector").classList.remove("input-invalid")
+      document.getElementById("area-selector").classList.remove("input-invalid")
+    }
+    if(document.getElementById("tipo-selector").value != 0){
+      document.getElementById("tipo-selector").classList.remove("input-invalid")
+    }
+    if(document.getElementById("area-selector").value != 0){
       document.getElementById("area-selector").classList.remove("input-invalid")
     }
   }
