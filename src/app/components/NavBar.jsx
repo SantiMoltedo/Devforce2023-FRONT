@@ -1,9 +1,10 @@
 
-import { useContext } from 'react'
+import { useContext,useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/liceman-3.png'
 import { LoginPage } from '../../Auth/Pages/LoginPage'
 import { UserContext } from '../../UserContext'
+import { ModificarUsuario } from '../pages/user/ModificarUsuario'
 
 
 const Logout = async () =>{
