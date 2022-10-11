@@ -1,12 +1,41 @@
+import { useEffect,useState } from 'react'
 import { PushNotiSimple } from './PushNotiSimple'
+import { PushNoti } from './PushNoti'
 import { triggerToast } from './PushNotiSimple'
+import { triggerToastPushNoti } from './PushNoti'
 import { useForm } from '../../customHooks/useForm'
 
-
-export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,apiFetch }) => {
+export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin }) => {
     const { formState,onInputChange }=useForm({
         numeroDias: ""
     })
+
+
+    const funcionesModal=(accion) => {
+        if (accion == "Asignar"){
+            apiFetchAdmin(accion,soli)
+        }
+        if (accion == "Rechazar"){
+            apiFetchAdmin(accion,soli);
+        }
+        if (accion == "Aprobar"){
+            apiFetch(accion,soli,numeroDias);            
+        }
+    }
+
+    const funcionesNotificacion=(accion)=>{
+        if (accion == "Asignar"){
+            triggerToastPushNoti();            
+        }
+        if (accion == "Rechazar"){
+            triggerToast();
+        }
+        if (accion == "Aprobar"){
+            triggerToast();          
+        }
+    }
+    
+
     const { numeroDias }=formState
     return (
         <>
@@ -152,7 +181,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                 accion? (
                                     <div className="d-flex mt-3 justify-content-around">
                                         <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={() => { apiFetch(accion,soli,numeroDias); triggerToast() }} >{accion}</button> </div>
+                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={() => {  funcionesModal(accion); funcionesNotificacion(accion)}} >{accion}</button> </div>
                                     </div>
                                 )
                                     :(
@@ -168,7 +197,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                 </div>
             </div>
             <PushNotiSimple accion={accion} coso={coso} />
-
+            <PushNoti accion={accion} serial={mensajeSerial}/>
         </>
     )
 }

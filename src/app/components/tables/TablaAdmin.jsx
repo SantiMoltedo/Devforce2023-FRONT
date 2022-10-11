@@ -1,5 +1,41 @@
+import { useEffect,useState } from 'react'
+import { sortTable,expandRow } from './functions/auxFunctions'
+import { Modal } from '../Modal'
 
 export const TablaAdmin = () => {
+    const apiFetchAdmin=async (accion,soli) => {
+        try {
+            let ruta;
+            console.log(accion)
+            if (accion=="Asignar") {
+                ruta="asignarLicencia"
+            }
+            if (accion=="Rechazar") { 
+                ruta="rechazarSolicitudAdmin" 
+            }
+            console.log(ruta)
+            console.log(soli)
+            const data=await
+                fetch(`http://localhost:8080/api/admin/${ruta}`,{
+                    mode: 'cors',
+                    method: "POST",
+                    body: JSON.stringify(soli),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Cache': 'no-cache',
+                        'Access-Control-Allow-Origin': 'http://localhost:8080',
+                    },
+                    credentials: 'include',
+                })
+                    .then(resp => resp.json())
+                console.log(data);
+                setMensajeSerial(data.mensaje) 
+            setUpdateSolis(data)
+        } catch (error) {
+            console.log({ error });
+        }
+    }
 
     const [dirSort0,setDirSort0]=useState("asc")
     const [dirSort2,setDirSort2]=useState("asc")
@@ -11,19 +47,22 @@ export const TablaAdmin = () => {
     const [descripcion,setDescripcion]=useState("")
     const [coso,setCoso]=useState("")
     const [soli,setSoli]=useState({})
+    
+    const [updateSolis, setUpdateSolis] = useState("")
+    const [mensajeSerial, setMensajeSerial] = useState("")
 
     useEffect(() => {
         getSolicitudes(setSolicitudes)
-    },[])
+    },[updateSolis])
 
     const getSolicitudes=async (setSolicitudes) => {
         try {
             const data=await
                 // axios.get('http://localhost:8080/api/solicitudesmentor')
                 // const { data } = resp
-                // console.log(data);
+                // console.log(data);   
 
-                fetch('http://localhost:8080/api/solicitudesmentor',{
+                fetch('http://localhost:8080/api/solicitudesadmin',{
                     mode: 'cors',
                     method: "GET",
                     headers: {
@@ -40,33 +79,25 @@ export const TablaAdmin = () => {
             console.log({ error });
         }
     }
-
-    const xmark=(usuario,tipoSoli,descripcion) => {
+    
+    const xmark=(usuario,tipoSoli,descripcion,soli) => {
         setAccion("Rechazar");
-        setTitulo("Rechazar la solicitud");
+        setTitulo("Rechazar Solicitud");
         setCoso("Solicitud");
         setUsuario(usuario);
         setTipoSoli(tipoSoli);
         setDescripcion(descripcion);
-    }
-
-    const pencil=(usuario,tipoSoli,descripcion) => {
-        setAccion("Devolver");
-        setTitulo("Devolver la solicitud");
-        setCoso("Solicitud");
-        setUsuario(usuario);
-        setTipoSoli(tipoSoli);
-        setDescripcion(descripcion);
+        setSoli(soli);
     }
 
     const checkmark=(usuario,tipoSoli,descripcion,soli) => {
-        setAccion("Aprobar");
-        setTitulo("Aprobar solicitud");
+        setAccion("Asignar");
+        setTitulo("Asignar Licencia");
         setCoso("Solicitud");
         setUsuario(usuario);
         setTipoSoli(tipoSoli);
         setDescripcion(descripcion);
-        setSoli(soli)
+        setSoli(soli);
     }
 
     return (
@@ -104,34 +135,35 @@ export const TablaAdmin = () => {
                 <tbody className="fs-7">
                     {
                         solicitudes.map(soli => (
-                            <tr key={soli.id}>
-                                <td>
-                                    {soli.usuario.nombre+" "+soli.usuario.apellido} <br />
-                                    <sub>{soli.usuario.mail}</sub>
-                                </td>
-                                <td>
-                                    {soli.tipo}
-                                </td>
-                                <td>
-                                    <p id={`s${soli.id}-description`} className='collapsed w-100'>
-                                        {soli.descripcion}
-                                    </p>
-                                </td>
-                                <td>
-                                    {/*<i data-bs-toggle="modal" data-bs-target="#Modal" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>*/}
-                                    {/*<button class = "btn" data-bs-toggle="modal" data-bs-target="#aprobSoli" ><i className="ms-2 fa-solid fa-pencil me-2"></i></button>*/}
-                                    <i onClick={() => xmark(soli.usuario.nombre+" "+soli.usuario.apellido,soli.tipo,soli.descripcion)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>
-                                    <i onClick={() => checkmark(soli.usuario.nombre+" "+soli.usuario.apellido,soli.tipo,soli.descripcion,soli)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-check me-2"></i>
-                                </td>
-                                <td>
-                                    <i onClick={() => expandRow(soli.id)} id={`s${soli.id}-expandIcon`} className="fa-solid fa-angle-down me-2"></i>
-                                </td>
-                            </tr>
+                            
+                            (soli.estado == "PENDIENTE-ADMIN")?(
+                                <tr key={soli.id}>
+                                    <td>
+                                        {soli.usuario.nombre+" "+soli.usuario.apellido} <br />
+                                        <sub>{soli.usuario.mail}</sub>
+                                    </td>
+                                    <td>
+                                        {soli.tipo}
+                                    </td>
+                                    <td>
+                                        <p id={`s${soli.id}-description`} className='collapsed w-100'>
+                                            {soli.descripcion}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <i onClick={() => xmark(soli.usuario.nombre+" "+soli.usuario.apellido,soli.tipo,soli.descripcion,soli)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>
+                                        <i onClick={() => checkmark(soli.usuario.nombre+" "+soli.usuario.apellido,soli.tipo,soli.descripcion,soli)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-check me-2"></i>
+                                    </td>
+                                    <td>
+                                        <i onClick={() => expandRow(soli.id)} id={`s${soli.id}-expandIcon`} className="fa-solid fa-angle-down me-2"></i>
+                                    </td>
+                                </tr>
+                            ):null
                         ))
                     }
                 </tbody>
             </table >
-            <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli} />
+            <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli} mensajeSerial={mensajeSerial} apiFetchAdmin={apiFetchAdmin} />
         </>
     )
 }
