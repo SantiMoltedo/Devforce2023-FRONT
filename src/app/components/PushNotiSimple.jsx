@@ -18,7 +18,7 @@ export const PushNotiSimple = ({ accion, coso }) => {
                 <div className="toast align-items-center text-bg-primary border-0" id="pushNotiSimple" role="alert" aria-live="assertive" aria-atomic="true" >
                     <div className={`toast-body h-100 d-flex justify-content-between toast-header-${accion}`}>
                         <p className="m-0 mt-05">{`${coso} ${accion} exitosamente`}</p>
-                        <span><i className={`fa-solid ${accion == 'aprobada' && 'fa-check'} ${accion == 'creada' && 'fa-check'} ${accion == 'creado' && 'fa-check'} ${accion == 'rechazada' && 'fa-xmark'} ${accion == 'devuelta' && 'fa-clock'} text-white text-center`} data-bs-dismiss="toast" aria-label="Close"></i></span>
+                        <span><i className={`fa-solid ${accion == 'aprobada' && 'fa-check'}${accion == 'modificado' && 'fa-check'}${accion == 'creada' && 'fa-check'} ${accion == 'creado' && 'fa-check'} ${accion == 'rechazada' && 'fa-xmark'} ${accion == 'devuelta' && 'fa-clock'} text-white text-center`} data-bs-dismiss="toast" aria-label="Close"></i></span>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../../customHooks/useForm';
 import { UserContext } from '../../../UserContext'
 import { useContext } from 'react'
+
 export const SolicitarCapacitacion = () => {
   // const { setstatus } = useContext(UserContext);
 
@@ -155,7 +156,6 @@ export const SolicitarCapacitacion = () => {
           </div>
         </form>
       </div>
-      
     </div>
   </>
   )

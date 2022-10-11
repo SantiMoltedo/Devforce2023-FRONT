@@ -5,8 +5,10 @@ import { DevForceRoutes } from '../app/Routes/DevForceRoutes';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
 import { UserContext } from '../UserContext';
+
 export const AppRouter = () => {
   const [status, setstatus] = useState({});
+  const [notificacion, setNotificacion] = useState({});
 
   return (
     <>

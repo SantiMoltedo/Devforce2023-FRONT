@@ -235,6 +235,7 @@ i {
 .toast-header-asignada,
 .toast-header-aprobada,
 .toast-header-creada,
+.toast-header-modificado,
 .toast-header-creada {
     background-color: #2EB894;
 }

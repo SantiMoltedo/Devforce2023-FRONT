@@ -5,11 +5,12 @@ import { PushNoti } from '../../components/PushNoti'
 import { PushNotiSimple } from '../../components/PushNotiSimple'
 import { TablaUsuarios } from "../../components/tables/TablaUsuarios"
 import {UserContext} from '../../../UserContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import { triggerToast } from '../../components/PushNotiSimple'
 
 export const User = () => {
-    // const { status } = useContext(UserContext)
     // const {accion,coso}=status
+
     return (
         <>
             <div className='container-fluid'>
