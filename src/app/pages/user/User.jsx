@@ -5,11 +5,37 @@ import { PushNoti } from '../../components/PushNoti'
 import { PushNotiSimple } from '../../components/PushNotiSimple'
 import { TablaUsuarios } from "../../components/tables/TablaUsuarios"
 import {UserContext} from '../../../UserContext'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { triggerToast } from '../../components/PushNotiSimple'
+import { Notificacion } from '../../components/Notificacion'
+import { mostrarNoti } from '../../components/Notificacion'
+import { NotificacionContext } from '../../../notificacionContext'
 
 export const User = () => {
     // const {accion,coso}=status
+    const{notificacion, setNotificacion} = useContext(NotificacionContext)
+    const [accion, setAccion] = useState("")
+    const [coso, setCoso] = useState("")
+    const [texto, setTexto] = useState("")
+    
+    useEffect(() => {
+        if(notificacion == "solicitud")
+        {
+            setAccion('creada')
+            setCoso('Solicitud')
+            setTexto('exitosamente')
+            mostrarNoti(1)
+            setNotificacion("0")
+        }
+        if(notificacion == "modificado")
+        {
+            setAccion('modificado')
+            setCoso('Usuario')
+            setTexto('exitosamente')
+            mostrarNoti(1)
+            setNotificacion("0")
+        }
+    }, []);
 
     return (
         <>
@@ -28,7 +54,7 @@ export const User = () => {
                     <div className="col"></div>
                 </div>
             </div>
-
+            < Notificacion accion={accion} coso={coso} texto={texto}/>
             {/* Ejemplo modal (revisar si se importa el modal)*/}
             {/* <Modal titulo="Titulo" accion="Aprobar" usuario="Nombre Apellido" tipoSoli="Udemy" descripcion="Lorem ipsum dolor asodjh asoudhkasbd oaqijwdh" /> */}
 

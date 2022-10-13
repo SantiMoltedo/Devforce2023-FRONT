@@ -1,21 +1,21 @@
 import React from 'react'
 import { useEffect, useState, useContext } from 'react'
-import { PushNotiSimple } from '../../components/PushNotiSimple'
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../UserContext'
-import { triggerToast } from '../../components/PushNotiSimple';
 import { useForm } from "../../../customHooks/useForm"
+import { NotificacionContext } from '../../../notificacionContext';
 
 export const ModificarUsuario = () => {
   
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState([]);
-  
+  const{notificacion, setNotificacion} = useContext(NotificacionContext)
+
   useEffect(() => {
     getUsuario(setUsuario)
     }, [])
 
-    
+
     const getUsuario = async (setUsuario) => {
       try {
             const data = await
@@ -62,7 +62,6 @@ export const ModificarUsuario = () => {
       )
       {
         setdesahabilitarBtn(1)
-        
       }
       else
       {
@@ -145,6 +144,8 @@ export const ModificarUsuario = () => {
                 credentials: 'include',
               }).then(resp => resp.json())
             console.log(datos);
+            setNotificacion('modificado')
+            navigate(-1)
           }catch (error) {
             console.log( {error} );
           }
@@ -206,12 +207,11 @@ export const ModificarUsuario = () => {
               
               <div className="d-flex my-4">
                 <button className='btn btn-outline-dark w-100 me-4'onClick={() => navigate(-1)}>Volver</button>
-                <button className='btn btn-dark w-100 ms-4' type='submit' disabled={deshabilitarBtn} onClick = {()=>{triggerToast();verificaciones();errores=0}}>Confirmar</button>
+                <button className='btn btn-dark w-100 ms-4' type='submit' disabled={deshabilitarBtn} onClick = {()=>{verificaciones();errores=0}}>Confirmar</button>
               </div>
             </form>
           </div>
         </div>
-        <PushNotiSimple accion="modificado" coso="Usuario" />
       </>
     )
   }

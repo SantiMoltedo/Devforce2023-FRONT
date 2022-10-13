@@ -1,24 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../../customHooks/useForm';
 import { UserContext } from '../../../UserContext'
-import { useContext } from 'react'
+import { useContext,useState } from 'react'
+import { NotificacionContext } from '../../../notificacionContext';
+import { mostrarNoti, Notificacion } from '../../components/Notificacion';
 
 export const SolicitarCapacitacion = () => {
-  // const { setstatus } = useContext(UserContext);
 
-  // let agregarData={
-  //   accion:'creada',
-  //   coso: 'Solicitud'
-  // }
-
-  // setstatus(status => ({
-  //   ...status,
-  //   ...dataarmada,
-  //   ...agregarData
-  // })
-  // )
+  const [accion, setAccion] = useState("")
+  const [coso, setCoso] = useState("")
+  const [texto, setTexto] = useState("")
 
   const navigate = useNavigate();
+  const{notificacion, setNotificacion} = useContext(NotificacionContext)
 
   const { formState, onInputChange } = useForm({
     descripcion: '', link: ''
@@ -62,7 +56,7 @@ export const SolicitarCapacitacion = () => {
         },
         credentials: 'include',
       }).then(resp => resp.json())
-      console.log(solicitud);
+      setNotificacion("solicitud")
     }catch (error) {
       console.log( {error} );
     }
@@ -94,9 +88,17 @@ export const SolicitarCapacitacion = () => {
 
     if(document.getElementById("area-selector").value == 0){
       document.getElementById("area-selector").classList.add("input-invalid")
+      setAccion('campos')
+      setCoso('Complete todos los ')
+      setTexto('')
+      mostrarNoti(1);
     }
     if(document.getElementById("tipo-selector").value == 0){
       document.getElementById("tipo-selector").classList.add("input-invalid")
+      setAccion('campos')
+      setCoso('Complete todos los ')
+      setTexto('')
+      mostrarNoti(1);
     }
     checkValidacion()
   }
@@ -157,6 +159,7 @@ export const SolicitarCapacitacion = () => {
         </form>
       </div>
     </div>
+    < Notificacion accion={accion} coso={coso} texto={texto}/>
   </>
   )
 }

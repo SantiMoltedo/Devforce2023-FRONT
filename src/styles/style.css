@@ -241,7 +241,8 @@ i {
 }
 
 .toast-header-revocada,
-.toast-header-rechazada {
+.toast-header-rechazada,
+.toast-header-campos {
     background-color: #B82E52;
 }
 
@@ -275,6 +276,63 @@ i {
 .mt-05 {
     margin-top: 0.5rem !important;
 }
+
+/* NUEVA NOTIFICACION */
+.toastNuevo{
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+    border-radius: 12px;
+    padding: 20px 35px 20px 25px; 
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.toastNuevo .toast-content{
+    display: flex;
+    align-items: center;
+}
+
+.toast-content .message{
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.toast-content .fa-solid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    color:#fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.message .text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+}
+.message .text .text-1{
+    font-weight: 600;
+    color: #333;
+}
+
+.toastNuevo .close{
+    position: absolute;
+    color: #fff;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.toastNuevo .close:hover{
+    opacity: 1;
+}
+
 
 
 /* RESPONSIVE DEL PUSH NOTI */
