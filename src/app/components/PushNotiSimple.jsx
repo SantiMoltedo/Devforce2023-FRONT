@@ -8,6 +8,8 @@ export const PushNotiSimple = ({ accion, coso }) => {
     if(accion == "Aprobar"){ accion = "aprobada"};
     if(accion == "Rechazar"){ accion = "rechazada"};
     if(accion == "Devolver"){ accion = "devuelta"};
+    if(accion == "Crear"){ 
+        accion = "creado"};
 
     return (
         <>

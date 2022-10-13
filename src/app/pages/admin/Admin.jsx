@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Modal } from '../../components/Modal'
 import { PushNoti } from '../../components/PushNoti'
 import { PushNotiSimple } from '../../components/PushNotiSimple'
-import { TablaUsuarios } from "../../components/tables/TablaUsuarios"
+import { TablaAdmin } from "../../components/tables/TablaAdmin"
 
 export const Admin = () => {
     return (

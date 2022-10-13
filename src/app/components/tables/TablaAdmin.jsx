@@ -1,3 +1,6 @@
+import { useEffect,useState } from 'react'
+import { sortTable,expandRow } from './functions/auxFunctions'
+import { Modal } from '../Modal'
 
 export const TablaAdmin = () => {
 
