@@ -2,9 +2,29 @@ import { PushNotiSimple } from './PushNotiSimple'
 import { triggerToast } from './PushNotiSimple'
 import { apiFetch } from './tables/TablaMentor'
 import { useForm } from '../../customHooks/useForm'
-
+import {apiFetchRevocar} from './tables/TablaRevocar'
 
 export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli }) => {
+    
+    const funcionesModal=(accion) => {
+        if (accion == "Asignar"){
+            setRespuesta(apiFetchAdmin(accion,soli))
+            console.log(respuesta)
+        }
+        if (accion == "Aprobar")
+            apiFetch(accion,soli,numeroDias);
+        
+        if (accion == "Revocar" || accion == "Reservar")
+            apiFetchRevocar(accion,serialLic);   
+    }
+
+    const funcionesNotificacion=(accion)=>{
+        if (accion == "Asignar")
+            triggerToastPushNoti();
+        else
+            triggerToast();  
+    }
+    
     const { formState,onInputChange }=useForm({
         numeroDias: ""
     })
@@ -154,7 +174,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                 accion? (
                                     <div className="d-flex mt-3 justify-content-around">
                                         <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" onClick={() => { apiFetch(accion); triggerToast()}} >{accion}</button> </div>
+                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={() => {  funcionesModal(accion); funcionesNotificacion(accion)}} >{accion}</button> </div>
                                     </div>
                                 )
                                     :(

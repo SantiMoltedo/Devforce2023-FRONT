@@ -1,4 +1,8 @@
 
+import { useEffect,useState } from 'react'
+import { sortTable,expandRow } from './functions/auxFunctions'
+import { Modal } from '../Modal'
+
 export const TablaAdmin = () => {
 
     const [dirSort0,setDirSort0]=useState("asc")
@@ -23,7 +27,7 @@ export const TablaAdmin = () => {
                 // const { data } = resp
                 // console.log(data);
 
-                fetch('http://localhost:8080/api/solicitudesmentor',{
+                fetch('http://localhost:8080/api/solicitudesadmin',{
                     mode: 'cors',
                     method: "GET",
                     headers: {

@@ -3,6 +3,41 @@ import { useEffect,useState } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
 
+
+export const apiFetchRevocar=async (accion, serial) => {
+    try {
+        let ruta;
+
+        console.log({accion})
+        if(accion == "Revocar"){ruta = "revocarLicencia"}
+        if(accion == "Reservar"){ruta= "reservarLicencia"}
+        console.log({ruta})
+        const data=await
+            fetch(`http://localhost:8080/api/admin/${ruta}` ,{
+                mode: 'cors',
+                method: "PUT",
+                body: JSON.stringify(
+                    {
+                    serie: serial
+                }
+                    ),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Cache': 'no-cache',
+                    'Access-Control-Allow-Origin': 'http://localhost:8080',
+                },
+                credentials: 'include',
+            })
+                .then(resp => resp.json())
+                console.log(data)
+
+
+    } catch (error) {
+        console.log({ error });
+    }
+}
+
 export const TablaRevocar = () => {
 
      //Para q el modal spawnee poner esto en los iconos/columnas q sean
@@ -26,7 +61,6 @@ export const TablaRevocar = () => {
     const [adminAsign,setAdminAsign]=useState("")
 
 
-
     useEffect(() => {
         getLicencias(setLicencias)
     },[])
@@ -34,10 +68,6 @@ export const TablaRevocar = () => {
     const getLicencias=async (setLicencias) => {
         try {
             const data=await
-                // axios.get('http://localhost:8080/api/solicitudesmentor')
-                // const { data } = resp
-                // console.log(data);
-
                 fetch('http://localhost:8080/api/admin/licencias',{
                     mode: 'cors',
                     method: "GET",
@@ -56,36 +86,13 @@ export const TablaRevocar = () => {
         }
     }
 
-    const getUsuarios=async (setUsuarios) => {
-        try {
-            const data=await
-                // axios.get('http://localhost:8080/api/solicitudesmentor')
-                // const { data } = resp
-                // console.log(data);
-
-                fetch('http://localhost:8080/api/admin/licencias',{
-                    mode: 'cors',
-                    method: "GET",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Cache': 'no-cache',
-                        'Access-Control-Allow-Origin': 'http://localhost:8080',
-                    },
-                    credentials: 'include',
-                })
-                    .then(resp => resp.json())
-            setLicencias(data)
-        } catch (error) {
-            console.log({ error });
-        }
-    }
-
-    const revocar=(usuario,plat,exp) => {
+    const revocar=(usuario,plat,exp,serial) => {
         setAccion("Revocar");
         setTitulo("Revocar Licencia");
         setCoso("Licencia");
-        setSerial("");
+        setSerial(serial);
+        setTipoSoli("");
+        setDescripcion("");
         setUsuario(usuario);
         setPlat(plat);
         setExp(exp);
@@ -110,6 +117,7 @@ export const TablaRevocar = () => {
     const solicitud=(usuario,tipoSoli,descripcion/*, mentorAsign, adminAsign*/) => {
         setTitulo("Solicitud de la Licencia");
         setCoso("Solicitud");
+        setAccion("");
         setUsuario(usuario);
         setTipoSoli(tipoSoli);
         setDescripcion(descripcion);
@@ -180,26 +188,26 @@ export const TablaRevocar = () => {
                         licencias.map(lice => (
                             <tr key={lice.id}>
                                 <td>
-                                        {lice.estado != "ASIGNADA" && ("--")} 
-                                        {lice.estado == "ASIGNADA" && (lice.solicitudes[lice.solicitudes.length -1].usuario.nombre+" "+lice.solicitudes[lice.solicitudes.length -1].usuario.apellido)}
-                                        <br />
-                                        {lice.estado == "ASIGNADA" && (<sub>{lice.solicitudes[lice.solicitudes.length -1].usuario.mail}</sub>)}
-                                        <br />
-                                        {lice.estado == "ASIGNADA" && (<sub>{lice.solicitudes[lice.solicitudes.length -1].usuario.phone}</sub>)}
-                                </td>
 
+                                {lice.estado == "ASIGNADA"?(
+                                    <>
+                                        {lice.solicitudes[lice.solicitudes.length -1].usuario.nombre+" "+lice.solicitudes[lice.solicitudes.length -1].usuario.apellido}
+                                        <br />
+                                        {<sub>{lice.solicitudes[lice.solicitudes.length -1].usuario.mail}</sub>}
+                                        <br />
+                                        {<sub>{lice.solicitudes[lice.solicitudes.length -1].usuario.phone}</sub>}
+                                        <br />
+                                        {lice.solicitudes[lice.solicitudes.length -1].usuario.hasTeams == true?(
+                                        <img className="teams-logo" src='../assets/teamsLogo.svg'/>):<sub>{""}</sub>}</>):<>{"--"}</>
+                                    } 
+                                </td>
                                 <td>
                                 {lice.plataforma}    
                                 </td>
 
                                 <td>
                                     <div className='d-flex justify-content-center align-items-top'>
-                                        {   
-                                             lice.vencimiento == null && ("--") 
-                                        }
-                                        {
-                                            lice.vencimiento != null && (lice.vencimiento)
-                                        }
+                                        {lice.estado == "DISPONIBLE"?(<>--</>):<>{lice.vencimiento}</>}
                                     </div>
                                 </td>
 
@@ -208,8 +216,11 @@ export const TablaRevocar = () => {
                                 </td>
 
                                 <td> {
-                                           lice.estado == 'ASIGNADA' && (<i onClick={() => solicitud(lice.solicitudes[lice.solicitudes.length -1].usuario.nombre+" "+lice.solicitudes[lice.solicitudes.length -1].usuario.apellido,lice.solicitudes[lice.solicitudes.length -1].tipo,lice.solicitudes[lice.solicitudes.length -1].descripcion)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="  text-center btn-solicitud ">Solicitud</i>)
-                                        }   
+                                           lice.estado == 'ASIGNADA'?(
+                                           <i onClick={() => solicitud(lice.solicitudes[lice.solicitudes.length -1].usuario.nombre+" "+lice.solicitudes[lice.solicitudes.length -1].usuario.apellido,
+                                           lice.solicitudes[lice.solicitudes.length -1].tipo,lice.solicitudes[lice.solicitudes.length -1].descripcion)} data-bs-toggle="modal" data-bs-target="#aprobSoli" 
+                                           className="  text-center btn-solicitud ">Solicitud
+                                           </i>):<>--</>}   
                                 </td>
 
                                 <td>
@@ -217,23 +228,31 @@ export const TablaRevocar = () => {
                                 </td>
 
                                 <td>
-                                <div className='d-flex align-items-center'>
-                                        {   
-                                            lice.estado == 'DISPONIBLE' && (<i onClick={() => reservar(lice.plataforma,lice.serie)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-clock"></i>) 
-                                        }
-                                        {
-                                            lice.estado != 'DISPONIBLE' && (<i onClick={() => revocar(lice.solicitudes[lice.solicitudes.length -1].usuario.nombre+" "+lice.solicitudes[lice.solicitudes.length -1].usuario.apellido,lice.plataforma,lice.vencimiento)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>)
-                                        }
-                             
+                                        { lice.estado == 'DISPONIBLE'?(
+                                        <>
+                                        <i onClick={() => reservar(lice.plataforma,lice.serie)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-clock"></i>
                                         <br />
+                                        <sub>Reservar</sub>
+                                        </>):""}
 
-                                        {   
-                                             lice.estado == 'DISPONIBLE' && (<sub>Reservar</sub>) 
-                                        }
-                                        {
-                                            lice.estado != 'DISPONIBLE' && (<sub>Revocar</sub>)
-                                        }
-                                </div>       
+                                        {lice.estado == 'RESERVADA'?(   
+                                        <>
+                                        <i onClick={() => revocar("", lice.plataforma,"", lice.serie)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>
+                                        <br />
+                                        <sub>Revocar</sub>
+                                        </>  
+                                         ):""}
+                                         
+                                         {lice.estado == 'ASIGNADA'?(
+                                        <>
+                                         <i onClick={() => revocar(lice.solicitudes[lice.solicitudes.length -1].usuario.nombre+" "+lice.solicitudes[lice.solicitudes.length -1].usuario.apellido,
+                                         lice.plataforma,lice.vencimiento, lice.serie)} data-bs-toggle="modal" data-bs-target="#aprobSoli" className="ms-2 fa-solid fa-xmark fa-xl me-2"></i>
+                                         <br />
+                                         <sub>Revocar</sub>
+                                         </>
+                                         ):""}
+                                        
+                                     
                                    
                                 </td>
 

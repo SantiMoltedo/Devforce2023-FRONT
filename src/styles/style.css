@@ -228,6 +228,12 @@ sub{
     width: 30px;
 }
 
+@media (max-width: 30px) {
+    .teams-L {
+        display: none;
+    }
+}
+
 /* Modal */
 .modal-content {
     border-radius: 25px;
