@@ -4,12 +4,13 @@ import { PushNoti } from './PushNoti'
 import { triggerToast } from './PushNotiSimple'
 import { triggerToastPushNoti } from './PushNoti'
 import { useForm } from '../../customHooks/useForm'
+import {apiFetchRevocar} from './tables/TablaRevocar'
 
 export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin }) => {
+
     const { formState,onInputChange }=useForm({
         numeroDias: ""
     })
-
 
     const funcionesModal=(accion) => {
         if (accion == "Asignar"){
@@ -19,22 +20,28 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
             apiFetchAdmin(accion,soli);
         }
         if (accion == "Aprobar"){
-            apiFetch(accion,soli,numeroDias);            
+            apiFetch(accion,soli,numeroDias);
+        }
+        if (accion == "Revocar" || accion == "Reservar"){
+            apiFetchRevocar(accion,serialLic);
         }
     }
 
     const funcionesNotificacion=(accion)=>{
         if (accion == "Asignar"){
-            triggerToastPushNoti();            
+            triggerToastPushNoti();
         }
         if (accion == "Rechazar"){
             triggerToast();
         }
         if (accion == "Aprobar"){
-            triggerToast();          
+            triggerToast();
+        }
+        if (accion == "Revocar" || accion == "Reservar"){
+            triggerToast();
         }
     }
-    
+
 
     const { numeroDias }=formState
     return (

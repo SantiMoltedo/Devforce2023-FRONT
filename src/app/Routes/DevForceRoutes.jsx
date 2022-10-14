@@ -5,6 +5,7 @@ import { Admin } from '../pages/admin/Admin'
 import { Mentor } from '../pages/mentor/Mentor'
 import { User } from '../pages/user/User'
 import { SolicitarCapacitacion } from '../pages/user/SolicitarCapacitacion'
+import { VerLicencias } from '../pages/admin/VerLicencias'
 import { Modal } from '../../app/components/Modal'
 import { ModificarUsuario } from '../pages/user/ModificarUsuario'
 
@@ -14,6 +15,7 @@ export const DevForceRoutes = () => {
       <NavBar />
       <Routes>
         <Route path='/admin' element={<Admin />} />
+        <Route path='/licencias' element={<VerLicencias />} />
         <Route path='/mentor' element={<Mentor />} />
         <Route path='/user' element={<User />} />"
         <Route path='/crear-soli' element={<SolicitarCapacitacion />} />"

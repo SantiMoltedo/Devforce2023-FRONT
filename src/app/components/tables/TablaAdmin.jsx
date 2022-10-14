@@ -2,6 +2,10 @@ import { useEffect,useState } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
 
+import { useEffect,useState } from 'react'
+import { sortTable,expandRow } from './functions/auxFunctions'
+import { Modal } from '../Modal'
+
 export const TablaAdmin = () => {
     const apiFetchAdmin=async (accion,soli) => {
         try {

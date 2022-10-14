@@ -89,7 +89,7 @@ export const TablaMentor=() => {
         setTitulo("Rechazar la solicitud");
         setCoso("Solicitud");
         setUsuario(usuario);
-        setTipoSoli(tipoSoli);
+        setTipoSoli(tipoSoli);li
         setDescripcion(descripcion);
         setSoli(soli);
     }
