@@ -16,8 +16,11 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
         if (accion == "Asignar"){
             apiFetchAdmin(accion,soli)
         }
-        if (accion == "Rechazar"){
+        if (accion == "RechazarAdmin"){
             apiFetchAdmin(accion,soli);
+        }
+        if (accion == "RechazarMentor"){
+            apiFetch(accion,soli);
         }
         if (accion == "Aprobar"){
             apiFetch(accion,soli,numeroDias);
@@ -25,19 +28,28 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
         if (accion == "Revocar" || accion == "Reservar"){
             apiFetchRevocar(accion,serialLic);
         }
+        if (accion == "Devolver"){
+            apiFetch(accion, soli);
+        }
     }
 
     const funcionesNotificacion=(accion)=>{
         if (accion == "Asignar"){
             triggerToastPushNoti();
         }
-        if (accion == "Rechazar"){
+        if (accion == "RechazarMentor"){
+            triggerToast();
+        }
+        if (accion == "RechazarAdmin"){
             triggerToast();
         }
         if (accion == "Aprobar"){
             triggerToast();
         }
         if (accion == "Revocar" || accion == "Reservar"){
+            triggerToast();
+        }
+        if (accion == "Devolver"){
             triggerToast();
         }
     }
@@ -170,7 +182,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                     )
                                 }
                                 {
-                                    accion=="Aprobar"? (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma")? (
+                                    accion=="Aprobar"? (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma"|| soli.tipo=="UDEMY"||soli.tipo=="OTRA PLATAFORMA")? (
                                         <>
                                             <div className="row">
                                                 <div className="col-12 mt-3 text-center"><h5>Dias a completar el curso:</h5></div>

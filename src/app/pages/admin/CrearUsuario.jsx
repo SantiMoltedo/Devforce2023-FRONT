@@ -13,7 +13,7 @@ export const CrearUsuario = () => {
   const hideOrShowInput = () => {
     var valorSeleccionado = document.getElementById("tipo-selector").value;
     var linkArea = document.getElementById("link-area");
-    if (valorSeleccionado == "UDEMY" || valorSeleccionado == "OTRA-PLATAFORMA") {
+    if (valorSeleccionado == "UDEMY" || valorSeleccionado == "OTRA PLATAFORMA") {
       linkArea.classList.remove("hide");
     }
     else {
@@ -61,7 +61,7 @@ export const CrearUsuario = () => {
             <option value={"COURSERA"}>Coursera</option>
             <option value={"OTROS"}>Otros</option>
             <option value={"UDEMY"}>Udemy</option>
-            <option value={"OTRA-PLATAFORMA"}>Otra Plataforma</option>
+            <option value={"OTRA PLATAFORMA"}>Otra Plataforma</option>
           </select>
 
           <div id='link-area' className="hide mt-4">

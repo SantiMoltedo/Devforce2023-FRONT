@@ -2,10 +2,6 @@ import { useEffect,useState } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
 
-import { useEffect,useState } from 'react'
-import { sortTable,expandRow } from './functions/auxFunctions'
-import { Modal } from '../Modal'
-
 export const TablaAdmin = () => {
     const apiFetchAdmin=async (accion,soli) => {
         try {
@@ -14,7 +10,7 @@ export const TablaAdmin = () => {
             if (accion=="Asignar") {
                 ruta="asignarLicencia"
             }
-            if (accion=="Rechazar") { 
+            if (accion=="RechazarAdmin") { 
                 ruta="rechazarSolicitudAdmin" 
             }
             console.log(ruta)
@@ -85,7 +81,7 @@ export const TablaAdmin = () => {
     }
     
     const xmark=(usuario,tipoSoli,descripcion,soli) => {
-        setAccion("Rechazar");
+        setAccion("RechazarAdmin");
         setTitulo("Rechazar Solicitud");
         setCoso("Solicitud");
         setUsuario(usuario);
@@ -144,7 +140,7 @@ export const TablaAdmin = () => {
                                 <tr key={soli.id}>
                                     <td>
                                         {soli.usuario.nombre+" "+soli.usuario.apellido} <br />
-                                        <sub>{soli.usuario.mail}</sub>
+                                        <sub>{soli.usuario.email}</sub>
                                     </td>
                                     <td>
                                         {soli.tipo}

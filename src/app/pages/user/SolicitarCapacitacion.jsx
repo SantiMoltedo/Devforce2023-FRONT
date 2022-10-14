@@ -22,7 +22,7 @@ export const SolicitarCapacitacion = () => {
   const hideOrShowInput = () => {
     var valorSeleccionado = document.getElementById("tipo-selector").value;
     var linkArea = document.getElementById("link-area");
-    if (valorSeleccionado == "UDEMY" || valorSeleccionado == "OTRA-PLATAFORMA") {
+    if (valorSeleccionado == "UDEMY" || valorSeleccionado == "OTRA PLATAFORMA") {
       linkArea.classList.remove("hide");
     }
     else {
@@ -36,7 +36,7 @@ export const SolicitarCapacitacion = () => {
       const tipo = document.getElementById("tipo-selector").value;
       const area = document.getElementById("area-selector").value;
 
-      if(tipo == 'UDEMY' || tipo == 'OTRA-PLATAFORMA')
+      if(tipo == 'UDEMY' || tipo == 'OTRA PLATAFORMA')
       {
         var solicitud = { tipo, descripcion, estado: 'PENDIENTE-MENTOR', area, ...(link != '' && { link }) }
       }
@@ -131,7 +131,7 @@ export const SolicitarCapacitacion = () => {
             <option value={"COURSERA"}>Coursera</option>
             <option value={"OTROS"}>Otros</option>
             <option value={"UDEMY"}>Udemy</option>
-            <option value={"OTRA-PLATAFORMA"}>Otra Plataforma</option>
+            <option value={"OTRA PLATAFORMA"}>Otra Plataforma</option>
           </select>
 
           <div id='link-area' className="hide mt-4">

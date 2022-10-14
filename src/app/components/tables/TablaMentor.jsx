@@ -9,13 +9,14 @@ export const TablaMentor=() => {
         try {
             let ruta;
             console.log(accion)
+            console.log(soli.tipo)
             if (accion=="Aprobar") {
-                if (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma")
+                if (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma"||soli.tipo=="UDEMY"||soli.tipo=="OTRA PLATAFORMA")
                     ruta=`aceptarSolicitud?dias=${numeroDias}`
                 else
                     ruta=`aceptarSolicitud`
             }
-            if (accion=="Rechazar") { ruta="rechazarSolicitudPlataforma" }
+            if (accion=="RechazarMentor") { ruta="rechazarSolicitudPlataforma" }
             if (accion=="Devolver") { ruta="devolverSolicitudPlataforma" }
             console.log(ruta)
             console.log(soli)
@@ -85,11 +86,11 @@ export const TablaMentor=() => {
     }
 
     const xmark=(usuario,tipoSoli,descripcion,soli) => {
-        setAccion("Rechazar");
+        setAccion("RechazarMentor");
         setTitulo("Rechazar la solicitud");
         setCoso("Solicitud");
         setUsuario(usuario);
-        setTipoSoli(tipoSoli);li
+        setTipoSoli(tipoSoli);
         setDescripcion(descripcion);
         setSoli(soli);
     }
@@ -157,7 +158,7 @@ export const TablaMentor=() => {
                             <tr key={soli.id}>
                                 <td>
                                     {soli.usuario.nombre+" "+soli.usuario.apellido} <br />
-                                    <sub>{soli.usuario.mail}</sub>
+                                    <sub>{soli.usuario.email}</sub>
                                 </td>
                                 <td>
                                     {soli.tipo}

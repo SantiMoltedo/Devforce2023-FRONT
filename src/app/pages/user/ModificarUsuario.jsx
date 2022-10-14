@@ -180,7 +180,7 @@ export const ModificarUsuario = () => {
               </div>
     
               <h5 className='mt-4'>Mail</h5>
-              <input className="form-control input" type="email" rows="1" name="mail" id="mail" placeholder={usuario.mail} onChange={habilitacionBotonConfirmar}></input>
+              <input className="form-control input" type="email" rows="1" name="mail" id="mail" placeholder={usuario.email} onChange={habilitacionBotonConfirmar}></input>
     
               <div class="row">
                 <div class="col-sm">

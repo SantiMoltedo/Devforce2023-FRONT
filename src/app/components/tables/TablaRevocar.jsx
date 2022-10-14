@@ -193,12 +193,12 @@ export const TablaRevocar = () => {
                                     <>
                                         {lice.solicitudes[lice.solicitudes.length -1].usuario.nombre+" "+lice.solicitudes[lice.solicitudes.length -1].usuario.apellido}
                                         <br />
-                                        {<sub>{lice.solicitudes[lice.solicitudes.length -1].usuario.mail}</sub>}
+                                        {<sub>{lice.solicitudes[lice.solicitudes.length -1].usuario.email}</sub>}
                                         <br />
                                         {<sub>{lice.solicitudes[lice.solicitudes.length -1].usuario.phone}</sub>}
                                         <br />
                                         {lice.solicitudes[lice.solicitudes.length -1].usuario.hasTeams == true?(
-                                        <img className="teams-logo" src='../assets/teamsLogo.svg'/>):<sub>{""}</sub>}</>):<>{"--"}</>
+                                        <img className="teams-logo" src='../../../assets/teamsLogo.png'/>):<sub>{""}</sub>}</>):<>{"--"}</>
                                     } 
                                 </td>
                                 <td>
