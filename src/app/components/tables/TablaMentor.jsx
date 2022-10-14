@@ -1,10 +1,13 @@
-import { useEffect,useState } from 'react'
+import { useEffect,useState, useContext } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
+import { NotificacionContext } from '../../../notificacionContext'
 
 
 
 export const TablaMentor=() => {
+    const{notificacion, setNotificacion} = useContext(NotificacionContext)
+
     const apiFetch=async (accion,soli,numeroDias) => {
         try {
             let ruta;
@@ -35,6 +38,7 @@ export const TablaMentor=() => {
                 })
                     .then(resp => resp.json())
             setUpdateSolis(data)
+            setNotificacion(accion)
 
         } catch (error) {
             console.log({ error });

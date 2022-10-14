@@ -4,8 +4,28 @@ import { Modal } from '../../components/Modal'
 import { PushNoti } from '../../components/PushNoti'
 import { PushNotiSimple } from '../../components/PushNotiSimple'
 import { TablaMentor } from "../../components/tables/TablaMentor"
+import { useContext, useState, useEffect } from 'react'
+import { Notificacion } from '../../components/Notificacion'
+import { mostrarNoti } from '../../components/Notificacion'
+import { NotificacionContext } from '../../../notificacionContext'
 
 export const Mentor = () => {
+    const{notificacion, setNotificacion} = useContext(NotificacionContext)
+    const [accion, setAccion] = useState("")
+    const [coso, setCoso] = useState("")
+    const [texto, setTexto] = useState("")
+
+    useEffect(() => {
+        if(notificacion == "modificado")
+        {
+            setAccion('modificado')
+            setCoso('Usuario')
+            setTexto('exitosamente')
+            mostrarNoti(1)
+            setNotificacion("0")
+        }
+    }, []);
+
     return (
         <>
             <div className='container-fluid'>
@@ -23,6 +43,7 @@ export const Mentor = () => {
                     <div className="col"></div>
                 </div>
             </div>
+            < Notificacion accion={accion} coso={coso} texto={texto}/>
         </>
     )
 }
