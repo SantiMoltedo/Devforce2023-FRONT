@@ -37,21 +37,21 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
         if (accion == "Asignar"){
             triggerToastPushNoti();
         }
-        if (accion == "RechazarMentor"){
-            triggerToast();
-        }
+        // if (accion == "RechazarMentor"){
+        //     triggerToast();
+        // }
         if (accion == "RechazarAdmin"){
             triggerToast();
         }
-        if (accion == "Aprobar"){
-            triggerToast();
-        }
+        // if (accion == "Aprobar"){
+        //     triggerToast();
+        // }
         if (accion == "Revocar" || accion == "Reservar"){
             triggerToast();
         }
-        if (accion == "Devolver"){
-            triggerToast();
-        }
+        // if (accion == "Devolver"){
+        //     triggerToast();
+        // }
     }
 
 

@@ -352,7 +352,7 @@ sub{
 @media (max-width: 992px) {
 
     /* Para medium */
-    .toast-container {
+    .toastNuevo {
         max-width: 300px;
     }
 
@@ -367,7 +367,7 @@ sub{
 @media (max-width: 576px) {
 
     /* Para small */
-    .toast-container {
+    .toastNuevo {
 
         max-width: 250px;
     }

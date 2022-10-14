@@ -7,32 +7,15 @@ import { TablaMentor } from "../../components/tables/TablaMentor"
 import { useContext, useState, useEffect } from 'react'
 import { Notificacion } from '../../components/Notificacion'
 import { mostrarNoti } from '../../components/Notificacion'
-import { NotificacionContext } from '../../../notificacionContext'
 
 export const Mentor = () => {
-    const{notificacion, setNotificacion} = useContext(NotificacionContext)
-    const [accion, setAccion] = useState("")
-    const [coso, setCoso] = useState("")
-    const [texto, setTexto] = useState("")
-
-    useEffect(() => {
-        if(notificacion == "modificado")
-        {
-            setAccion('modificado')
-            setCoso('Usuario')
-            setTexto('exitosamente')
-            mostrarNoti(1)
-            setNotificacion("0")
-        }
-    }, []);
-
     return (
         <>
             <div className='container-fluid'>
                 <h2 className='text-center mt-5 mb-5'>Administrar solicitudes</h2>
                 <div className="row">
                     <div className="col"></div>
-                    <div className="col-12 col-md-10">
+                    <div className="col-12 col-md-10  table-responsive">
                         <TablaMentor/>
                     </div>
                     <div className="col"></div>
@@ -43,7 +26,6 @@ export const Mentor = () => {
                     <div className="col"></div>
                 </div>
             </div>
-            < Notificacion accion={accion} coso={coso} texto={texto}/>
         </>
     )
 }

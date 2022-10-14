@@ -1,13 +1,18 @@
 import { useEffect,useState, useContext } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
+import { Notificacion } from '../Notificacion'
+import { mostrarNoti } from '../Notificacion'
 import { NotificacionContext } from '../../../notificacionContext'
+
 
 
 
 export const TablaMentor=() => {
     const{notificacion, setNotificacion} = useContext(NotificacionContext)
-
+    const [accionNoti, setAccionNoti] = useState("")
+    const [cosoNoti, setCosoNoti] = useState("")
+    const [textoNoti, setTextoNoti] = useState("")
     const apiFetch=async (accion,soli,numeroDias) => {
         try {
             let ruta;
@@ -38,8 +43,12 @@ export const TablaMentor=() => {
                 })
                     .then(resp => resp.json())
             setUpdateSolis(data)
-            setNotificacion(accion)
-
+            if(accion == "Devolver"){setAccionNoti('devuelta')}
+            if(accion == "RechazarMentor"){setAccionNoti('rechazada')}
+            if(accion == "Aprobar"){setAccionNoti('aprobada')}
+            setCosoNoti('Solicitud')
+            setTextoNoti('exitosamente')
+            mostrarNoti(1)
         } catch (error) {
             console.log({ error });
         }
@@ -62,6 +71,14 @@ export const TablaMentor=() => {
 
     useEffect(() => {
         getSolicitudes(setSolicitudes)
+        if(notificacion == "modificado")
+        {
+            setAccionNoti('modificado')
+            setCosoNoti('Usuario')
+            setTextoNoti('exitosamente')
+            mostrarNoti(1)
+            setNotificacion("0")
+        }
     },[updateSolis])
 
     const getSolicitudes=async (setSolicitudes) => {
@@ -134,7 +151,7 @@ export const TablaMentor=() => {
                         <th scope="col">
                             <div className="d-flex justify-content-center align-items-center">Tipo de solicitud
                                 <div className="ms-2">
-                                    <i onClick={() => { sortTable(0,dirSort0,setDirSort0) }} className="fa-solid fa-arrow-up text-secondary" id='col2'></i>
+                                    <i onClick={() => { sortTable(1,dirSort2,setDirSort2) }} className="fa-solid fa-arrow-up text-secondary" id='col2'></i>
                                 </div>
                             </div>
                         </th>
@@ -197,7 +214,7 @@ export const TablaMentor=() => {
             </table >
 
             <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli} apiFetch={apiFetch} />
-
+            <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
         </>
     )
 }
