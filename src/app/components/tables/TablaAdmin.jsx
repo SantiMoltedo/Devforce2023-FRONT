@@ -18,8 +18,8 @@ export const TablaAdmin = () => {
             if (accion=="Asignar") {
                 ruta="asignarLicencia"
             }
-            if (accion=="Rechazar") { 
-                ruta="rechazarSolicitudAdmin" 
+            if (accion=="Rechazar") {
+                ruta="rechazarSolicitudAdmin"
             }
             console.log(ruta)
             console.log(soli)
@@ -38,7 +38,7 @@ export const TablaAdmin = () => {
                 })
                     .then(resp => resp.json())
                 console.log(data);
-                setMensajeSerial(data.mensaje) 
+                setMensajeSerial(data.mensaje)
                 setUpdateSolis(data)
                 if(accion == "Rechazar")
                 {
@@ -62,7 +62,7 @@ export const TablaAdmin = () => {
     const [descripcion,setDescripcion]=useState("")
     const [coso,setCoso]=useState("")
     const [soli,setSoli]=useState({})
-    
+
     const [updateSolis, setUpdateSolis] = useState("")
     const [mensajeSerial, setMensajeSerial] = useState("")
 
@@ -83,7 +83,7 @@ export const TablaAdmin = () => {
             const data=await
                 // axios.get('http://localhost:8080/api/solicitudesmentor')
                 // const { data } = resp
-                // console.log(data);   
+                // console.log(data);
 
                 fetch('http://localhost:8080/api/solicitudesadmin',{
                     mode: 'cors',
@@ -102,7 +102,7 @@ export const TablaAdmin = () => {
             console.log({ error });
         }
     }
-    
+
     const xmark=(usuario,tipoSoli,descripcion,soli) => {
         setAccion("Rechazar");
         setTitulo("Rechazar Solicitud");
@@ -158,7 +158,7 @@ export const TablaAdmin = () => {
                 <tbody className="fs-7">
                     {
                         solicitudes.map(soli => (
-                            
+
                             (soli.estado == "PENDIENTE-ADMIN")?(
                                 <tr key={soli.id}>
                                     <td>

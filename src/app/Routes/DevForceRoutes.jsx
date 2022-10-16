@@ -8,6 +8,7 @@ import { SolicitarCapacitacion } from '../pages/user/SolicitarCapacitacion'
 import { VerLicencias } from '../pages/admin/VerLicencias'
 import { Modal } from '../../app/components/Modal'
 import { ModificarUsuario } from '../pages/user/ModificarUsuario'
+import {CrearUsuario } from '../pages/admin/CrearUsuario'
 
 export const DevForceRoutes = () => {
   return (
@@ -22,6 +23,7 @@ export const DevForceRoutes = () => {
         <Route path='/*' element={<Navigate to="/user" />} />
         <Route path='/Modal' element={<Modal/>} />
         <Route path='/ver-perfil' element={<ModificarUsuario/>} />
+        <Route path='/Crear-usuario' element={<CrearUsuario/>} />
       </Routes>
     </>
   )

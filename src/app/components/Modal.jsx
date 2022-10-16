@@ -5,7 +5,7 @@ import { triggerToast } from './PushNotiSimple'
 import { triggerToastPushNoti } from './PushNoti'
 import { useForm } from '../../customHooks/useForm'
 
-export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin,apiFetchRevocar }) => {
+export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin,apiFetchRevocar, role }) => {
 
     const { formState,onInputChange }=useForm({
         numeroDias: ""
@@ -16,7 +16,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
             apiFetchAdmin(accion,soli)
         }
         if (accion == "RechazarAdmin"){
-            
+
         }
         if (accion == "Rechazar"){
             if(coso == 'Solicitud'){
@@ -75,6 +75,18 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                         <h1 className='text-center mt-3'>{titulo}</h1>
                                     </div>
                                 </div>
+                                {
+                                    role&&(
+                                        <>
+                                            <div className="row">
+                                                <div className="col-12 mt-3 text-center"><h5>Tipo de usuario:</h5></div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-12 text-center"><p>{role}</p></div>
+                                            </div>
+                                        </>
+                                    )
+                                }
                                 {
                                     usuario&&(
                                         <>
@@ -199,12 +211,19 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                 }
                             </div>
                             {
-                                //En caso de que no haya accion 1 solo boton de volver (Modal solicitud de licencia)
-                                accion? (
-                                    <div className="d-flex mt-3 justify-content-around">
-                                        <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                        <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={() => {  funcionesModal(accion); funcionesNotificacion(accion)}} >{accion}</button> </div>
-                                    </div>
+                                //En caso de que no haya accion, 1 solo boton de volver (Modal solicitud de licencia)
+                                accion? ( accion=="Crear"?(
+                                            <div className="d-flex mt-3 justify-content-around">
+                                                <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
+                                                <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={triggerToast} >{accion}</button> </div>
+                                            </div>
+                                        )
+                                            :(
+                                            <div className="d-flex mt-3 justify-content-around">
+                                                <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
+                                                <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={() => {  funcionesModal(accion); funcionesNotificacion(accion)}} >{accion}</button> </div>
+                                            </div>
+                                            )
                                 )
                                     :(
                                         <div className="row">
