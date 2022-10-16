@@ -4,6 +4,7 @@ import { Modal } from '../Modal'
 import { Notificacion } from '../Notificacion'
 import { mostrarNoti } from '../Notificacion'
 import { NotificacionContext } from '../../../notificacionContext'
+import { mostrarNotiSerial, NotificacionSerial } from '../NotificacionSerial'
 
 export const TablaAdmin = () => {
     const{notificacion, setNotificacion} = useContext(NotificacionContext)
@@ -122,7 +123,7 @@ export const TablaAdmin = () => {
         setDescripcion(descripcion);
         setSoli(soli);
     }
-
+    
     return (
         <>
             <table className="table shadow text-center align-middle table-sm" id='tablaUsuarios'>
@@ -188,6 +189,7 @@ export const TablaAdmin = () => {
             </table >
             <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli} mensajeSerial={mensajeSerial} apiFetchAdmin={apiFetchAdmin} />
             <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
+            <NotificacionSerial accion="asignada" serial="2013123211"/>
         </>
     )
 }

@@ -386,6 +386,58 @@ i {
     opacity: 1;
 }
 
+/* NUEVA NOTIFICACION SERIAL */
+.toastSerialNuevo{
+    border-radius: 12px;
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.toastSerial-content{
+    background-color: #fff;
+    border-radius: 12px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.toastSerialNuevo .tituloSerial{
+    padding: 10px 10px 10px 10px;
+    color: #fff;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}
+.toastSerial-content .message .text{
+    font-weight: 400;
+    color: #333;
+}
+.toastSerial-content .message .text-1{
+    padding: 10px 50px 5px 50px;
+}
+.toastSerial-content .message .text-2{
+    padding: 0px 50px 10px 50px;
+    display: flex;
+    justify-content: center;
+}
+.tituloSerial .fa{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    padding: 5px;
+    color: #fff;
+}
+.toastSerialNuevo .close{
+    position: absolute;
+    color: #fff;
+    top: 5px;
+    right: 10px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.toastSerialNuevo .close:hover{
+    opacity: 1;
+}
 
 
 /* RESPONSIVE DEL PUSH NOTI */

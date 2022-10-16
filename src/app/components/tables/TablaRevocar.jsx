@@ -5,10 +5,13 @@ import { Modal } from '../Modal'
 import { Notificacion } from '../Notificacion'
 import { mostrarNoti } from '../Notificacion'
 import { NotificacionContext } from '../../../notificacionContext'
+import { NotificacionSerial } from '../NotificacionSerial'
+import { mostrarNotiSerial } from '../NotificacionSerial'
 
 export const TablaRevocar = () => {
     const{notificacion, setNotificacion} = useContext(NotificacionContext)
     const [accionNoti, setAccionNoti] = useState("")
+    const [serialNoti, setSerialNoti] = useState("")
     const [cosoNoti, setCosoNoti] = useState("")
     const [textoNoti, setTextoNoti] = useState("")
      //Para q el modal spawnee poner esto en los iconos/columnas q sean
@@ -35,7 +38,6 @@ export const TablaRevocar = () => {
     const apiFetchRevocar=async (accion, serial) => {
         try {
             let ruta;
-    
             console.log({accion})
             if(accion == "Revocar"){ruta = "revocarLicencia"}
             if(accion == "Reservar"){ruta= "reservarLicencia"}
@@ -61,9 +63,8 @@ export const TablaRevocar = () => {
                     console.log(data)    
                     if(accion == "Revocar"){setAccionNoti('revocada')}
                     if(accion == "Reservar"){setAccionNoti('reservada')}
-                    setCosoNoti('Licencia')
-                    setTextoNoti('exitosamente')
-                    mostrarNoti(1)
+                    setSerialNoti(serial)
+                    mostrarNotiSerial(1)
         } catch (error) {
             console.log({ error });
         }
@@ -284,7 +285,7 @@ export const TablaRevocar = () => {
                 </tbody>
             </table >
             <Modal accion={accion} titulo={titulo} plataforma={plat} serialLic={serial} coso={coso} usuario={usuario} fechaExpir={exp} soli = {""} tipoSoli = {tipoSoli} descripcion = {descripcion} apiFetchRevocar={apiFetchRevocar}/>
-            <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
+            <NotificacionSerial accion={accionNoti} serial={serialNoti}/>
         </>
     )
 }
