@@ -18,7 +18,7 @@ export const TablaAdmin = () => {
             if (accion=="Asignar") {
                 ruta="asignarLicencia"
             }
-            if (accion=="RechazarAdmin") { 
+            if (accion=="Rechazar") { 
                 ruta="rechazarSolicitudAdmin" 
             }
             console.log(ruta)
@@ -39,7 +39,14 @@ export const TablaAdmin = () => {
                     .then(resp => resp.json())
                 console.log(data);
                 setMensajeSerial(data.mensaje) 
-            setUpdateSolis(data)
+                setUpdateSolis(data)
+                if(accion == "Rechazar")
+                {
+                    setAccionNoti('rechazada')
+                    setCosoNoti('Solicitud')
+                    setTextoNoti('exitosamente')
+                    mostrarNoti(1)
+                }
         } catch (error) {
             console.log({ error });
         }
@@ -97,9 +104,9 @@ export const TablaAdmin = () => {
     }
     
     const xmark=(usuario,tipoSoli,descripcion,soli) => {
-        setAccion("RechazarAdmin");
+        setAccion("Rechazar");
         setTitulo("Rechazar Solicitud");
-        setCoso("Solicitud");
+        setCoso("SolicitudAdmin");
         setUsuario(usuario);
         setTipoSoli(tipoSoli);
         setDescripcion(descripcion);

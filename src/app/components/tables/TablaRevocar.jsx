@@ -32,9 +32,7 @@ export const apiFetchRevocar=async (accion, serial) => {
                 credentials: 'include',
             })
                 .then(resp => resp.json())
-                console.log(data)
-
-
+                console.log(data)    
     } catch (error) {
         console.log({ error });
     }
@@ -65,7 +63,6 @@ export const TablaRevocar = () => {
     const [mentorAsign,setMentorAsign]=useState("")
     const [adminAsign,setAdminAsign]=useState("")
     const [updateLicencias,setUpdateLicencias]=useState({})
-
 
     useEffect(() => {
         getLicencias(setLicencias)

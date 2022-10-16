@@ -255,11 +255,13 @@ sub{
 
 .toast-header-revocada,
 .toast-header-rechazada,
-.toast-header-campos {
+.toast-header-campos
+.toast-header-revocada {
     background-color: #B82E52;
 }
 
-.toast-header-devuelta {
+.toast-header-devuelta
+.toast-header-reservada {
     background-color: #FEC24E;
 }
 

@@ -17,10 +17,15 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
             apiFetchAdmin(accion,soli)
         }
         if (accion == "RechazarAdmin"){
-            apiFetchAdmin(accion,soli);
+            
         }
         if (accion == "Rechazar"){
-            apiFetch(accion,soli);
+            if(coso == 'Solicitud'){
+                apiFetch(accion,soli);
+            }
+            if(coso == 'SolicitudAdmin'){
+                apiFetchAdmin(accion,soli);
+            }
         }
         if (accion == "Aprobar"){
             apiFetch(accion,soli,numeroDias);
@@ -40,15 +45,15 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
         // if (accion == "RechazarMentor"){
         //     triggerToast();
         // }
-        if (accion == "RechazarAdmin"){
-            triggerToast();
-        }
+        // if (accion == "RechazarAdmin"){
+        //     triggerToast();
+        // }
         // if (accion == "Aprobar"){
         //     triggerToast();
         // }
-        if (accion == "Revocar" || accion == "Reservar"){
-            triggerToast();
-        }
+        // if (accion == "Revocar" || accion == "Reservar"){
+        //     triggerToast();
+        // }
         // if (accion == "Devolver"){
         //     triggerToast();
         // }
