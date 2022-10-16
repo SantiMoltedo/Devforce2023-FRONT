@@ -11,6 +11,8 @@ export const TablaAdmin = () => {
     const [accionNoti, setAccionNoti] = useState("")
     const [cosoNoti, setCosoNoti] = useState("")
     const [textoNoti, setTextoNoti] = useState("")
+    const [accionNotiSerial, setAccionNotiSerial] = useState("")
+    const [serialNoti, setSerialNoti] = useState("")
 
     const apiFetchAdmin=async (accion,soli) => {
         try {
@@ -48,6 +50,15 @@ export const TablaAdmin = () => {
                     setTextoNoti('exitosamente')
                     mostrarNoti(1)
                 }
+                if(accion == 'Asignar')
+                {
+                    if(data.mensaje == "LICENCIA RENOVADA"){setAccionNotiSerial('renovada')}
+                    if(data.mensaje == "LICENCIA ASIGNADA"){setAccionNotiSerial('asignada')}
+                    setSerialNoti(data.contenido.serie)
+                    mostrarNotiSerial(1)
+                }
+               
+
         } catch (error) {
             console.log({ error });
         }
@@ -189,7 +200,7 @@ export const TablaAdmin = () => {
             </table >
             <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli} mensajeSerial={mensajeSerial} apiFetchAdmin={apiFetchAdmin} />
             <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
-            <NotificacionSerial accion="asignada" serial="2013123211"/>
+            <NotificacionSerial accion={accionNotiSerial} serial={serialNoti}/>
         </>
     )
 }

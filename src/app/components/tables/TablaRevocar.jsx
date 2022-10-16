@@ -11,6 +11,7 @@ import { mostrarNotiSerial } from '../NotificacionSerial'
 export const TablaRevocar = () => {
     const{notificacion, setNotificacion} = useContext(NotificacionContext)
     const [accionNoti, setAccionNoti] = useState("")
+    const [accionNotiSerial, setAccionNotiSerial] = useState("")
     const [serialNoti, setSerialNoti] = useState("")
     const [cosoNoti, setCosoNoti] = useState("")
     const [textoNoti, setTextoNoti] = useState("")
@@ -61,8 +62,8 @@ export const TablaRevocar = () => {
                 })
                     .then(resp => resp.json())
                     console.log(data)    
-                    if(accion == "Revocar"){setAccionNoti('revocada')}
-                    if(accion == "Reservar"){setAccionNoti('reservada')}
+                    if(accion == "Revocar"){setAccionNotiSerial('revocada')}
+                    if(accion == "Reservar"){setAccionNotiSerial('reservada')}
                     setSerialNoti(serial)
                     mostrarNotiSerial(1)
         } catch (error) {
@@ -285,7 +286,8 @@ export const TablaRevocar = () => {
                 </tbody>
             </table >
             <Modal accion={accion} titulo={titulo} plataforma={plat} serialLic={serial} coso={coso} usuario={usuario} fechaExpir={exp} soli = {""} tipoSoli = {tipoSoli} descripcion = {descripcion} apiFetchRevocar={apiFetchRevocar}/>
-            <NotificacionSerial accion={accionNoti} serial={serialNoti}/>
+            <NotificacionSerial accion={accionNotiSerial} serial={serialNoti}/>
+            <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
         </>
     )
 }

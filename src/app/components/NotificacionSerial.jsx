@@ -22,7 +22,7 @@ export const NotificacionSerial = ({accion, serial}) => {
         <>
             <div class={`toastSerialNuevo toast-header-${accion}`} id="notiSerial">
                 <div className='tituloSerial'>
-                    <span><i className={`fa fa-solid ${accion == 'asignada' && 'fa-check'} ${accion == 'revocada' && 'fa-xmark'} ${accion == 'reservada' && 'fa-clock'}`}></i></span>
+                    <span><i className={`fa fa-solid ${accion == 'asignada' && 'fa-check'} ${accion == 'renovada' && 'fa-check'} ${accion == 'revocada' && 'fa-xmark'} ${accion == 'reservada' && 'fa-clock'}`}></i></span>
                     <span>Licencia {`${accion}`}</span>
                     <i className="fa-solid fa-xmark close" onClick={()=>{document.getElementById("noti").classList.add("hide")}}></i>
                 </div>

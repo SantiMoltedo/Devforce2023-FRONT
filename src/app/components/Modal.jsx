@@ -38,9 +38,9 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
     }
 
     const funcionesNotificacion=(accion)=>{
-        if (accion == "Asignar"){
-            triggerToastPushNoti();
-        }
+        // if (accion == "Asignar"){
+        //     triggerToastPushNoti();
+        // }
         // if (accion == "RechazarMentor"){
         //     triggerToast();
         // }

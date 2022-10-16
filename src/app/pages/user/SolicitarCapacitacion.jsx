@@ -1,18 +1,29 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../../customHooks/useForm';
 import { UserContext } from '../../../UserContext'
-import { useContext,useState } from 'react'
+import { useContext,useState, useEffect } from 'react'
 import { NotificacionContext } from '../../../notificacionContext';
 import { mostrarNoti, Notificacion } from '../../components/Notificacion';
 
 export const SolicitarCapacitacion = () => {
 
-  const [accion, setAccion] = useState("")
-  const [coso, setCoso] = useState("")
-  const [texto, setTexto] = useState("")
+  const{notificacion, setNotificacion} = useContext(NotificacionContext)
+  const [accionNoti, setAccionNoti] = useState("")
+  const [cosoNoti, setCosoNoti] = useState("")
+  const [textoNoti, setTextoNoti] = useState("")
+
+  useEffect(() => {
+    if(notificacion == "modificado")
+    {
+        setAccionNoti('modificado')
+        setCosoNoti('Usuario')
+        setTextoNoti('exitosamente')
+        mostrarNoti(1)
+        setNotificacion("0")
+    }
+  },[])
 
   const navigate = useNavigate();
-  const{notificacion, setNotificacion} = useContext(NotificacionContext)
 
   const { formState, onInputChange } = useForm({
     descripcion: '', link: ''
@@ -24,10 +35,12 @@ export const SolicitarCapacitacion = () => {
     var linkArea = document.getElementById("link-area");
     if (valorSeleccionado == "UDEMY" || valorSeleccionado == "OTRA PLATAFORMA") {
       linkArea.classList.remove("hide");
+      document.getElementById("link").disabled = false
     }
     else {
       document.getElementById("link").required = false
       linkArea.classList.add("hide");
+      document.getElementById("link").disabled = true
     }
   }
 
@@ -132,7 +145,7 @@ export const SolicitarCapacitacion = () => {
 
           <div id='link-area' className="hide mt-4">
             <h5>Link al curso:</h5>
-            <input id='link' type="text" className="form-control" placeholder="Ej: https://gire.udemy.com/course/master-completo-java-de-cero-a-experto" name="link" value={link} onChange={onInputChange} />
+            <input id='link' type="text" className="form-control" placeholder="Ej: https://gire.udemy.com/course/master-completo-java-de-cero-a-experto" name="link" value={link} onChange={onInputChange} disabled/>
           </div>
 
           <h5 className='mt-4'>Área:</h5>
@@ -155,7 +168,7 @@ export const SolicitarCapacitacion = () => {
         </form>
       </div>
     </div>
-    < Notificacion accion={accion} coso={coso} texto={texto}/>
+    <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
   </>
   )
 }

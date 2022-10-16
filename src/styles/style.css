@@ -287,7 +287,8 @@ i {
 .toast-header-creada,
 .toast-header-modificado,
 .toast-header-creada,
-.toast-header-creado {
+.toast-header-creado,
+.toast-header-renovada {
     background-color: #2EB894;
 }
 
