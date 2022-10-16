@@ -24,7 +24,7 @@ export const TablaMentor=() => {
                 else
                     ruta=`aceptarSolicitud`
             }
-            if (accion=="RechazarMentor") { ruta="rechazarSolicitudPlataforma" }
+            if (accion=="Rechazar") { ruta="rechazarSolicitudPlataforma" }
             if (accion=="Devolver") { ruta="devolverSolicitudPlataforma" }
             console.log(ruta)
             console.log(soli)
@@ -44,7 +44,7 @@ export const TablaMentor=() => {
                     .then(resp => resp.json())
             setUpdateSolis(data)
             if(accion == "Devolver"){setAccionNoti('devuelta')}
-            if(accion == "RechazarMentor"){setAccionNoti('rechazada')}
+            if(accion == "Rechazar"){setAccionNoti('rechazada')}
             if(accion == "Aprobar"){setAccionNoti('aprobada')}
             setCosoNoti('Solicitud')
             setTextoNoti('exitosamente')
@@ -107,7 +107,7 @@ export const TablaMentor=() => {
     }
 
     const xmark=(usuario,tipoSoli,descripcion,soli) => {
-        setAccion("RechazarMentor");
+        setAccion("Rechazar");
         setTitulo("Rechazar la solicitud");
         setCoso("Solicitud");
         setUsuario(usuario);

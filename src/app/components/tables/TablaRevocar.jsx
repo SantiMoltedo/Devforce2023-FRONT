@@ -1,8 +1,10 @@
 
-import { useEffect,useState } from 'react'
+import { useEffect,useState, useContext } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
-
+import { Notificacion } from '../Notificacion'
+import { mostrarNoti } from '../Notificacion'
+import { NotificacionContext } from '../../../notificacionContext'
 
 export const apiFetchRevocar=async (accion, serial) => {
     try {
@@ -39,7 +41,10 @@ export const apiFetchRevocar=async (accion, serial) => {
 }
 
 export const TablaRevocar = () => {
-
+    const{notificacion, setNotificacion} = useContext(NotificacionContext)
+    const [accionNoti, setAccionNoti] = useState("")
+    const [cosoNoti, setCosoNoti] = useState("")
+    const [textoNoti, setTextoNoti] = useState("")
      //Para q el modal spawnee poner esto en los iconos/columnas q sean
     // data-bs-toggle="modal" data-bs-target="#aprobSoli"
 
@@ -59,11 +64,20 @@ export const TablaRevocar = () => {
     const [descripcion,setDescripcion]=useState("")
     const [mentorAsign,setMentorAsign]=useState("")
     const [adminAsign,setAdminAsign]=useState("")
+    const [updateLicencias,setUpdateLicencias]=useState({})
 
 
     useEffect(() => {
         getLicencias(setLicencias)
-    },[])
+        if(notificacion == "modificado")
+        {
+            setAccionNoti('modificado')
+            setCosoNoti('Usuario')
+            setTextoNoti('exitosamente')
+            mostrarNoti(1)
+            setNotificacion("0")
+        }
+    },[updateLicencias])
 
     const getLicencias=async (setLicencias) => {
         try {
@@ -81,6 +95,7 @@ export const TablaRevocar = () => {
                 })
                     .then(resp => resp.json())
             setLicencias(data)
+            setUpdateLicencias(data)
         } catch (error) {
             console.log({ error });
         }
@@ -267,6 +282,7 @@ export const TablaRevocar = () => {
                 </tbody>
             </table >
             <Modal accion={accion} titulo={titulo} plataforma={plat} serialLic={serial} coso={coso} usuario={usuario} fechaExpir={exp} soli = {""} tipoSoli = {tipoSoli} descripcion = {descripcion}/>
+            <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
         </>
     )
 }

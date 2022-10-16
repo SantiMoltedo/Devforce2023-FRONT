@@ -19,7 +19,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
         if (accion == "RechazarAdmin"){
             apiFetchAdmin(accion,soli);
         }
-        if (accion == "RechazarMentor"){
+        if (accion == "Rechazar"){
             apiFetch(accion,soli);
         }
         if (accion == "Aprobar"){
@@ -53,7 +53,6 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
         //     triggerToast();
         // }
     }
-
 
     const { numeroDias }=formState
     return (

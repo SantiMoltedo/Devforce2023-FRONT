@@ -1,8 +1,16 @@
-import { useEffect,useState } from 'react'
+import { useEffect,useState, useContext } from 'react'
 import { sortTable,expandRow } from './functions/auxFunctions'
 import { Modal } from '../Modal'
+import { Notificacion } from '../Notificacion'
+import { mostrarNoti } from '../Notificacion'
+import { NotificacionContext } from '../../../notificacionContext'
 
 export const TablaAdmin = () => {
+    const{notificacion, setNotificacion} = useContext(NotificacionContext)
+    const [accionNoti, setAccionNoti] = useState("")
+    const [cosoNoti, setCosoNoti] = useState("")
+    const [textoNoti, setTextoNoti] = useState("")
+
     const apiFetchAdmin=async (accion,soli) => {
         try {
             let ruta;
@@ -53,6 +61,14 @@ export const TablaAdmin = () => {
 
     useEffect(() => {
         getSolicitudes(setSolicitudes)
+        if(notificacion == "modificado")
+        {
+            setAccionNoti('modificado')
+            setCosoNoti('Usuario')
+            setTextoNoti('exitosamente')
+            mostrarNoti(1)
+            setNotificacion("0")
+        }
     },[updateSolis])
 
     const getSolicitudes=async (setSolicitudes) => {
@@ -164,6 +180,7 @@ export const TablaAdmin = () => {
                 </tbody>
             </table >
             <Modal accion={accion} titulo={titulo} usuario={usuario} tipoSoli={tipoSoli} descripcion={descripcion} coso={coso} soli={soli} mensajeSerial={mensajeSerial} apiFetchAdmin={apiFetchAdmin} />
+            <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
         </>
     )
 }
