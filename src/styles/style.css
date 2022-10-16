@@ -159,7 +159,7 @@ input:focus-visible:invalid {
 }
 
 .input-invalid{
-    border: 1px solid rgb(226, 87, 87)
+    border: 1px solid rgb(226, 87, 87) !important
 }
 
 .with-icon {

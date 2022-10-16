@@ -150,7 +150,8 @@ export const ModificarUsuario = () => {
             console.log( {error} );
           }
       }
-        
+    
+    const [teamsInicial, setTeamsInicial] = useState("0");
     return (
       <>
         <div className='container-center'>
@@ -192,22 +193,24 @@ export const ModificarUsuario = () => {
                   <input type = "password" className="form-control input" id="password2" rows="1" onChange={habilitacionBotonConfirmar}></input>
                 </div>
               </div>
-              
-              <div class="form-check form-switch">
-              <h5 className='mt-4'>Tiene teams?</h5>
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></input>
-                  {
-                      usuario.hasTeams==1?(
-                      <>
-                          {document.getElementById("flexSwitchCheckDefault").checked = true}
-                      </>
-                      ):null
-                  }
+              <div className = "d-flex align-items-center mt-2">
+                <img className="mt-2" src="/src/assets/teamsLogo.png"  width="70" height="35"></img>
+                <div class="form-check form-switch">
+                <h5 className='mt-4'>Tiene teams?</h5>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></input>
+                    {
+                        (usuario.hasTeams==1 && teamsInicial == 0)?(
+                        <>
+                            {setTeamsInicial(1)}
+                            {document.getElementById("flexSwitchCheckDefault").checked = true}
+                        </>
+                        ):null
+                    }
+                </div>
               </div>
-              
               <div className="d-flex my-4">
                 <button className='btn btn-outline-dark w-100 me-4'onClick={() => navigate(-1)}>Volver</button>
-                <button className='btn btn-dark w-100 ms-4' type='submit' disabled={deshabilitarBtn} onClick = {()=>{verificaciones();errores=0}}>Confirmar</button>
+                <button className='btn btn-dark w-100 ms-4' type='submit' disabled={deshabilitarBtn} onClick = {()=>{verificaciones();errores=0;setTeamsInicial('0')}}>Confirmar</button>
               </div>
             </form>
           </div>
