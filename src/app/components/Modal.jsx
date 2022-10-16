@@ -4,9 +4,8 @@ import { PushNoti } from './PushNoti'
 import { triggerToast } from './PushNotiSimple'
 import { triggerToastPushNoti } from './PushNoti'
 import { useForm } from '../../customHooks/useForm'
-import {apiFetchRevocar} from './tables/TablaRevocar'
 
-export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin }) => {
+export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin,apiFetchRevocar }) => {
 
     const { formState,onInputChange }=useForm({
         numeroDias: ""

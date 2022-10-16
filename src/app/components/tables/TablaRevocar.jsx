@@ -6,38 +6,6 @@ import { Notificacion } from '../Notificacion'
 import { mostrarNoti } from '../Notificacion'
 import { NotificacionContext } from '../../../notificacionContext'
 
-export const apiFetchRevocar=async (accion, serial) => {
-    try {
-        let ruta;
-
-        console.log({accion})
-        if(accion == "Revocar"){ruta = "revocarLicencia"}
-        if(accion == "Reservar"){ruta= "reservarLicencia"}
-        console.log({ruta})
-        const data=await
-            fetch(`http://localhost:8080/api/admin/${ruta}` ,{
-                mode: 'cors',
-                method: "PUT",
-                body: JSON.stringify(
-                    {
-                    serie: serial
-                }
-                    ),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Cache': 'no-cache',
-                    'Access-Control-Allow-Origin': 'http://localhost:8080',
-                },
-                credentials: 'include',
-            })
-                .then(resp => resp.json())
-                console.log(data)    
-    } catch (error) {
-        console.log({ error });
-    }
-}
-
 export const TablaRevocar = () => {
     const{notificacion, setNotificacion} = useContext(NotificacionContext)
     const [accionNoti, setAccionNoti] = useState("")
@@ -63,6 +31,43 @@ export const TablaRevocar = () => {
     const [mentorAsign,setMentorAsign]=useState("")
     const [adminAsign,setAdminAsign]=useState("")
     const [updateLicencias,setUpdateLicencias]=useState({})
+
+    const apiFetchRevocar=async (accion, serial) => {
+        try {
+            let ruta;
+    
+            console.log({accion})
+            if(accion == "Revocar"){ruta = "revocarLicencia"}
+            if(accion == "Reservar"){ruta= "reservarLicencia"}
+            console.log({ruta})
+            const data=await
+                fetch(`http://localhost:8080/api/admin/${ruta}` ,{
+                    mode: 'cors',
+                    method: "PUT",
+                    body: JSON.stringify(
+                        {
+                        serie: serial
+                    }
+                        ),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Cache': 'no-cache',
+                        'Access-Control-Allow-Origin': 'http://localhost:8080',
+                    },
+                    credentials: 'include',
+                })
+                    .then(resp => resp.json())
+                    console.log(data)    
+                    if(accion == "Revocar"){setAccionNoti('revocada')}
+                    if(accion == "Reservar"){setAccionNoti('reservada')}
+                    setCosoNoti('Licencia')
+                    setTextoNoti('exitosamente')
+                    mostrarNoti(1)
+        } catch (error) {
+            console.log({ error });
+        }
+    }
 
     useEffect(() => {
         getLicencias(setLicencias)
@@ -278,7 +283,7 @@ export const TablaRevocar = () => {
                     }
                 </tbody>
             </table >
-            <Modal accion={accion} titulo={titulo} plataforma={plat} serialLic={serial} coso={coso} usuario={usuario} fechaExpir={exp} soli = {""} tipoSoli = {tipoSoli} descripcion = {descripcion}/>
+            <Modal accion={accion} titulo={titulo} plataforma={plat} serialLic={serial} coso={coso} usuario={usuario} fechaExpir={exp} soli = {""} tipoSoli = {tipoSoli} descripcion = {descripcion} apiFetchRevocar={apiFetchRevocar}/>
             <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
         </>
     )
