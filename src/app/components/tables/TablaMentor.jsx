@@ -16,11 +16,17 @@ export const TablaMentor=() => {
     const apiFetch=async (accion,soli,numeroDias) => {
         try {
             let ruta;
-            console.log(accion)
+            console.log(numeroDias)
             console.log(soli.tipo)
             if (accion=="Aprobar") {
-                if (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma"||soli.tipo=="UDEMY"||soli.tipo=="OTRA PLATAFORMA")
-                    ruta=`aceptarSolicitud?dias=${numeroDias}`
+                if (soli.tipo=="Udemy"||soli.tipo=="Otra plataforma"||soli.tipo=="UDEMY"||soli.tipo=="OTRA PLATAFORMA"){
+                    if(numeroDias == ""){
+                        ruta=`aceptarSolicitud?dias=0`
+                    }
+                    else{
+                        ruta=`aceptarSolicitud?dias=${numeroDias}`
+                    }
+                } 
                 else
                     ruta=`aceptarSolicitud`
             }
@@ -48,6 +54,11 @@ export const TablaMentor=() => {
             if(accion == "Aprobar"){setAccionNoti('aprobada')}
             setCosoNoti('Solicitud')
             setTextoNoti('exitosamente')
+            if(data.mensaje == "Cantidad de dias no permitida"){
+                setAccionNoti('permitida')
+                setCosoNoti('Cantidad de dias no')
+                setTextoNoti('')
+            }
             mostrarNoti(1)
         } catch (error) {
             console.log({ error });

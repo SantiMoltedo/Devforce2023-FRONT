@@ -101,16 +101,16 @@ export const SolicitarCapacitacion = () => {
 
     if(document.getElementById("area-selector").value == 0){
       document.getElementById("area-selector").classList.add("input-invalid")
-      setAccion('campos')
-      setCoso('Complete todos los ')
-      setTexto('')
+      setAccionNoti('campos')
+      setCosoNoti('Complete todos los ')
+      setTextoNoti('')
       mostrarNoti(1);
     }
     if(document.getElementById("tipo-selector").value == 0){
       document.getElementById("tipo-selector").classList.add("input-invalid")
-      setAccion('campos')
-      setCoso('Complete todos los ')
-      setTexto('')
+      setAccionNoti('campos')
+      setCosoNoti('Complete todos los ')
+      setTextoNoti('')
       mostrarNoti(1);
     }
     checkValidacion()

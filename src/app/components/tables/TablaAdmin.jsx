@@ -42,7 +42,15 @@ export const TablaAdmin = () => {
                     .then(resp => resp.json())
                 console.log(data);
                 setMensajeSerial(data.mensaje)
+                console.log(data.mensaje)
                 setUpdateSolis(data)
+                if(data.mensaje == "LICENCIA DENEGADA. No hay licencias disponibles por el momento.")
+                {
+                    setAccionNoti('disponibles')
+                    setCosoNoti('No hay licencias')
+                    setTextoNoti('')
+                    mostrarNoti(1)
+                }
                 if(accion == "Rechazar")
                 {
                     setAccionNoti('rechazada')
@@ -56,9 +64,7 @@ export const TablaAdmin = () => {
                     if(data.mensaje == "LICENCIA ASIGNADA"){setAccionNotiSerial('asignada')}
                     setSerialNoti(data.contenido.serie)
                     mostrarNotiSerial(1)
-                }
-               
-
+                }     
         } catch (error) {
             console.log({ error });
         }
@@ -83,6 +89,14 @@ export const TablaAdmin = () => {
         if(notificacion == "modificado")
         {
             setAccionNoti('modificado')
+            setCosoNoti('Usuario')
+            setTextoNoti('exitosamente')
+            mostrarNoti(1)
+            setNotificacion("0")
+        }
+        if(notificacion == "creado")
+        {
+            setAccionNoti('creado')
             setCosoNoti('Usuario')
             setTextoNoti('exitosamente')
             mostrarNoti(1)

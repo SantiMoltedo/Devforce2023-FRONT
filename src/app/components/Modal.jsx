@@ -5,7 +5,7 @@ import { triggerToast } from './PushNotiSimple'
 import { triggerToastPushNoti } from './PushNoti'
 import { useForm } from '../../customHooks/useForm'
 
-export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin,apiFetchRevocar, role }) => {
+export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma,fechaExpir,serialLic,mentorAsign,adminAsign,coso,soli,mensajeSerial,apiFetch,apiFetchAdmin,apiFetchRevocar, role, sendUsuario }) => {
 
     const { formState,onInputChange }=useForm({
         numeroDias: ""
@@ -14,9 +14,6 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
     const funcionesModal=(accion) => {
         if (accion == "Asignar"){
             apiFetchAdmin(accion,soli)
-        }
-        if (accion == "RechazarAdmin"){
-
         }
         if (accion == "Rechazar"){
             if(coso == 'Solicitud'){
@@ -34,6 +31,9 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
         }
         if (accion == "Devolver"){
             apiFetch(accion, soli);
+        }
+        if (accion == 'Crear'){
+            sendUsuario()
         }
     }
 
@@ -215,7 +215,7 @@ export const Modal=({ accion,titulo,usuario,tipoSoli,descripcion,mail,plataforma
                                 accion? ( accion=="Crear"?(
                                             <div className="d-flex mt-3 justify-content-around">
                                                 <div className="mt-3"><button type="button" className="btn btn-outline-dark w-100 mb-3 me-2" data-bs-dismiss="modal">Cancelar</button></div>
-                                                <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={triggerToast} >{accion}</button> </div>
+                                                <div className="mt-3"><button type="button" className="btn btn-dark w-100 mb-3 ms-2" id="liveToastBtn" data-bs-dismiss="modal" onClick={()=>{funcionesModal(accion)}} >{accion}</button> </div>
                                             </div>
                                         )
                                             :(

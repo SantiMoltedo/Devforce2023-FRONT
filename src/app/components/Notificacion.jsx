@@ -23,7 +23,7 @@ export const Notificacion = ({accion, coso, texto}) => {
         <>
             <div class={`toastNuevo toast-header-${accion}`} id="noti">
                 <div className="toast-content">
-                    <span><i className={`fa-solid ${accion == 'aprobada' && 'fa-check'} ${accion == 'modificado' && 'fa-check'} ${accion == 'creada' && 'fa-check'} ${accion == 'creado' && 'fa-check'} ${accion == 'rechazada' && 'fa-xmark'} ${accion == 'campos' && 'fa-xmark'} ${accion == 'devuelta' && 'fa-clock'} ${accion == 'reservada' && 'fa-clock'} ${accion == 'revocada' && 'fa-xmark'}`}></i></span>
+                    <span><i className={`fa-solid ${accion == 'aprobada' && 'fa-check'} ${accion == 'modificado' && 'fa-check'} ${accion == 'creada' && 'fa-check'} ${accion == 'creado' && 'fa-check'} ${accion == 'rechazada' && 'fa-xmark'} ${accion == 'campos' && 'fa-xmark'} ${accion == 'devuelta' && 'fa-clock'} ${accion == 'reservada' && 'fa-clock'} ${accion == 'revocada' && 'fa-xmark'} ${accion == 'uso' && 'fa-xmark'} ${accion == 'existe' && 'fa-xmark'} ${accion == 'disponibles' && 'fa-xmark'} ${accion == 'permitida' && 'fa-xmark'}`}></i></span>
 
                     <div className="message">
                         <span className="text text-1">{`${coso} ${accion} ${texto}`}</span>

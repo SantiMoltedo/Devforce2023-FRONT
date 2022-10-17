@@ -295,7 +295,11 @@ i {
 .toast-header-revocada,
 .toast-header-rechazada,
 .toast-header-campos,
-.toast-header-revocada {
+.toast-header-revocada,
+.toast-header-uso,
+.toast-header-existe,
+.toast-header-disponibles,
+.toast-header-permitida{
     background-color: #B82E52;
 }
 

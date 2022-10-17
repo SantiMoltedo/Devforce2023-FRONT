@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../UserContext'
 import { useForm } from "../../../customHooks/useForm"
 import { NotificacionContext } from '../../../notificacionContext';
+import { mostrarNoti } from '../../components/Notificacion';
+import { Notificacion } from '../../components/Notificacion';
 
 export const ModificarUsuario = () => {
   
@@ -43,6 +45,9 @@ export const ModificarUsuario = () => {
     const [deshabilitarBtn, setdesahabilitarBtn] = useState("1");
 
     const habilitacionBotonConfirmar = () =>{
+      if(document.getElementById("mail").value != ""){
+        document.getElementById("mail").classList.remove("input-invalid")
+      }
       if(document.getElementById("mail").value == "")
       {
         setdesahabilitarBtn(1)
@@ -112,7 +117,11 @@ export const ModificarUsuario = () => {
           }
         }  
       }
-        
+
+    const [accionNoti, setAccionNoti] = useState("")
+    const [cosoNoti, setCosoNoti] = useState("")
+    const [textoNoti, setTextoNoti] = useState("")
+
     const sendUsuario = async () =>{
           try{
             const nombre = usuario.nombre;
@@ -130,7 +139,7 @@ export const ModificarUsuario = () => {
             }
 
             var datos = { nombre, apellido, username, email, password, phone, hasTeams}
-            
+            const data=await
             fetch('http://localhost:8080/api/usuario/updatedatos', {
               mode:'cors',
               method: 'PUT',
@@ -143,9 +152,20 @@ export const ModificarUsuario = () => {
                 },
                 credentials: 'include',
               }).then(resp => resp.json())
-            console.log(datos);
-            setNotificacion('modificado')
-            navigate(-1)
+            console.log(data.mensaje);
+            if(data.mensaje == 'Datos actualizados'){
+              setNotificacion('modificado')
+              navigate(-1)
+            }
+            if(data.mensaje == 'Ese email ya se encuentra registrado'){
+              setAccionNoti('uso')
+              setCosoNoti('El mail ya esta en')
+              document.getElementById('mail').classList.add("input-invalid")
+              setTextoNoti('')
+              mostrarNoti(1)
+            }
+           
+            
           }catch (error) {
             console.log( {error} );
           }
@@ -215,6 +235,7 @@ export const ModificarUsuario = () => {
             </form>
           </div>
         </div>
+        <Notificacion accion={accionNoti} coso={cosoNoti} texto={textoNoti}/>
       </>
     )
   }
