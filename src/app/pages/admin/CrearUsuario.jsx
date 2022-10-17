@@ -137,6 +137,9 @@ export const CrearUsuario = () => {
     {
       errores = errores + 1
     }
+    if(document.getElementById("password1").value != document.getElementById("password2").value){
+      errores = errores + 1
+    }
     if(errores == 0){
       document.getElementById("createBtnCR").disabled = false
     }
