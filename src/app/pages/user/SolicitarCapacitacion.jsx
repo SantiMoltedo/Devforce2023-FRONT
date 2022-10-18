@@ -137,7 +137,6 @@ export const SolicitarCapacitacion = () => {
           <select id='tipo-selector' className="form-select" onChange={() => {hideOrShowInput();checkValidacion()}} defaultValue={0}>
             <option disabled value={0}>Elegí el tipo de solicitud</option>
             <option value={"ASESORAMIENTO"}>Asesoramiento</option>
-            <option value={"COURSERA"}>Coursera</option>
             <option value={"OTROS"}>Otros</option>
             <option value={"UDEMY"}>Udemy</option>
             <option value={"OTRA PLATAFORMA"}>Otra Plataforma</option>
