@@ -17,15 +17,12 @@ export const TablaAdmin = () => {
     const apiFetchAdmin=async (accion,soli) => {
         try {
             let ruta;
-            console.log(accion)
             if (accion=="Asignar") {
                 ruta="asignarLicencia"
             }
             if (accion=="Rechazar") {
                 ruta="rechazarSolicitudAdmin"
             }
-            console.log(ruta)
-            console.log(soli)
             const data=await
                 fetch(`http://localhost:8080/api/admin/${ruta}`,{
                     mode: 'cors',
@@ -40,9 +37,7 @@ export const TablaAdmin = () => {
                     credentials: 'include',
                 })
                     .then(resp => resp.json())
-                console.log(data);
                 setMensajeSerial(data.mensaje)
-                console.log(data.mensaje)
                 setUpdateSolis(data)
                 if(data.mensaje == "LICENCIA DENEGADA. No hay licencias disponibles por el momento.")
                 {
@@ -107,9 +102,6 @@ export const TablaAdmin = () => {
     const getSolicitudes=async (setSolicitudes) => {
         try {
             const data=await
-                // axios.get('http://localhost:8080/api/solicitudesmentor')
-                // const { data } = resp
-                // console.log(data);
 
                 fetch('http://localhost:8080/api/solicitudesadmin',{
                     mode: 'cors',
