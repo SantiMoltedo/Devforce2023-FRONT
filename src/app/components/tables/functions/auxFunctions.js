@@ -45,8 +45,17 @@ export const sortTable = (n, dir, setDir) => {
 }
 
 export const expandRow = (i) => {
+    console.log(i)
+    console.log(i)
+    console.log(i)
     let parrafo = document.getElementById(`s${i}-description`)
     let icono = document.getElementById(`s${i}-expandIcon`)
-    parrafo.classList.toggle("collapsed")
+    // console.log(parrafo)
+    // console.log(parrafo)
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa')
+    console.log(icono)
+    console.log(icono)
+    //parrafo.classList.toggle("collapsed")
+    parrafo.classList.toggle('collapsed')
     icono.classList.toggle("rotated")
 }

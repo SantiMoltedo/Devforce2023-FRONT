@@ -156,7 +156,7 @@ export const TablaAdmin = () => {
                         <th scope="col">
                             <div className="d-flex justify-content-center align-items-center">Tipo de solicitud
                                 <div className="ms-2">
-                                    <i onClick={() => { sortTable(0,dirSort0,setDirSort0) }} className="fa-solid fa-arrow-up text-secondary" id='col2'></i>
+                                    <i onClick={() => { sortTable(2,dirSort0,setDirSort0) }} className="fa-solid fa-arrow-up text-secondary" id='col2'></i>
                                 </div>
                             </div>
                         </th>
@@ -187,8 +187,15 @@ export const TablaAdmin = () => {
                                         {soli.tipo}
                                     </td>
                                     <td>
-                                        <p id={`s${soli.id}-description`} className='collapsed w-100'>
+                                        <p id={`s${soli.id}-description`} className=' w-100'>
                                             {soli.descripcion}
+                                            {console.log(soli.id)}
+                                            {console.log(soli.id)}
+                                            {console.log(soli.id)}
+                                            {console.log(soli.id)}
+                                            {console.log(soli.id)}
+                                            {console.log(soli.id)}
+                                            {console.log(soli.id)}
                                         </p>
                                     </td>
                                     <td>
