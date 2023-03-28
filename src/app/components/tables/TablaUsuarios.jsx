@@ -16,11 +16,16 @@ export const TablaUsuarios = () => {
     const getSolicitudes = async (setSolicitudes) => {
         try {
             const data = await
-                //     axios.get('http://localhost:8080/api/solicitudesusuario')
-                // const { data } = resp
-                // console.log(data);
                 fetch('http://localhost:8080/api/solicitudesusuario', {
+                    mode: 'cors',
                     method: "GET",
+                    headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+						'Cache': 'no-cache',
+						'Access-Control-Allow-Origin': 'http://localhost:8080',
+					},
+					credentials: 'include',
                 })
                     .then(resp => resp.json())
             setSolicitudes(data)
@@ -58,6 +63,19 @@ export const TablaUsuarios = () => {
                     </tr>
                 </thead>
                 <tbody className="fs-7">
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <p className='collapsed w-100'>
+                            </p>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
                     {
                         solicitudes.map(soli => (
                             <tr>
@@ -65,7 +83,7 @@ export const TablaUsuarios = () => {
                                     {soli.tipo}
                                 </td>
                                 <td>
-                                    <p id={`s${soli.id}-description`} className='collapsed w-100'>
+                                    <p id={`s${soli.id}-description`} className='d-flex justify-content-center align-items-center'>
                                         {soli.descripcion}
                                     </p>
                                 </td>

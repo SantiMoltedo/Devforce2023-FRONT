@@ -1,12 +1,13 @@
-
-export const PushNoti = ({ accion, serial }) => {
-    // VER QUE OPCIONES DE ACCION APARECEN EN LA CONDICION DE LOS ICONOS O DEL HEADER (Y VERIFICAR CON EL CSS)
-    const triggerToast = () => {
+export const triggerToastPushNoti = () => {
         let toastLiveExample = document.getElementById('pushNoti')
         let toast = new bootstrap.Toast(toastLiveExample)
-        toast.show()
-    }
+        toast.show()}
+export const PushNoti = ({ accion, serial }) => {
+    // VER QUE OPCIONES DE ACCION APARECEN EN LA CONDICION DE LOS ICONOS O DEL HEADER (Y VERIFICAR CON EL CSS)
 
+    if (accion == "Asignar"){
+        accion = "asignada";
+    }
     return (
         <>
             {/* BOTON PARA PROBAR LA NOTIFICACION: */}
@@ -19,7 +20,7 @@ export const PushNoti = ({ accion, serial }) => {
                         <i className={`fa-solid ${accion == 'asignada' && 'fa-check'} ${accion == 'revocada' && 'fa-xmark'} ${accion == 'devuelta' && 'fa-clock'} text-white`} data-bs-dismiss="toast" aria-label="Close"></i>
                     </div>
                     <div className="toast-body">
-                        <p className="mb-1">Serial de Licencia {accion}:</p>
+                        <p className="mb-1"></p>
                         <p className="text-decoration-underline text-center mb-0">{serial}</p>
                     </div>
                 </div>
